@@ -1,11 +1,12 @@
-## Front Nrgybox
+## Admin Gift Card
 
 Team : 
-- Chloé
-- Michaël
-- Johanna
-- Enzo
-- Benoit
+- Gregory
+- Elodie
+- Christelle
+- Pierre
+- Mathilde
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
