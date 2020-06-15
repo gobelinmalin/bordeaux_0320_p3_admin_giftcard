@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
 
+// import components
+import LeftMenu from './components/leftmenu/LeftMenu';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">Hello React World</header>
-    </div>
-  );
+  return <LeftMenu />;
 }
 
 export default App;
