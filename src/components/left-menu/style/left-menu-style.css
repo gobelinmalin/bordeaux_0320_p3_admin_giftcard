@@ -1,0 +1,52 @@
+.main-fake {
+  border: solid blue 2px;
+  background-color: cadetblue;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-menu {
+  border: solid 1px;
+  border-radius: 5px;
+  margin: 5px 5px;
+  width: 20%;
+  min-height: 100%;
+}
+
+.logo-givyoo {
+  border: solid 1px red;
+  background-color: #f28a2f;
+  margin: 2px 2px;
+  /* flex */
+  display: flex;
+  justify-self: self-start;
+}
+
+.all-sections {
+  border: solid 1px red;
+  background-color: #f28a2f;
+  width: auto;
+  height: 95vh;
+  max-height: 100%;
+  margin: 2px 2px;
+  /* flex */
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.section {
+  border: solid 2px green;
+  border-radius: 5px;
+  background-color: #f8c597;
+  text-decoration: none;
+  width: 180px;
+  height: 50px;
+  margin: 10px auto;
+  padding: 5px 5px;
+  /* flex */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

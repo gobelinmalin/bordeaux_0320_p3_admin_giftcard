@@ -1,0 +1,7 @@
+.main-content {
+  border: solid blue 2px;
+  background-color: cadetblue;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
