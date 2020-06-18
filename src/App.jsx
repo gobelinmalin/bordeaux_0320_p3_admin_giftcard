@@ -1,10 +1,12 @@
 import React from 'react';
-import './App.css';
+import Header from './components/mainContent/header/Header';
+import Signin from './components/Signin';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">Hello React World</header>
+    <div>
+      <Header />
+      <Signin />
     </div>
   );
 }

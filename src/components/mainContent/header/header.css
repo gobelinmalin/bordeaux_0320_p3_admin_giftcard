@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  max-width: 1620px;
+  height: 85px;
+  margin: 10px 0;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  background-color: #f8c597;
+  width: 75%;
+  color: #fff2ce;
+  font-size: x-large;
+  margin: 0 5px;
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+}
+
+.logout {
+  width: 25%;
+  margin: 0 5px;
+}
+
+.pseudo {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: 35px;
+  background-color: #f28a2f;
+  color: #fff2ce;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.logoutLink {
+  display: flex;
+  height: 35px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8c597;
+
+  margin: 5px 0;
+  border-radius: 5px;
+}
