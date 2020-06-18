@@ -3,7 +3,7 @@ import React from 'react';
 
 // import components
 import Logo from './Logo';
-import Section from './Section';
+import NavButton from './NavButton';
 
 // import datas
 import section from './datas';
@@ -16,7 +16,7 @@ const LeftMenu = () => {
     <>
       <div className="left-menu">
         <Logo />
-        <Section section={section} />
+        <NavButton section={section} />
       </div>
     </>
   );

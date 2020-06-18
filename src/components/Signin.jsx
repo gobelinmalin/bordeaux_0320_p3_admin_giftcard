@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import './signin.css';
 
@@ -36,7 +37,7 @@ function Signin() {
             />
           </Form.Group>
           <Button block bsSize="large" disabled={!validateForm()} type="submit">
-            Login
+            <Link to="/admin/boardchart">login</Link>
           </Button>
         </Form>
       </div>

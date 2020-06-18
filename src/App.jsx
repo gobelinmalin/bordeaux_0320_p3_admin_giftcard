@@ -7,17 +7,13 @@ import './App.css';
 
 // import components
 import Admin from './components/Admin';
-import Login from './components/Login';
-import Header from './components/mainContent/header/Header';
 import Signin from './components/Signin';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Signin />
       <Switch>
-        <Route exact path="/" component={Login} /> ;
+        <Route exact path="/" component={Signin} /> ;
         <Route path="/admin" component={Admin} /> ;
       </Switch>
     </div>

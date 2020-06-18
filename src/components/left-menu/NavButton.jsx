@@ -8,26 +8,26 @@ import { Link } from 'react-router-dom';
 // import style
 import './style/left-menu-style.css';
 
-const Section = (props) => {
+const NavButton = (props) => {
   const { section } = props;
   const mapSection = section.map((i) => (
-    <div className="section">
+    <div className="nav-button">
       <Link to={`/admin${i.route}`}>{i.name}</Link>
     </div>
   ));
 
   return (
     <>
-      <div className="all-sections">{mapSection}</div>
+      <div className="all-button">{mapSection}</div>
     </>
   );
 };
 
-Section.defaultProps = {
+NavButton.defaultProps = {
   section: PropTypes.array,
 };
-Section.propTypes = {
+NavButton.propTypes = {
   section: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default Section;
+export default NavButton;

@@ -1,21 +1,23 @@
 .header {
-  display: flex;
-  flex-direction: row;
-  max-width: 1620px;
   height: 85px;
   margin: 10px 0;
+  /* FLEX */
+  display: flex;
+  flex-direction: row;
 }
 
 .title {
-  display: flex;
-  align-items: center;
-  background-color: #f8c597;
-  width: 75%;
-  color: #fff2ce;
-  font-size: x-large;
+  border: solid 1px #20124d;
+  background-color: #fff2ceff;
+  border-radius: 10px 10px 0 0;
   margin: 0 5px;
   padding: 20px;
-  border-radius: 10px 10px 0 0;
+  font-size: x-large;
+  color: #20124d;
+  width: 75%;
+  /* FLEX */
+  display: flex;
+  align-items: center;
 }
 
 .logout {
@@ -29,19 +31,21 @@
   text-align: center;
   align-items: center;
   height: 35px;
-  background-color: #f28a2f;
-  color: #fff2ce;
+  background-color: #20124d;
+  color: #fff2ceff;
   margin: 5px 0;
   border-radius: 5px;
 }
 
 .logoutLink {
+  border: solid 1px #20124d;
   display: flex;
   height: 35px;
   text-align: center;
   align-items: center;
   justify-content: center;
-  background-color: #f8c597;
+  background-color: #fff2ceff;
+  color: #20124d;
 
   margin: 5px 0;
   border-radius: 5px;

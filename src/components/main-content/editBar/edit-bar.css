@@ -1,0 +1,10 @@
+.editBar {
+  border: solid 1px #20124d;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  margin: 10px 5px;
+}

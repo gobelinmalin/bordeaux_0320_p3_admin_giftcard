@@ -7,7 +7,7 @@ function Header() {
       <div className="title">Admin Console</div>
       <div className="logout">
         <div className="pseudo">Marielle</div>
-        <div className="logoutLink">Logout link</div>
+        <div className="logoutLink">Logout</div>
       </div>
     </div>
   );
