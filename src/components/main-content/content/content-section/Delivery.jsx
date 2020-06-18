@@ -4,7 +4,7 @@ import React from 'react';
 // import components
 
 // import style
-import '../style/left-menu-style.css';
+import './content-section.css';
 
 const Delivery = () => {
   return (
