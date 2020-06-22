@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 // import style
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import components
 import Admin from './components/Admin';

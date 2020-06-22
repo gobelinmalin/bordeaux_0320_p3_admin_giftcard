@@ -8,7 +8,7 @@ import EditBar from './editBar/EditBar';
 import BoardChart from './content/content-section/BoardChart';
 import Shops from './content/content-section/Shops';
 import Products from './content/content-section/Products';
-import Customers from './content/content-section/Customers';
+import Customers from './content/content-section/customers/Customers';
 import Delivery from './content/content-section/Delivery';
 
 // import style
