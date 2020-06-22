@@ -9,10 +9,30 @@
   flex-wrap: wrap;
   font-size: small;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
+/* Form */
 .form-client {
-  border: solid 1px red;
-  padding: 10px;
+  /* border: solid 1px red; */
+  margin: 10px;
+  padding: 10px 10px;
+  width: 30%vw;
+  display: flex;
+  flex-direction: column;
+}
+
+#form-title {
+  /* border: solid; */
+  margin-left: 50px;
+}
+.cta-client-button {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+/* Table */
+.table-client-title {
+  border: solid;
 }
