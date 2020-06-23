@@ -2,14 +2,15 @@
 import React from 'react';
 
 // import components
+// import Cockpit from '../Cockpit';
 
 // import style
-import './content-section.css';
 
 const Shops = () => {
   return (
     <>
-      <div className="main-fake">fake Shops</div>
+      {/* <Cockpit /> */}
+      <div>liste des shops</div>
     </>
   );
 };

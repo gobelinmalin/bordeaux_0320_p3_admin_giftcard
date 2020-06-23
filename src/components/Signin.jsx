@@ -37,7 +37,7 @@ function Signin() {
             />
           </Form.Group>
           <Button block bsSize="large" disabled={!validateForm()} type="submit">
-            <Link to="/admin/boardchart">login</Link>
+            <Link to="/admin">login</Link>
           </Button>
         </Form>
       </div>

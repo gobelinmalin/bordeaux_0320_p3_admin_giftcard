@@ -4,7 +4,6 @@ import React from 'react';
 // import components
 
 // import style
-import './content-section.css';
 
 const BoardChart = () => {
   return (

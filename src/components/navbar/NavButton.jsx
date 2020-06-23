@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 // import components
 
 // import style
-import './style/left-menu-style.css';
+// import './style/left-menu-style.css';
 
 const NavButton = (props) => {
   const { section } = props;
   const mapSection = section.map((i) => (
-    <div className="nav-button">
+    <div className="btn" variant="send">
       <Link to={`/admin${i.route}`}>{i.name}</Link>
     </div>
   ));
