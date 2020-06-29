@@ -10,6 +10,8 @@ import Signin from './components/Signin';
 import Cockpit from './components/Cockpit';
 import Customers from './components/customers/Customers';
 import FormCustomer from './components/customers/FormCustomer';
+import Shops from './components/shops/Shops';
+import ShopsAdd from './components/shops/ShopsAdd';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           path="/admin/customers/customer-add"
           component={FormCustomer}
         />
+        <Route exact path="/admin/shops" component={Shops} />
+        <Route exact path="/admin/shops/add-a-shop" component={ShopsAdd} />
       </Switch>
     </div>
   );

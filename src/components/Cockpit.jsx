@@ -24,7 +24,6 @@ const Cockpit = () => {
         <Route path="/admin/boardchart" component={BoardChart} />
         <Route path="/admin/deliveries" component={Deliveries} />
         <Route path="/admin/products" component={Products} />
-        {/* <Route path="/admin/shops" component={Shops} /> */}
       </Switch>
     </div>
   );
