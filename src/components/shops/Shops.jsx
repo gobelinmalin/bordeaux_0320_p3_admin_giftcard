@@ -1,8 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 
 import Header from '../header/Header';
 import ShopsList from './ShopsList';
@@ -34,20 +31,20 @@ const Shops = () => {
   };
 
   // CRUD operations
-  /*   const addShop = (shop) => {
+  const addShop = (shop) => {
+    // eslint-disable-next-line no-param-reassign
     shop.id = shops.length + 1;
     setShops([...shops, shop]);
-  }; 
-  
-    const updateShop = (id, updatedShop) => {
-    setEdit(false);
-    setShops(shops.map((shop) => (shop.id === id ? updatedShop : shop)));
   };
-  */
 
   const deleteShop = (id) => {
     setEdit(false);
     setShops(shops.filter((shop) => shop.id !== id));
+  };
+
+  const updateShop = (id, updatedShop) => {
+    setEdit(false);
+    setShops(shops.map((shop) => (shop.id === id ? updatedShop : shop)));
   };
 
   const editShop = (shop) => {
@@ -67,12 +64,6 @@ const Shops = () => {
   return (
     <>
       <Header />
-      <div className="EditBar">
-        <Link to="/admin/shops/add-a-shop">
-          <Button>Ajouter une Enseigne</Button>
-        </Link>
-      </div>
-      {/* ancien code : 
       <div className="formType">
         {edit ? (
           <ShopsUpdate
@@ -83,10 +74,8 @@ const Shops = () => {
         ) : (
           <ShopsAdd addShop={addShop} />
         )}
-      </div> */}
-      <div>
-        <ShopsList shops={shops} deleteShop={deleteShop} editShop={editShop} />
       </div>
+      <ShopsList shops={shops} deleteShop={deleteShop} editShop={editShop} />
     </>
   );
 };

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
-import PropTypes from 'prop-types';
+/* import PropTypes from 'prop-types'; */
 
-const ShopsAdd = (props) => {
+const ShopsAdd = () => {
   const initialFormState = { id: null, name: '', online: '', offline: '' };
   const [shop, setShop] = useState(initialFormState);
 
@@ -14,6 +14,13 @@ const ShopsAdd = (props) => {
     setShop({ ...shop, [name]: value });
   };
 
+  // CRUD operation
+  /*  const addShop = (shop) => {
+    // eslint-disable-next-line no-param-reassign
+    shop.id = shops.length + 1;
+    setShops([...shops, shop]);
+  }; */
+
   return (
     <>
       <Link to="/admin/shops">Retour aux enseignes</Link>
@@ -22,7 +29,7 @@ const ShopsAdd = (props) => {
       <Form
         onSubmit={(event) => {
           event.preventDefault();
-          props.addShop(shop);
+          /* addShop(shop); */
           setShop(initialFormState);
         }}
       >
@@ -59,8 +66,8 @@ const ShopsAdd = (props) => {
   );
 };
 
-export default ShopsAdd;
-
-ShopsAdd.propTypes = {
+/* ShopsAdd.propTypes = {
   addShop: PropTypes.func.isRequired,
-};
+}; */
+
+export default ShopsAdd;
