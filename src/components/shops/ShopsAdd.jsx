@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
+import Axios from 'axios';
 
 /* import PropTypes from 'prop-types'; */
 
 const ShopsAdd = () => {
   const initialFormState = { id: null, name: '', online: '', offline: '' };
+
   const [shop, setShop] = useState(initialFormState);
+  /*   const [submitted, setSubmitted] = useState(false); */
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
     setShop({ ...shop, [name]: value });
   };
 
   // CRUD operation
-  /*  const addShop = (shop) => {
-    // eslint-disable-next-line no-param-reassign
-    shop.id = shops.length + 1;
-    setShops([...shops, shop]);
-  }; */
+  const addShop = () => {
+    Axios({
+      method: 'post',
+      url: 'http://localhost:3000/api/shops',
+      data: shop,
+    })
+      .then((response) => response.data)
+      .then((data) => setShop(data));
+  };
 
   return (
     <>
@@ -29,7 +35,7 @@ const ShopsAdd = () => {
       <Form
         onSubmit={(event) => {
           event.preventDefault();
-          /* addShop(shop); */
+          addShop(shop);
           setShop(initialFormState);
         }}
       >
