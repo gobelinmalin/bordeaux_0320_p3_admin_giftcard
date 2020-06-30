@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 
 import PropTypes from 'prop-types';
 
+// eslint-disable-next-line react/prop-types
 const ShopsUpdate = ({ setEdit, currentShop, updateShop }) => {
   const [shop, setShop] = useState(currentShop);
 
@@ -61,7 +62,7 @@ const ShopsUpdate = ({ setEdit, currentShop, updateShop }) => {
 export default ShopsUpdate;
 
 ShopsUpdate.propTypes = {
-  currentShop: PropTypes.objectOf(PropTypes.object()).isRequired,
+  // currentShop: PropTypes.objectOf(PropTypes.object()).isRequired,
   setEdit: PropTypes.bool.isRequired,
   updateShop: PropTypes.func.isRequired,
 };

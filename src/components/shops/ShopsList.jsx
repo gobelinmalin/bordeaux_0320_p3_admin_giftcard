@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 
@@ -46,17 +47,29 @@ const ShopsList = ({ shops, deleteShop, editShop }) => {
 
 export default ShopsList;
 
-/* ShopsList.defaultProps = {
-  shops: PropTypes.array.isRequired,
+ShopsList.defaultProps = {
+  shops: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      offline: PropTypes.bool,
+      online: PropTypes.bool,
+    })
+  ).isRequired,
   name: PropTypes.string.isRequired,
   online: PropTypes.string.isRequired,
   offline: PropTypes.string.isRequired,
   deleteShop: PropTypes.func.isRequired,
   editShop: PropTypes.func.isRequired,
-}; */
+};
 
-ShopsList.propTypes = {
-  shops: PropTypes.oneOfType([PropTypes.object]).isRequired,
+/* Component.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      item: PropTypes.object,
+    }),
+  }).isRequired,
   deleteShop: PropTypes.func.isRequired,
   editShop: PropTypes.func.isRequired,
 };
+ */
