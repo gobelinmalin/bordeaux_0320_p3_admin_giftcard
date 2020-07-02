@@ -13,7 +13,7 @@ import Products from './products/Products';
 // import Shops from './shops/Shops';
 
 // import style
-import './main-content.css';
+import './styles.css';
 
 const Cockpit = () => {
   return (
