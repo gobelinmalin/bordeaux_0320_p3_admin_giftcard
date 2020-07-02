@@ -20,7 +20,7 @@ const ShopsAdd = () => {
   const addShop = () => {
     Axios({
       method: 'post',
-      url: 'http://localhost:3000/api/shops',
+      url: 'http://localhost:5000/api/shops',
       data: shop,
     })
       .then((response) => response.data)

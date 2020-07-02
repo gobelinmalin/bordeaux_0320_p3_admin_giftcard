@@ -24,7 +24,7 @@ const Shops = () => {
   const [edit, setEdit] = useState(false);
 
   const getShopsData = () => {
-    const url = 'http://localhost:3000/api/shops';
+    const url = 'http://localhost:5000/api/shops';
     axios
       .get(url)
       .then((response) => response.data)
