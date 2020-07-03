@@ -1,14 +1,10 @@
 // import lib
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Container, Col } from 'react-bootstrap';
 
 // import components
-import Header from './header/Header';
 import NavBar from './navbar/NavBar';
-import BoardChart from './boardchart/BoardChart';
-
-import Deliveries from './deliveries/Deliveries';
-import Products from './products/Products';
+import DisplayContent from './DisplayContent';
 
 // import Shops from './shops/Shops';
 
@@ -17,15 +13,14 @@ import './styles.css';
 
 const Cockpit = () => {
   return (
-    <div className="main-content">
-      <Header />
-      <NavBar />
-      <Switch>
-        <Route path="/admin/boardchart" component={BoardChart} />
-        <Route path="/admin/deliveries" component={Deliveries} />
-        <Route path="/admin/products" component={Products} />
-      </Switch>
-    </div>
+    <Container className="parent-container">
+      <Col sm={2} className="nav flex-column nav-tabs">
+        <NavBar />
+      </Col>
+      <Col sm={8}>
+        <DisplayContent />
+      </Col>
+    </Container>
   );
 };
 

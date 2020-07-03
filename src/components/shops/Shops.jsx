@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import Header from '../header/Header';
+// import Header from '../header/Header';
 import ShopsList from './ShopsList';
 import ShopsAdd from './ShopsAdd';
 import ShopsUpdate from './ShopsUpdate';
@@ -64,7 +64,7 @@ const Shops = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Link to="/admin/shops/add-a-shop">
         <Button variant="warning">Ajouter une enseigne</Button>
       </Link>

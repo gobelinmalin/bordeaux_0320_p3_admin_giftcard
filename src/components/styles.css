@@ -1,3 +1,17 @@
+/* Cockpit component */
+.parent-container {
+  display: flex;
+  min-width: 100vw;
+  background-color: cadetblue;
+  margin: 0;
+}
+/* NavBar component */
+.nav-bar {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+}
+
 .main-content {
   border-radius: 10px;
   width: 100%;

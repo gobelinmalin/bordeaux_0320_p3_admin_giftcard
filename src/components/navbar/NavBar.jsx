@@ -1,25 +1,26 @@
 // import lib
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
 
 // import components
+import NavButton from './NavButton';
 import Logo from './Logo';
 
 // import datas
-// import section from './datas';
+import section from './datas';
 
 // import style
-// import './style/left-menu-style.css';
+import './style/left-menu-style.css';
 
 const NavBar = () => {
   return (
-    <>
-      <div className="left-menu">
-        <Logo />
-        {/* <NavButton section={section} /> */}
-        <nav>
-          <ul>
-            <li>
+    <Nav activeKey="/admin" className="d-flex flex-column left-menu">
+      <Logo />
+      <NavButton section={section} className="" />
+      <nav>
+        <ul>
+          {/* <li>
               <Link to="/admin/customers">Clients</Link>
             </li>
             <li>
@@ -30,11 +31,10 @@ const NavBar = () => {
             </li>
             <li>
               <Link to="/admin/shops/add-a-shop">Ajouter une enseigne</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </>
+            </li> */}
+        </ul>
+      </nav>
+    </Nav>
   );
 };
 

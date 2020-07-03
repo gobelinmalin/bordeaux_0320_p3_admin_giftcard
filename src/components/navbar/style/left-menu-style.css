@@ -1,8 +1,10 @@
 .left-menu {
   border-radius: 10px;
   margin: 5px 5px;
-  width: 20%;
   min-height: 100%;
+  border: 1px solid rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo-givyoo {
