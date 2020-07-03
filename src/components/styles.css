@@ -1,0 +1,35 @@
+.main-content {
+  border-radius: 10px;
+  width: 100%;
+  margin: 5px 5px 5px 0px;
+  background-color: #fff2ceff;
+  /* FLEX */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form styles */
+.flex {
+  display: flex;
+}
+
+.spaceBetween {
+  justify-content: space-between;
+}
+
+.formContent {
+  width: 700px;
+  border: 1px solid #20124d;
+  border-radius: 5px;
+  padding: 5px 20px;
+  margin: 10px 0;
+}
+
+.formContent p {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.shopType {
+  padding: 0 50px;
+}

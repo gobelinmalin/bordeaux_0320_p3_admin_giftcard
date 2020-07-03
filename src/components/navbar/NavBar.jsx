@@ -25,6 +25,12 @@ const NavBar = () => {
             <li>
               <Link to="/admin/customers/customer-add">Ajouter un client</Link>
             </li>
+            <li>
+              <Link to="/admin/shops">Liste des enseignes</Link>
+            </li>
+            <li>
+              <Link to="/admin/shops/add-a-shop">Ajouter une enseigne</Link>
+            </li>
           </ul>
         </nav>
       </div>

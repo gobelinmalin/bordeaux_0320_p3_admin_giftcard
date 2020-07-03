@@ -13,7 +13,7 @@ import Products from './products/Products';
 // import Shops from './shops/Shops';
 
 // import style
-import './main-content.css';
+import './styles.css';
 
 const Cockpit = () => {
   return (
@@ -24,7 +24,6 @@ const Cockpit = () => {
         <Route path="/admin/boardchart" component={BoardChart} />
         <Route path="/admin/deliveries" component={Deliveries} />
         <Route path="/admin/products" component={Products} />
-        {/* <Route path="/admin/shops" component={Shops} /> */}
       </Switch>
     </div>
   );
