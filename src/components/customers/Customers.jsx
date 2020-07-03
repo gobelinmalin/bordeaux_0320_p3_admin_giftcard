@@ -5,7 +5,7 @@ import { Form, Table, Button, Container, Col, Row } from 'react-bootstrap';
 
 // import components
 import FormCustomer from './FormCustomer';
-import TableCustomer from './TableCustomer';
+import AllCustomers from './AllCustomers';
 
 // import data
 import fields from './customerFields';
@@ -18,20 +18,26 @@ const Customers = () => {
   // GET all customers
   const initialState = [
     {
-      name: '',
-      adresse: '',
-      birthday: '',
+      id: '0',
+      firstname: 'John',
+      lastname: 'Doh',
+      email: 'jon@doh.com',
+      adresse: 'Springfield',
     },
   ];
-  const [customers, setCustomers] = useState(initialState);
 
+  const [customers, setCustomers] = useState([]);
   useEffect(() => {
+    setCustomers(initialState);
     Axios({
       method: 'get',
-      url: '',
-      data: customers,
-    }).then((response) => setCustomers(response));
+      url: 'http://givyoo.fr/api/clients',
+    }).then((response) => setCustomers(response.data));
   }, []);
+
+  // POST a customer
+  // PUT a customer
+  // DELETE a customer
 
   return (
     <>
@@ -44,7 +50,7 @@ const Customers = () => {
           </Col>
           <Col>
             <Table>
-              <TableCustomer />
+              <AllCustomers customers={customers} />
             </Table>
           </Col>
         </Row>
