@@ -1,7 +1,6 @@
 // import lib
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import { Switch, Route, Link } from 'react-router-dom';
 import { Form, Table, Button, Container, Col, Row } from 'react-bootstrap';
 
 // import components
@@ -42,18 +41,8 @@ const Customers = () => {
 
   return (
     <Container>
-      <Switch>
-        <Route
-          exact
-          path="/admin/customers/customer-add"
-          component={FormCustomer}
-        />
-      </Switch>
       <Row>
         <Col>
-          <Button>
-            <Link to="/admin/customers/customer-add">Ajouter un client</Link>
-          </Button>
           <Form>
             <FormCustomer fields={fields} />
           </Form>
