@@ -1,16 +1,13 @@
 // import lib
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
 // import components
 
 // import style
 
 const BoardChart = () => {
-  return (
-    <>
-      <div className="main-fake">fake BoardChart</div>
-    </>
-  );
+  return <Container className="col-lg">fake BoardChart</Container>;
 };
 
 export default BoardChart;

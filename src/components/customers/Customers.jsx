@@ -40,33 +40,26 @@ const Customers = () => {
   // DELETE a customer
 
   return (
-    <>
-      <Container>
-        <Row>
-          <Col>
-            <Form>
-              <FormCustomer fields={fields} />
-            </Form>
-          </Col>
-          <Col>
-            <Table>
-              <AllCustomers customers={customers} />
-            </Table>
-          </Col>
-        </Row>
-        <Button className="btn-sm" variant="warning" type="reset">
-          Annuler
-        </Button>
-        <Button
-          className="btn-sm"
-          variant="success"
-          type="submit"
-          value="Submit"
-        >
-          Modifier un client
-        </Button>
-      </Container>
-    </>
+    <Container>
+      <Row>
+        <Col>
+          <Form>
+            <FormCustomer fields={fields} />
+          </Form>
+        </Col>
+        <Col>
+          <Table>
+            <AllCustomers customers={customers} />
+          </Table>
+        </Col>
+      </Row>
+      <Button className="btn-sm" variant="warning" type="reset">
+        Annuler
+      </Button>
+      <Button className="btn-sm" variant="success" type="submit" value="Submit">
+        Modifier un client
+      </Button>
+    </Container>
   );
 };
 

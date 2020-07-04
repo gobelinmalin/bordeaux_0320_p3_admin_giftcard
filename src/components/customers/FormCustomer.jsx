@@ -1,17 +1,17 @@
 // import lib
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Col } from 'react-bootstrap';
+import { Form, Col, Button, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 // import components
 
 // import style
 import '../content-section.css';
 
-const FormCustomer = (props) => {
-  const { fields } = props;
-
-  const createFormClient = fields.map((field) => (
+const FormCustomer = ({ fields }) => {
+  const valueOfFields = Object.values(fields);
+  const createFormClient = valueOfFields.map((field) => (
     <Form.Group className="form-group">
       <Form.Label>{field.label}</Form.Label>
       <Form.Control type={field.type} size="sm" pattern={field.pattern} />
@@ -19,10 +19,15 @@ const FormCustomer = (props) => {
   ));
 
   return (
-    <Col className="col-form-label-sm">
-      <h3 id="">Identité du client</h3>
-      {createFormClient}
-    </Col>
+    <Container>
+      <Col className="col-form-label-sm">
+        <Button>
+          <Link to="/admin/customers/customer-add">Ajouter un client</Link>
+        </Button>
+        <h3 id="">Identité du client</h3>
+        {createFormClient}
+      </Col>
+    </Container>
   );
 };
 

@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 // import components
 
@@ -11,16 +12,16 @@ import { Link } from 'react-router-dom';
 const NavButton = (props) => {
   const { section } = props;
   const mapSection = section.map((i) => (
-    <div className="btn" variant="send">
+    <Button
+      size="sm"
+      className="m-2 p-1 w-75 text-nowrap text-decoration-none"
+      active
+    >
       <Link to={`/admin${i.route}`}>{i.name}</Link>
-    </div>
+    </Button>
   ));
 
-  return (
-    <>
-      <div className="all-button">{mapSection}</div>
-    </>
-  );
+  return <>{mapSection}</>;
 };
 
 NavButton.defaultProps = {
