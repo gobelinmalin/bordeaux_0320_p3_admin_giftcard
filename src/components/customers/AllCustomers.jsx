@@ -1,7 +1,7 @@
 // import lib
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'react-bootstrap';
+import { Table, Container } from 'react-bootstrap';
 
 // import components
 
@@ -25,9 +25,15 @@ const AllCustomers = ({ customers }) => {
     });
 
   return (
-    <div>
+    <Container>
       <h3>Liste des clients</h3>
-      <Table className="table,table-responsive" striped bordered hover>
+      <Table
+        className="table,table-responsive"
+        variant="dark"
+        striped
+        bordered
+        hover
+      >
         <thead>
           <tr>
             <th>#id</th>
@@ -40,7 +46,7 @@ const AllCustomers = ({ customers }) => {
         </thead>
         <tbody>{allCustomers}</tbody>
       </Table>
-    </div>
+    </Container>
   );
 };
 AllCustomers.defaultProps = {
