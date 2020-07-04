@@ -8,10 +8,10 @@ import { Form, Col } from 'react-bootstrap';
 // import style
 import '../content-section.css';
 
-const FormCustomer = (props) => {
-  const { fields } = props;
+const FormCustomer = ({ fields }) => {
+  const valueOfFields = Object.values(fields);
 
-  const createFormClient = fields.map((field) => (
+  const createFormClient = valueOfFields.map((field) => (
     <Form.Group className="form-group">
       <Form.Label>{field.label}</Form.Label>
       <Form.Control type={field.type} size="sm" pattern={field.pattern} />

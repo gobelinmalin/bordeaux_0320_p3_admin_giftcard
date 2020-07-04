@@ -1,6 +1,7 @@
 // import lib
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
+import { Switch, Route, Link } from 'react-router-dom';
 import { Form, Table, Button, Container, Col, Row } from 'react-bootstrap';
 
 // import components
@@ -40,33 +41,36 @@ const Customers = () => {
   // DELETE a customer
 
   return (
-    <>
-      <Container>
-        <Row>
-          <Col>
-            <Form>
-              <FormCustomer fields={fields} />
-            </Form>
-          </Col>
-          <Col>
-            <Table>
-              <AllCustomers customers={customers} />
-            </Table>
-          </Col>
-        </Row>
-        <Button className="btn-sm" variant="warning" type="reset">
-          Annuler
-        </Button>
-        <Button
-          className="btn-sm"
-          variant="success"
-          type="submit"
-          value="Submit"
-        >
-          Modifier un client
-        </Button>
-      </Container>
-    </>
+    <Container>
+      <Switch>
+        <Route
+          exact
+          path="/admin/customers/customer-add"
+          component={FormCustomer}
+        />
+      </Switch>
+      <Row>
+        <Col>
+          <Button>
+            <Link to="/admin/customers/customer-add">Ajouter un client</Link>
+          </Button>
+          <Form>
+            <FormCustomer fields={fields} />
+          </Form>
+        </Col>
+        <Col>
+          <Table>
+            <AllCustomers customers={customers} />
+          </Table>
+        </Col>
+      </Row>
+      <Button className="btn-sm" variant="warning" type="reset">
+        Annuler
+      </Button>
+      <Button className="btn-sm" variant="success" type="submit" value="Submit">
+        Modifier un client
+      </Button>
+    </Container>
   );
 };
 

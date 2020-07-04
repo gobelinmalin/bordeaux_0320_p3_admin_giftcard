@@ -14,7 +14,7 @@ const NavButton = (props) => {
   const mapSection = section.map((i) => (
     <Button
       size="sm"
-      className="m-2 p-1 w-50 text-nowrap text-decoration-none"
+      className="m-2 p-1 w-75 text-nowrap text-decoration-none"
       active
     >
       <Link to={`/admin${i.route}`}>{i.name}</Link>
