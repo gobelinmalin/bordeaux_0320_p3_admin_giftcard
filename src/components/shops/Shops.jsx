@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
 // import Header from '../header/Header';
 import ShopsList from './ShopsList';
@@ -64,9 +64,9 @@ const Shops = () => {
 
   return (
     <Container>
-      <Switch>
+      {/* <Switch>
         <Route path="/admin/shops/add-a-shop" component={ShopsAdd} />
-      </Switch>
+      </Switch> */}
       {/* <Header /> */}
       <Link to="/admin/shops/add-a-shop">
         <Button variant="warning">Ajouter une enseigne</Button>
