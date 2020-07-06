@@ -9,7 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import components
 import Signin from './components/Signin';
 import Header from './components/header/Header';
-import Cockpit from './components/Cockpit';
 import Shops from './components/shops/Shops';
 import NavBar from './components/navbar/NavBar';
 import Customers from './components/customers/Customers';
@@ -26,13 +25,15 @@ function App() {
       <Row>
         <Switch>
           <Route exact path="/" component={Signin} />
-          <Route path="/admin" component={Cockpit}>
+          <Route path="/admin">
             <Col sm={2}>
               <NavBar />
             </Col>
             <Col sm={8}>
               <Header />
-              <Route path="/admin/Shops" component={Shops} />
+              <Route path="/admin/Shops">
+                <Shops />
+              </Route>
               <Route path="/admin/customers" component={Customers} />
             </Col>
           </Route>
