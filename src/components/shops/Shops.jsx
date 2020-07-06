@@ -68,7 +68,7 @@ const Shops = () => {
         <Route path="/admin/shops/add-a-shop" component={ShopsAdd} />
       </Switch> */}
       {/* <Header /> */}
-      <Link to="/admin/shops/add-a-shop">
+      <Link to="/admin/shops/add">
         <Button variant="warning">Ajouter une enseigne</Button>
       </Link>
       <div className="formType">

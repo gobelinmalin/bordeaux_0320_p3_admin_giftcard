@@ -12,8 +12,9 @@ import Header from './components/header/Header';
 import Shops from './components/shops/Shops';
 import NavBar from './components/navbar/NavBar';
 import Customers from './components/customers/Customers';
-/* import ShopsAdd from './components/shops/ShopsAdd';
-import FormCustomer from './components/customers/FormCustomer';
+import ShopsAdd from './components/shops/ShopsAdd';
+import ShopsUpdate from './components/shops/ShopsUpdate';
+/* import FormCustomer from './components/customers/FormCustomer';
 import BoardChart from './components/boardchart/BoardChart';
 import DisplayContent from './components/DisplayContent';
 import Products from './components/products/Products';
@@ -31,9 +32,13 @@ function App() {
             </Col>
             <Col sm={8}>
               <Header />
-              <Route path="/admin/Shops">
-                <Shops />
-              </Route>
+              <Route exact path="/admin/shops" component={Shops} />
+              <Route exact path="/admin/shops/add" component={ShopsAdd} />
+              <Route
+                exact
+                path="/admin/shops/update/:id"
+                component={ShopsUpdate}
+              />
               <Route path="/admin/customers" component={Customers} />
             </Col>
           </Route>
