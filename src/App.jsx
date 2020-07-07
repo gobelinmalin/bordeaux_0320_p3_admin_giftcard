@@ -14,6 +14,7 @@ import NavBar from './components/navbar/NavBar';
 import Customers from './components/customers/Customers';
 import ShopsAdd from './components/shops/ShopsAdd';
 import ShopsUpdate from './components/shops/ShopsUpdate';
+import ShopDetails from './components/shops/ShopDetail';
 /* import FormCustomer from './components/customers/FormCustomer';
 import BoardChart from './components/boardchart/BoardChart';
 import DisplayContent from './components/DisplayContent';
@@ -34,6 +35,11 @@ function App() {
               <Header />
               <Route exact path="/admin/shops" component={Shops} />
               <Route exact path="/admin/shops/add" component={ShopsAdd} />
+              <Route
+                exact
+                path="/admin/shops/details/:id"
+                component={ShopDetails}
+              />
               <Route
                 exact
                 path="/admin/shops/update/:id"
