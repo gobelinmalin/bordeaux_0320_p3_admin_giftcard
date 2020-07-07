@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Button, Container } from 'react-bootstrap';
-import ShopsList from './ShopsList';
+import { Table, Button, Container } from 'react-bootstrap';
 
 const Shops = () => {
   const [shops, setShops] = useState([]);
@@ -33,7 +32,42 @@ const Shops = () => {
         <Button variant="warning">Ajouter une enseigne</Button>
       </Link>
 
-      <ShopsList shops={shops} deleteShop={deleteShop} />
+      <div>
+        <Table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Name</th>
+              <th>E-Shop</th>
+              <th>Boutique</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* {shops.map((shop) => (
+            <div>{shop}</div>
+          ))} */}
+            {shops.map((shop) => (
+              <tr>
+                <td>{shop.id}</td>
+                <td>{shop.name}</td>
+                <td>{shop.online}</td>
+                <td>{shop.offline}</td>
+                <td>
+                  <Link to={`/admin/shops/update/${shop.id}`}>
+                    <Button className="button muted-button">Edit</Button>
+                  </Link>
+                  <Button
+                    onClick={() => deleteShop(shop.id)}
+                    className="button muted-button"
+                  >
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
     </Container>
   );
 };
