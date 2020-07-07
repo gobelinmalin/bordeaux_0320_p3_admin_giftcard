@@ -1,68 +1,83 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
-import PropTypes from 'prop-types';
+import axios from 'axios';
 
 // eslint-disable-next-line react/prop-types
-const ShopsUpdate = ({ setEdit, currentShop, updateShop }) => {
-  const [shop, setShop] = useState(currentShop);
+const ShopsUpdate = () => {
+  const { id } = useParams();
 
-  useEffect(() => {
-    setShop(currentShop);
-  }, []);
+  // null because shop isn't retrieved yet
+  const [shop, setShop] = useState(null);
+
+  const getShopData = () => {
+    const url = `http://localhost:5000/api/shops/${id}`;
+    axios
+      .get(url)
+      .then((response) => response.data)
+      .then((data) => setShop(data[0]));
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setShop({ ...shop, [name]: value });
   };
 
-  return (
-    <>
-      <Form
-        onSubmit={(click) => {
-          click.preventDefault();
-          updateShop(shop.id, shop);
-        }}
-      >
-        <Form.Group>
-          <Form.Label>Nom</Form.Label>
-          <Form.Control
-            type="text"
-            name="name"
-            value={shop.name}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Online</Form.Label>
-          <Form.Control
-            type="text"
-            name="online"
-            value={shop.online}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Offline</Form.Label>
-          <Form.Control
-            type="text"
-            name="offline"
-            value={shop.offline}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Button type="submit" onClick={() => setEdit(true)}>
-          Modifier une enseigne
-        </Button>
-      </Form>
-    </>
-  );
+  const updateShop = () => {
+    const url = `http://localhost:5000/api/shops/${id}`;
+    axios.put(url, shop).then((response) => response.status === 200);
+    // then envoyer sur la page shop actualisée
+  };
+
+  useEffect(() => {
+    if (!shop) {
+      getShopData(id);
+    }
+  });
+
+  if (shop) {
+    return (
+      <>
+        <Form
+          onSubmit={(click) => {
+            click.preventDefault();
+            updateShop();
+          }}
+        >
+          <Form.Group>
+            <Form.Label>Nom</Form.Label>
+            <Form.Control
+              type="text"
+              name="name"
+              value={shop.name}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Online</Form.Label>
+            <Form.Control
+              type="text"
+              name="online"
+              value={shop.online}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Offline</Form.Label>
+            <Form.Control
+              type="text"
+              name="offline"
+              value={shop.offline}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Button type="submit">Modifier une enseigne</Button>
+        </Form>
+      </>
+    );
+  }
+  return null;
 };
 
 export default ShopsUpdate;
-
-ShopsUpdate.propTypes = {
-  // currentShop: PropTypes.objectOf(PropTypes.object()).isRequired,
-  setEdit: PropTypes.bool.isRequired,
-  updateShop: PropTypes.func.isRequired,
-};

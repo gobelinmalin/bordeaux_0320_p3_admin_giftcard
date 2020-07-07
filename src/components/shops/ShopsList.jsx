@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Table, Button } from 'react-bootstrap';
 
 import PropTypes from 'prop-types';
 
-const ShopsList = ({ shops, deleteShop, editShop }) => {
+const ShopsList = ({ shops, deleteShop }) => {
   return (
     <div>
       <Table>
@@ -26,12 +27,9 @@ const ShopsList = ({ shops, deleteShop, editShop }) => {
               <td>{shop.online}</td>
               <td>{shop.offline}</td>
               <td>
-                <Button
-                  onClick={() => editShop(shop)}
-                  className="button muted-button"
-                >
-                  Edit
-                </Button>
+                <Link to={`/admin/shops/update/${shop.id}`}>
+                  <Button className="button muted-button">Edit</Button>
+                </Link>
                 <Button
                   onClick={() => deleteShop(shop.id)}
                   className="button muted-button"
@@ -54,18 +52,6 @@ ShopsList.defaultProps = {
 ShopsList.propTypes = {
   shops: PropTypes.arrayOf(PropTypes.shape({})),
   deleteShop: PropTypes.func.isRequired,
-  editShop: PropTypes.func.isRequired,
 };
 
 export default ShopsList;
-
-/* Component.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      item: PropTypes.object,
-    }),
-  }).isRequired,
-  deleteShop: PropTypes.func.isRequired,
-  editShop: PropTypes.func.isRequired,
-};
- */
