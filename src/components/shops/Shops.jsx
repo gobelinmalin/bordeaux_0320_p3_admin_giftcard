@@ -43,13 +43,14 @@ const Shops = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {shops.map((shop) => (
-            <div>{shop}</div>
-          ))} */}
             {shops.map((shop) => (
               <tr>
                 <td>{shop.id}</td>
-                <td>{shop.name}</td>
+                <td>
+                  <Link to={{ pathname: `/admin/shops/update/${shop.id}` }}>
+                    {shop.name}
+                  </Link>
+                </td>
                 <td>{shop.online}</td>
                 <td>{shop.offline}</td>
                 <td>
