@@ -1,28 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Button, Container } from 'react-bootstrap';
-// import Header from '../header/Header';
-import ShopsList from './ShopsList';
-import ShopsAdd from './ShopsAdd';
-import ShopsUpdate from './ShopsUpdate';
+import { Table, Button, Container } from 'react-bootstrap';
 
 const Shops = () => {
-  // DATA
-  /* const shopsDatas = [
-    { id: 1, name: 'steam', online: 'eshop', offline: 'niet' },
-    { id: 2, name: 'sony', online: 'eshop', offline: 'niet' },
-    { id: 3, name: 'capcom', online: 'eshop', offline: 'yes' },
-  ]; */
-
-  const initialFormState = { name: '', online: '', offline: '' };
-
-  // Setting States
   const [shops, setShops] = useState([]);
 
-  const [currentShop, setCurrentShop] = useState(initialFormState);
-  const [edit, setEdit] = useState(false);
-
+  //
   const getShopsData = () => {
     const url = 'http://localhost:5000/api/shops';
     axios
@@ -31,31 +15,11 @@ const Shops = () => {
       .then((data) => setShops(data));
   };
 
-  // CRUD operations
-  const addShop = (shop) => {
-    // eslint-disable-next-line no-param-reassign
-    shop.id = shops.length + 1;
-    setShops([...shops, shop]);
-  };
-
   const deleteShop = (id) => {
-    setEdit(false);
-    setShops(shops.filter((shop) => shop.id !== id));
-  };
-
-  const updateShop = (id, updatedShop) => {
-    setEdit(false);
-    setShops(shops.map((shop) => (shop.id === id ? updatedShop : shop)));
-  };
-
-  const editShop = (shop) => {
-    setEdit(true);
-    setCurrentShop({
-      id: shop.id,
-      name: shop.name,
-      online: shop.online,
-      offline: shop.offline,
-    });
+    const url = `http://localhost:5000/api/shops/${id}`;
+    axios
+      .delete(url)
+      .then((response) => response.status === 200 && getShopsData());
   };
 
   useEffect(() => {
@@ -64,25 +28,46 @@ const Shops = () => {
 
   return (
     <Container>
-      {/* <Switch>
-        <Route path="/admin/shops/add-a-shop" component={ShopsAdd} />
-      </Switch> */}
-      {/* <Header /> */}
-      <Link to="/admin/shops/add-a-shop">
+      <Link to="/admin/shops/add">
         <Button variant="warning">Ajouter une enseigne</Button>
       </Link>
-      <div className="formType">
-        {edit ? (
-          <ShopsUpdate
-            setEdit={setEdit}
-            currentShop={currentShop}
-            updateShop={updateShop}
-          />
-        ) : (
-          <ShopsAdd addShop={addShop} />
-        )}
+
+      <div>
+        <Table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Name</th>
+              <th>E-Shop</th>
+              <th>Boutique</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* {shops.map((shop) => (
+            <div>{shop}</div>
+          ))} */}
+            {shops.map((shop) => (
+              <tr>
+                <td>{shop.id}</td>
+                <td>{shop.name}</td>
+                <td>{shop.online}</td>
+                <td>{shop.offline}</td>
+                <td>
+                  <Link to={`/admin/shops/update/${shop.id}`}>
+                    <Button className="button muted-button">Edit</Button>
+                  </Link>
+                  <Button
+                    onClick={() => deleteShop(shop.id)}
+                    className="button muted-button"
+                  >
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </div>
-      <ShopsList shops={shops} deleteShop={deleteShop} editShop={editShop} />
     </Container>
   );
 };
