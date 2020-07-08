@@ -50,11 +50,11 @@ const AllCustomers = ({ customers }) => {
   );
 };
 AllCustomers.defaultProps = {
-  customers: PropTypes.array,
+  customers: PropTypes.arrayOf,
 };
 
 AllCustomers.propTypes = {
-  customers: PropTypes.arrayOf,
+  customers: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default AllCustomers;

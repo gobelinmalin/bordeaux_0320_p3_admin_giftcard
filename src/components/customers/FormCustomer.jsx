@@ -1,33 +1,47 @@
-// import lib
-import React from 'react';
+/* // import lib
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Col, Button, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Form, Col, Button, Row } from 'react-bootstrap';
 
 // import components
 
 // import style
 import '../content-section.css';
 
-const FormCustomer = ({ fields }) => {
+const FormCustomer = ({ fields, customer, onChange, onSubmit }) => {
   const valueOfFields = Object.values(fields);
   const createFormClient = valueOfFields.map((field) => (
-    <Form.Group className="form-group">
+    <>
       <Form.Label>{field.label}</Form.Label>
-      <Form.Control type={field.type} size="sm" pattern={field.pattern} />
-    </Form.Group>
+      <Form.Control
+        name={field.name}
+        type={field.type}
+        size="sm"
+        value={customer.name}
+        pattern={field.pattern}
+        onChange={(event) => onChange(event)}
+      />
+    </>
   ));
+  console.log(customer.label);
 
   return (
-    <Container>
+    <Row>
       <Col className="col-form-label-sm">
-        <Button>
-          <Link to="/admin/customers/customer-add">Ajouter un client</Link>
-        </Button>
         <h3 id="">Identité du client</h3>
-        {createFormClient}
+        <Form
+          action=""
+          method="post"
+          className="form-group"
+          onSubmit={(event) => onSubmit(event)}
+        >
+          {createFormClient}
+          <Button type="submit" variant="warning">
+            Ajouter un client
+          </Button>
+        </Form>
       </Col>
-    </Container>
+    </Row>
   );
 };
 
@@ -38,3 +52,4 @@ FormCustomer.propTypes = {
   fields: PropTypes.arrayOf(PropTypes.object),
 };
 export default FormCustomer;
+ */
