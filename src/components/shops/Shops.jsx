@@ -68,6 +68,7 @@ const Shops = () => {
                   <Button variant="primary" onClick={handleShow}>
                     Supprimer
                   </Button>
+                  {/* Delete Modal */}
                   <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
                       Supprimer l&apos;enseigne

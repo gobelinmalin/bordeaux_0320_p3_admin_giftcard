@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 
 import { Form, Button } from 'react-bootstrap';
 
@@ -8,6 +8,7 @@ import axios from 'axios';
 // eslint-disable-next-line react/prop-types
 const ShopsUpdate = () => {
   const { id } = useParams();
+  const history = useHistory();
 
   // null because shop isn't retrieved yet
   const [shop, setShop] = useState(null);
@@ -27,7 +28,11 @@ const ShopsUpdate = () => {
 
   const updateShop = () => {
     const url = `http://localhost:5000/api/shops/${id}`;
-    axios.put(url, shop).then((response) => response.status === 200);
+    axios
+      .put(url, shop)
+      .then(
+        (response) => response.status === 200 && history.push('/admin/shops')
+      );
     // then envoyer sur la page shop actualisée
   };
 
@@ -41,7 +46,7 @@ const ShopsUpdate = () => {
     return (
       <>
         <Link to="/admin/shops">
-          <Button variant="warning">Retour aux enseigne</Button>
+          <Button variant="warning">Retour aux enseignes</Button>
         </Link>
         <Link to={`/admin/shops/details/${shop.id}`}>
           <Button variant="warning">Imprimer la fiche</Button>

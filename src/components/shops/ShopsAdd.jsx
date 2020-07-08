@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, DropdownButton, Dropdown, Col } from 'react-bootstrap';
-import Axios from 'axios';
+import axios from 'axios';
 
 import '../styles.css';
-
-/* import PropTypes from 'prop-types'; */
 
 const ShopsAdd = () => {
   const initialFormState = { id: null, name: '', online: '', offline: '' };
 
   const [shop, setShop] = useState(initialFormState);
-  /*   const [submitted, setSubmitted] = useState(false); */
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -20,7 +17,7 @@ const ShopsAdd = () => {
 
   // CRUD operation
   const addShop = () => {
-    Axios({
+    axios({
       method: 'post',
       url: 'http://localhost:5000/api/shops',
       data: shop,
@@ -107,14 +104,12 @@ const ShopsAdd = () => {
               <Form.Label>Type d&apos;enseigne*</Form.Label>
               <div>
                 <Form.Check
-                  type="checkbox"
                   label="e-shop"
                   value={shop.online}
                   onChange={handleInputChange}
                 />
                 <Form.Check
-                  type="checkbox"
-                  label="shop"
+                  label="boutique"
                   value={shop.offline}
                   onChange={handleInputChange}
                 />
