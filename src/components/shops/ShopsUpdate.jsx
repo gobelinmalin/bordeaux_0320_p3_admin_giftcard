@@ -5,9 +5,10 @@ import { Form, Button } from 'react-bootstrap';
 
 import axios from 'axios';
 
-// eslint-disable-next-line react/prop-types
 const ShopsUpdate = () => {
+  // catch id of the shop in params url
   const { id } = useParams();
+  // useHistory to redirect after submission
   const history = useHistory();
 
   // null because shop isn't retrieved yet
@@ -33,15 +34,16 @@ const ShopsUpdate = () => {
       .then(
         (response) => response.status === 200 && history.push('/admin/shops')
       );
-    // then envoyer sur la page shop actualisée
   };
 
+  // if ! needed for avoiding infinite setState
   useEffect(() => {
     if (!shop) {
       getShopData(id);
     }
   });
 
+  // if because we don't have any shop before useEffect call
   if (shop) {
     return (
       <>
