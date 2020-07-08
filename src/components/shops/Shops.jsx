@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Table, Button, Container } from 'react-bootstrap';
+import { Button, Container, Modal, Table } from 'react-bootstrap';
 
 const Shops = () => {
   const [shops, setShops] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   //
   const getShopsData = () => {
@@ -15,13 +16,19 @@ const Shops = () => {
       .then((data) => setShops(data));
   };
 
+  // handle delete modal
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
+
   const deleteShop = (id) => {
     const url = `http://localhost:5000/api/shops/${id}`;
     axios
       .delete(url)
       .then((response) => response.status === 200 && getShopsData());
+    setShowModal(false);
   };
 
+  // fill table with shops data
   useEffect(() => {
     getShopsData();
   }, []);
@@ -58,12 +65,20 @@ const Shops = () => {
                   <Link to={`/admin/shops/update/${shop.id}`}>
                     <Button className="button muted-button">Edit</Button>
                   </Link>
-                  <Button
-                    onClick={() => deleteShop(shop.id)}
-                    className="button muted-button"
-                  >
-                    Delete
+                  <Button variant="primary" onClick={handleShow}>
+                    Supprimer
                   </Button>
+                  <Modal show={showModal} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      Supprimer l&apos;enseigne
+                    </Modal.Header>
+                    <Modal.Footer>
+                      <Button onClick={handleClose}>Annuler</Button>
+                      <Button onClick={() => deleteShop(shop.id)}>
+                        Supprimer
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
                 </td>
               </tr>
             ))}
