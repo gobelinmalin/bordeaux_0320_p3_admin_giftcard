@@ -15,6 +15,7 @@ import Shops from './components/shops/Shops';
 import ShopsAdd from './components/shops/ShopsAdd';
 import ShopsUpdate from './components/shops/ShopsUpdate';
 import ShopDetails from './components/shops/ShopDetail';
+// import AllCustomers from './components/customers/AllCustomers';
 /* import FormCustomer from './components/customers/FormCustomer';
 import BoardChart from './components/boardchart/BoardChart';
 import DisplayContent from './components/DisplayContent';

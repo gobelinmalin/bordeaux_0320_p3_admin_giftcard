@@ -1,5 +1,6 @@
 // import lib
 import React from 'react';
+
 import PropTypes from 'prop-types';
 import { Table, Container } from 'react-bootstrap';
 
@@ -8,12 +9,18 @@ import { Table, Container } from 'react-bootstrap';
 // import style
 import '../content-section.css';
 
-const AllCustomers = ({ customers }) => {
+const CustomersList = ({ customers, deleteCustomer }) => {
   const allCustomers =
     customers &&
     customers.map((customer) => {
       return (
         <tr>
+          <td>
+            <button type="submit" onClick={() => deleteCustomer(customer.id)}>
+              {' '}
+              X{' '}
+            </button>
+          </td>
           <td>{customer.id}</td>
           <td>{customer.civility}</td>
           <td>{customer.firstname}</td>
@@ -36,6 +43,7 @@ const AllCustomers = ({ customers }) => {
       >
         <thead>
           <tr>
+            <th>Effacer</th>
             <th>#id</th>
             <th>Civilité</th>
             <th>Nom</th>
@@ -49,12 +57,14 @@ const AllCustomers = ({ customers }) => {
     </Container>
   );
 };
-AllCustomers.defaultProps = {
+CustomersList.defaultProps = {
   customers: PropTypes.arrayOf,
+  deleteCustomer: PropTypes.func,
 };
 
-AllCustomers.propTypes = {
+CustomersList.propTypes = {
   customers: PropTypes.arrayOf(PropTypes.object),
+  deleteCustomer: PropTypes.func,
 };
 
-export default AllCustomers;
+export default CustomersList;

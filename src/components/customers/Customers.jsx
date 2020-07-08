@@ -5,7 +5,7 @@ import { Table, Container, Col, Row } from 'react-bootstrap';
 
 // import components
 
-import AllCustomers from './AllCustomers';
+import CustomersList from './CustomersList';
 import AddCustomers from './AddCustomer';
 
 // import data
@@ -42,6 +42,11 @@ const Customers = () => {
 
   // PUT a customer
   // DELETE a customer
+  const deleteCustomer = (id) => {
+    Axios.delete(`http://localhost:5000/api/clients/${id}`, customers).then(
+      (response) => response.status === 200 && customers
+    );
+  };
 
   return (
     <Container>
@@ -51,7 +56,10 @@ const Customers = () => {
         </Col>
         <Col>
           <Table>
-            <AllCustomers customers={customers} />
+            <CustomersList
+              customers={customers}
+              deleteCustomer={deleteCustomer}
+            />
           </Table>
         </Col>
       </Row>
