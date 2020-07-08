@@ -47,13 +47,14 @@ const Shops = () => {
               <tr>
                 <td>{shop.id}</td>
                 <td>
-                  <Link to={{ pathname: `/admin/shops/update/${shop.id}` }}>
-                    {shop.name}
-                  </Link>
+                  <Link to={`/admin/shops/update/${shop.id}`}>{shop.name}</Link>
                 </td>
                 <td>{shop.online}</td>
                 <td>{shop.offline}</td>
                 <td>
+                  <Link to={`/admin/shops/details/${shop.id}`}>
+                    <Button className="button muted-button">Fiche</Button>
+                  </Link>
                   <Link to={`/admin/shops/update/${shop.id}`}>
                     <Button className="button muted-button">Edit</Button>
                   </Link>

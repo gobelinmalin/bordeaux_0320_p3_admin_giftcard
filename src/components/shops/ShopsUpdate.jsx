@@ -43,6 +43,9 @@ const ShopsUpdate = () => {
         <Link to="/admin/shops">
           <Button variant="warning">Retour aux enseigne</Button>
         </Link>
+        <Link to={`/admin/shops/details/${shop.id}`}>
+          <Button variant="warning">Imprimer la fiche</Button>
+        </Link>
 
         <Form
           onSubmit={(click) => {

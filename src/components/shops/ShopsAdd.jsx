@@ -32,7 +32,7 @@ const ShopsAdd = () => {
   return (
     <>
       <Link to="/admin/shops">
-        <Button variant="warning">Retour aux enseigne</Button>
+        <Button variant="warning">Retour aux enseignes</Button>
       </Link>
       <Form
         onSubmit={(event) => {
