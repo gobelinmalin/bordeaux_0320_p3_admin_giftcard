@@ -9,9 +9,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import components
 import Signin from './components/Signin';
 import Header from './components/header/Header';
-import Shops from './components/shops/Shops';
 import NavBar from './components/navbar/NavBar';
 import Customers from './components/customers/Customers';
+import Shops from './components/shops/Shops';
 import ShopsAdd from './components/shops/ShopsAdd';
 import ShopsUpdate from './components/shops/ShopsUpdate';
 import ShopDetails from './components/shops/ShopDetail';

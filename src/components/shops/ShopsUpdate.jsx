@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
 import { Form, Button } from 'react-bootstrap';
 
 import axios from 'axios';
@@ -39,6 +40,13 @@ const ShopsUpdate = () => {
   if (shop) {
     return (
       <>
+        <Link to="/admin/shops">
+          <Button variant="warning">Retour aux enseigne</Button>
+        </Link>
+        <Link to={`/admin/shops/details/${shop.id}`}>
+          <Button variant="warning">Imprimer la fiche</Button>
+        </Link>
+
         <Form
           onSubmit={(click) => {
             click.preventDefault();
