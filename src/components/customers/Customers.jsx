@@ -5,15 +5,12 @@ import { useHistory } from 'react-router-dom';
 import { Table, Container, Col, Row } from 'react-bootstrap';
 
 // import components
-
 import CustomersList from './CustomersList';
 import AddCustomers from './AddCustomer';
 
 // import data
-// import fields from './customerFields';
 
 // import style
-/* import '../content-section.css'; */
 
 function Customers() {
   const { history } = useHistory();
@@ -32,13 +29,17 @@ function Customers() {
   // GET all customers
   const [customers, setCustomers] = useState([]);
 
-  useEffect(() => {
-    setCustomers(initialState);
+  const getCustomersList = () => {
     Axios({
       method: 'get',
       // url: 'http://givyoo.fr/api/clients',
       url: 'http://localhost:5000/api/clients',
     }).then((response) => setCustomers(response.data));
+  };
+
+  useEffect(() => {
+    setCustomers(initialState);
+    getCustomersList();
   }, []);
 
   // POST a customer
@@ -51,9 +52,9 @@ function Customers() {
   };
   // DELETE a customer
   const deleteCustomer = (id) => {
-    Axios.delete(`http://localhost:5000/api/clients/${id}`, customers).then(
-      (response) => response.status === 200 && customers
-    );
+    Axios.delete(`http://localhost:5000/api/clients/${id}`, customers)
+      .then((response) => response.status === 200 && customers)
+      .finally(() => getCustomersList());
   };
 
   return (
