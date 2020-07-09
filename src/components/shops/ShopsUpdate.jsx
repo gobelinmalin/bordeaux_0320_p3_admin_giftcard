@@ -87,7 +87,7 @@ const ShopsUpdate = () => {
               onChange={handleInputChange}
             />
           </Form.Group>
-          <Button type="submit">Modifier l&apos;enseigne</Button>
+          <Button type="submit">Modifier une enseigne</Button>
         </Form>
       </>
     );
