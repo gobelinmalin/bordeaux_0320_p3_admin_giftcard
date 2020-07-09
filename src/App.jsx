@@ -11,6 +11,7 @@ import Signin from './components/Signin';
 import Header from './components/header/Header';
 import NavBar from './components/navbar/NavBar';
 import Customers from './components/customers/Customers';
+import UpdateCustomer from './components/customers/UpdateCustomer';
 import Shops from './components/shops/Shops';
 import ShopsAdd from './components/shops/ShopsAdd';
 import ShopsUpdate from './components/shops/ShopsUpdate';
@@ -46,7 +47,11 @@ function App() {
                 path="/admin/shops/update/:id"
                 component={ShopsUpdate}
               />
-              <Route path="/admin/customers" component={Customers} />
+              <Route exact path="/admin/customers" component={Customers} />
+              <Route
+                path="/admin/customers/update/:id"
+                component={UpdateCustomer}
+              />
             </Col>
           </Route>
         </Switch>

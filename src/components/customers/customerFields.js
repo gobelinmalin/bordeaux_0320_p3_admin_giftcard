@@ -6,13 +6,13 @@ const fields = [
     pattern: '',
   },
   {
-    label: 'Nom',
+    label: 'Prénom',
     name: 'firstname',
     type: 'text',
     pattern: '',
   },
   {
-    label: 'Prénom',
+    label: 'Nom',
     name: 'lastname',
     type: 'text',
     pattern: '',
