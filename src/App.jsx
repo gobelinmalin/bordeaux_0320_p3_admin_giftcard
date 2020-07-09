@@ -9,12 +9,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import components
 import Signin from './components/Signin';
 import Header from './components/header/Header';
-import Shops from './components/shops/Shops';
 import NavBar from './components/navbar/NavBar';
 import Customers from './components/customers/Customers';
+import UpdateCustomer from './components/customers/UpdateCustomer';
+import Shops from './components/shops/Shops';
 import ShopsAdd from './components/shops/ShopsAdd';
 import ShopsUpdate from './components/shops/ShopsUpdate';
 import ShopDetails from './components/shops/ShopDetail';
+// import AllCustomers from './components/customers/AllCustomers';
 /* import FormCustomer from './components/customers/FormCustomer';
 import BoardChart from './components/boardchart/BoardChart';
 import DisplayContent from './components/DisplayContent';
@@ -45,7 +47,11 @@ function App() {
                 path="/admin/shops/update/:id"
                 component={ShopsUpdate}
               />
-              <Route path="/admin/customers" component={Customers} />
+              <Route exact path="/admin/customers" component={Customers} />
+              <Route
+                path="/admin/customers/update/:id"
+                component={UpdateCustomer}
+              />
             </Col>
           </Route>
         </Switch>

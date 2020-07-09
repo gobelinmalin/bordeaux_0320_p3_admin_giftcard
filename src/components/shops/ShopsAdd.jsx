@@ -31,7 +31,9 @@ const ShopsAdd = () => {
 
   return (
     <>
-      <Link to="/admin/shops">Retour aux enseignes</Link>
+      <Link to="/admin/shops">
+        <Button variant="warning">Retour aux enseignes</Button>
+      </Link>
       <Form
         onSubmit={(event) => {
           event.preventDefault();
