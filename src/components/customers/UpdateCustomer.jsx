@@ -82,6 +82,15 @@ function UpdateCustomer() {
                   onChange={(event) => handleChange(event)}
                 />
               </Form.Group>
+              <Form.Group>
+                <Form.Label>{fields[9].label}</Form.Label>
+                <Form.Control
+                  name={fields[9].name}
+                  type="text"
+                  value={customer.email}
+                  onChange={(event) => handleChange(event)}
+                />
+              </Form.Group>
               <Button type="submit" variant="warning">
                 Modifier le client
               </Button>

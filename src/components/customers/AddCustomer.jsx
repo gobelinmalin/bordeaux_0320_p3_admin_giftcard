@@ -63,6 +63,15 @@ function AddCustomers() {
                 onChange={(event) => handleChange(event)}
               />
             </Form.Group>
+            <Form.Group>
+              <Form.Label>{fields[9].label}</Form.Label>
+              <Form.Control
+                name={fields[9].name}
+                type="text"
+                value={inputValue.name}
+                onChange={(event) => handleChange(event)}
+              />
+            </Form.Group>
             <Button type="submit" variant="warning">
               Ajouter un client
             </Button>
