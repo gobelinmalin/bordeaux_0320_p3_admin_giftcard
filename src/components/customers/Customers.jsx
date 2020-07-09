@@ -5,15 +5,12 @@ import { useHistory } from 'react-router-dom';
 import { Table, Container, Col, Row } from 'react-bootstrap';
 
 // import components
-
 import CustomersList from './CustomersList';
 import AddCustomers from './AddCustomer';
 
 // import data
-// import fields from './customerFields';
 
 // import style
-/* import '../content-section.css'; */
 
 function Customers() {
   const { history } = useHistory();

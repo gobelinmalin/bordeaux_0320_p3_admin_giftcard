@@ -12,6 +12,7 @@ import Header from './components/header/Header';
 import NavBar from './components/navbar/NavBar';
 import Customers from './components/customers/Customers';
 import UpdateCustomer from './components/customers/UpdateCustomer';
+import Orders from './components/orders/Orders';
 import Shops from './components/shops/Shops';
 import ShopsAdd from './components/shops/ShopsAdd';
 import ShopsUpdate from './components/shops/ShopsUpdate';
@@ -52,6 +53,7 @@ function App() {
                 path="/admin/customers/update/:id"
                 component={UpdateCustomer}
               />
+              <Route exact path="/admin/orders" component={Orders} />
             </Col>
           </Route>
         </Switch>
