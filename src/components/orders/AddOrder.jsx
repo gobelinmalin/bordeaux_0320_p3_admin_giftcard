@@ -21,16 +21,15 @@ function AddOrder() {
   }, [inputValue]);
 
   const addOrder = () => {
-    const url = 'http://localhost:5000/api/clients';
+    const url = 'http://localhost:5000/api/orders';
     Axios.post(url, order)
-      .then((res) => res.config)
+      .then((res) => res.config.data)
       .then((data) => setOrder(data));
   };
 
   const handleChange = (event) => {
     event.preventDefault();
-    const { value } = event.target;
-    const { name } = event.target;
+    const { value, name } = event.target;
     const newValue = { ...inputValue, [name]: value };
     setInputValue(newValue);
   };
@@ -47,6 +46,7 @@ function AddOrder() {
               <Form.Control
                 name={fields[0].name}
                 type="text"
+                placeholder={fields[0].placeholder}
                 value={inputValue.name}
                 onChange={(event) => handleChange(event)}
               />
@@ -56,6 +56,7 @@ function AddOrder() {
               <Form.Control
                 name={fields[1].name}
                 type="text"
+                placeholder={fields[1].placeholder}
                 value={inputValue.name}
                 onChange={(event) => handleChange(event)}
               />
@@ -65,6 +66,7 @@ function AddOrder() {
               <Form.Control
                 name={fields[2].name}
                 type="text"
+                placeholder={fields[2].placeholder}
                 value={inputValue.name}
                 onChange={(event) => handleChange(event)}
               />
@@ -74,6 +76,7 @@ function AddOrder() {
               <Form.Control
                 name={fields[3].name}
                 type="text"
+                placeholder={fields[3].placeholder}
                 value={inputValue.name}
                 onChange={(event) => handleChange(event)}
               />
@@ -83,6 +86,7 @@ function AddOrder() {
               <Form.Control
                 name={fields[4].name}
                 type="text"
+                placeholder={fields[4].placeholder}
                 value={inputValue.name}
                 onChange={(event) => handleChange(event)}
               />
@@ -92,12 +96,13 @@ function AddOrder() {
               <Form.Control
                 name={fields[5].name}
                 type="text"
+                placeholder={fields[5].placeholder}
                 value={inputValue.name}
                 onChange={(event) => handleChange(event)}
               />
             </Form.Group>
             <Button type="submit" variant="warning">
-              Ajouter un client
+              Ajouter une commande
             </Button>
           </Form>
         </Col>

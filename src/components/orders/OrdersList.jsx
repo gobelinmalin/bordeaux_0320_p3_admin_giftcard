@@ -35,7 +35,6 @@ function OrdersList({ orders, deleteOrder, editOrder }) {
               X
             </Button>
           </td>
-          <td>{order.id}</td>
           <td>{order.id_client}</td>
           <td>{order.id_delivery}</td>
           <td>{order.status}</td>

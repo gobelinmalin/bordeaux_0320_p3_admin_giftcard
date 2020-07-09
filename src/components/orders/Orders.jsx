@@ -39,9 +39,11 @@ function Orders() {
   };
   // DELETE an order
   const deleteOrder = (id) => {
-    Axios.delete(`http://localhost:5000/api/clients/${id}`, orders).then(
-      (response) => response.status === 200 && orders
-    );
+    Axios.delete(`http://localhost:5000/api/orders/${id}`, orders)
+      .then((response) => response.status === 200 && orders)
+      .finally(() => {
+        getAllOrders();
+      });
   };
   return (
     <Container>
