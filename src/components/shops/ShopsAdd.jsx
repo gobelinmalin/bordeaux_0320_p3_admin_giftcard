@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Form, Button, DropdownButton, Dropdown, Col } from 'react-bootstrap';
 import axios from 'axios';
@@ -8,13 +8,34 @@ import '../styles.css';
 const ShopsAdd = () => {
   // useHistory to redirect after submission
   const history = useHistory();
-  const initialFormState = { id: null, name: '', online: '', offline: '' };
+  const initialFormState = {
+    id: null,
+    name: '',
+    online: false,
+    offline: false,
+  };
 
   const [shop, setShop] = useState(initialFormState);
 
+  // set day time
+  const [date, setDate] = useState(new Date());
+  useEffect(() => {
+    const timer = setInterval(() => setDate(new Date()), 1000);
+    return function cleanup() {
+      clearInterval(timer);
+    };
+  });
+
+  // handle string input
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setShop({ ...shop, [name]: value });
+  };
+
+  // handle checkbox
+  const handleCheck = (event) => {
+    const { name, check } = event.target;
+    setShop({ ...shop, [name]: !check });
   };
 
   // CRUD operation
@@ -50,7 +71,8 @@ const ShopsAdd = () => {
               size="sm"
               type="text"
               name="add_time"
-              value=""
+              value={date.toLocaleDateString()}
+              placeholder={date.toLocaleDateString()}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -106,13 +128,15 @@ const ShopsAdd = () => {
               <div>
                 <Form.Check
                   label="e-shop"
-                  value={shop.online}
-                  onChange={handleInputChange}
+                  name="online"
+                  check={shop.online}
+                  onChange={(event) => handleCheck(event)}
                 />
                 <Form.Check
                   label="boutique"
-                  value={shop.offline}
-                  onChange={handleInputChange}
+                  name="offline"
+                  check={shop.offline}
+                  onChange={(event) => handleCheck(event)}
                 />
               </div>
             </Form.Group>

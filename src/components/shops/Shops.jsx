@@ -6,6 +6,8 @@ import { Button, Container, Modal, Table } from 'react-bootstrap';
 const Shops = () => {
   const [shops, setShops] = useState([]);
   const [showModal, setShowModal] = useState(false);
+
+  // catch shop to pass to delete Modal
   const [shopId, setShopId] = useState();
 
   //
@@ -25,13 +27,12 @@ const Shops = () => {
 
   const handleClose = () => setShowModal(false);
 
-  const deleteShop = (id) => {
-    const url = `http://localhost:5000/api/shops/${id}`;
+  const deleteShop = () => {
+    const url = `http://localhost:5000/api/shops/${shopId}`;
     axios
       .delete(url)
-      .then((response) => response.data)
-      .then(getShopsData());
-    setShowModal(false);
+      .then((response) => response.data && setShowModal(false))
+      .finally(() => getShopsData());
   };
 
   // fill table with shops data
@@ -83,9 +84,7 @@ const Shops = () => {
                     </Modal.Header>
                     <Modal.Footer>
                       <Button onClick={handleClose}>Annuler</Button>
-                      <Button onClick={() => deleteShop(shopId)}>
-                        Supprimer
-                      </Button>
+                      <Button onClick={() => deleteShop()}>Supprimer</Button>
                     </Modal.Footer>
                   </Modal>
                 </td>
