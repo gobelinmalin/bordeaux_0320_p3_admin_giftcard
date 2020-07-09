@@ -1,32 +1,57 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { Form, Button, DropdownButton, Dropdown, Col } from 'react-bootstrap';
-import Axios from 'axios';
+import axios from 'axios';
 
 import '../styles.css';
 
-/* import PropTypes from 'prop-types'; */
-
 const ShopsAdd = () => {
-  const initialFormState = { id: null, name: '', online: '', offline: '' };
+  // useHistory to redirect after submission
+  const history = useHistory();
+  const initialFormState = {
+    id: null,
+    name: '',
+    online: false,
+    offline: false,
+  };
 
   const [shop, setShop] = useState(initialFormState);
-  /*   const [submitted, setSubmitted] = useState(false); */
 
+  // set day time
+  const [date, setDate] = useState(new Date());
+  useEffect(() => {
+    const timer = setInterval(() => setDate(new Date()), 1000);
+    return function cleanup() {
+      clearInterval(timer);
+    };
+  });
+
+  // handle string input
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setShop({ ...shop, [name]: value });
   };
 
+  // handle checkbox e-shop
+  const handleCheckOnline = (event) => {
+    const { name } = event.target;
+    setShop({ ...shop, [name]: !shop.online });
+  };
+
+  // handle checkbox boutique
+  const handleCheckOffline = (event) => {
+    const { name } = event.target;
+    setShop({ ...shop, [name]: !shop.offline });
+  };
+
   // CRUD operation
-  const addShop = () => {
-    Axios({
-      method: 'post',
-      url: 'http://localhost:5000/api/shops',
-      data: shop,
-    })
+  const addShop = (id) => {
+    const url = 'http://localhost:5000/api/shops';
+    axios
+      .post(url, shop)
       .then((response) => response.data)
-      .then((data) => setShop(data));
+      .then((data) => setShop(data))
+      .then(history.push(`/admin/shops/details/${id}`));
   };
 
   return (
@@ -52,7 +77,8 @@ const ShopsAdd = () => {
               size="sm"
               type="text"
               name="add_time"
-              value=""
+              value={date.toLocaleDateString()}
+              placeholder={date.toLocaleDateString()}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -107,16 +133,16 @@ const ShopsAdd = () => {
               <Form.Label>Type d&apos;enseigne*</Form.Label>
               <div>
                 <Form.Check
-                  type="checkbox"
                   label="e-shop"
-                  value={shop.online}
-                  onChange={handleInputChange}
+                  name="online"
+                  check={shop.online}
+                  onChange={(event) => handleCheckOnline(event)}
                 />
                 <Form.Check
-                  type="checkbox"
-                  label="shop"
-                  value={shop.offline}
-                  onChange={handleInputChange}
+                  label="boutique"
+                  name="offline"
+                  check={shop.offline}
+                  onChange={(event) => handleCheckOffline(event)}
                 />
               </div>
             </Form.Group>
