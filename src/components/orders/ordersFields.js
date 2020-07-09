@@ -28,7 +28,7 @@ const fields = [
     pattern: '',
   },
   {
-    label: 'Frais de port en devise',
+    label: 'Frais de port en €/$/¥',
     name: 'shipping_fees',
     type: 'text',
     placeholder: '4,99',

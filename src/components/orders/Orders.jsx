@@ -5,7 +5,7 @@ import { Table, Container, Col, Row } from 'react-bootstrap';
 
 // import components
 import OrdersList from './OrdersList';
-import AddOrder from './AddOrder';
+// import AddOrder from './AddOrder';
 // import data
 
 // import style
@@ -32,8 +32,8 @@ function Orders() {
   // POST an order
 
   // PUT an order
-  const editOrder = (id) => {
-    Axios.put(`http://localhost:5000/api/clients/${id}`, orders).then(
+  const updateOrder = (id) => {
+    Axios.put(`http://localhost:5000/api/orders/${id}`, orders).then(
       (response) => response.status === 200 && history.push('/admin/orders')
     );
   };
@@ -48,15 +48,13 @@ function Orders() {
   return (
     <Container>
       <Row>
+        {/* <Col><AddOrder /></Col> */}
         <Col>
-          <AddOrder />
-        </Col>
-        <Col>
-          <Table>
+          <Table responsive="sm">
             <OrdersList
               orders={orders}
               deleteOrder={deleteOrder}
-              editOrder={editOrder}
+              updateOrder={updateOrder}
             />
           </Table>
         </Col>

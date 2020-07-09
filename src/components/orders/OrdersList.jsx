@@ -9,7 +9,7 @@ import { Table, Container, Button } from 'react-bootstrap';
 
 // import style
 
-function OrdersList({ orders, deleteOrder, editOrder }) {
+function OrdersList({ orders, deleteOrder, updateOrder }) {
   const allOrders =
     orders &&
     orders.map((order) => {
@@ -20,7 +20,7 @@ function OrdersList({ orders, deleteOrder, editOrder }) {
               <Button
                 type="submit"
                 variant="success"
-                onClick={() => editOrder(order.id)}
+                onClick={() => updateOrder(order.id)}
               >
                 O
               </Button>
@@ -75,13 +75,13 @@ function OrdersList({ orders, deleteOrder, editOrder }) {
 OrdersList.defaultProps = {
   orders: PropTypes.arrayOf,
   deleteOrder: PropTypes.func,
-  editOrder: PropTypes.func,
+  updateOrder: PropTypes.func,
 };
 
 OrdersList.propTypes = {
   orders: PropTypes.arrayOf(PropTypes.object),
   deleteOrder: PropTypes.func,
-  editOrder: PropTypes.func,
+  updateOrder: PropTypes.func,
 };
 
 export default OrdersList;
