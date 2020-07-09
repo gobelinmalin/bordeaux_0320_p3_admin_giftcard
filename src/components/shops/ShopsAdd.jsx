@@ -32,10 +32,16 @@ const ShopsAdd = () => {
     setShop({ ...shop, [name]: value });
   };
 
-  // handle checkbox
-  const handleCheck = (event) => {
-    const { name, check } = event.target;
-    setShop({ ...shop, [name]: !check });
+  // handle checkbox e-shop
+  const handleCheckOnline = (event) => {
+    const { name } = event.target;
+    setShop({ ...shop, [name]: !shop.online });
+  };
+
+  // handle checkbox boutique
+  const handleCheckOffline = (event) => {
+    const { name } = event.target;
+    setShop({ ...shop, [name]: !shop.offline });
   };
 
   // CRUD operation
@@ -130,13 +136,13 @@ const ShopsAdd = () => {
                   label="e-shop"
                   name="online"
                   check={shop.online}
-                  onChange={(event) => handleCheck(event)}
+                  onChange={(event) => handleCheckOnline(event)}
                 />
                 <Form.Check
                   label="boutique"
                   name="offline"
                   check={shop.offline}
-                  onChange={(event) => handleCheck(event)}
+                  onChange={(event) => handleCheckOffline(event)}
                 />
               </div>
             </Form.Group>
