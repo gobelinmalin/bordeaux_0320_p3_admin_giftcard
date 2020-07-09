@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 
 import { Form, Button } from 'react-bootstrap';
 
 import axios from 'axios';
 
-// eslint-disable-next-line react/prop-types
 const ShopsUpdate = () => {
+  // catch id of the shop in params url
   const { id } = useParams();
+  // useHistory to redirect after submission
+  const history = useHistory();
 
   // null because shop isn't retrieved yet
   const [shop, setShop] = useState(null);
@@ -27,21 +29,26 @@ const ShopsUpdate = () => {
 
   const updateShop = () => {
     const url = `http://localhost:5000/api/shops/${id}`;
-    axios.put(url, shop).then((response) => response.status === 200);
-    // then envoyer sur la page shop actualisée
+    axios
+      .put(url, shop)
+      .then(
+        (response) => response.status === 200 && history.push('/admin/shops')
+      );
   };
 
+  // if ! needed for avoiding infinite setState
   useEffect(() => {
     if (!shop) {
       getShopData(id);
     }
   });
 
+  // if because we don't have any shop before useEffect call
   if (shop) {
     return (
       <>
         <Link to="/admin/shops">
-          <Button variant="warning">Retour aux enseigne</Button>
+          <Button variant="warning">Retour aux enseignes</Button>
         </Link>
         <Link to={`/admin/shops/details/${shop.id}`}>
           <Button variant="warning">Imprimer la fiche</Button>
