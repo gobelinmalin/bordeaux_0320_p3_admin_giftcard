@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Form, Button, DropdownButton, Dropdown, Col } from 'react-bootstrap';
 import axios from 'axios';
 
 import '../styles.css';
 
 const ShopsAdd = () => {
+  // useHistory to redirect after submission
+  const history = useHistory();
   const initialFormState = { id: null, name: '', online: '', offline: '' };
 
   const [shop, setShop] = useState(initialFormState);
@@ -16,14 +18,13 @@ const ShopsAdd = () => {
   };
 
   // CRUD operation
-  const addShop = () => {
-    axios({
-      method: 'post',
-      url: 'http://localhost:5000/api/shops',
-      data: shop,
-    })
+  const addShop = (id) => {
+    const url = 'http://localhost:5000/api/shops';
+    axios
+      .post(url, shop)
       .then((response) => response.data)
-      .then((data) => setShop(data));
+      .then((data) => setShop(data))
+      .then(history.push(`/admin/shops/details/${id}`));
   };
 
   return (

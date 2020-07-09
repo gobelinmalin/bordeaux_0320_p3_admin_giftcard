@@ -6,6 +6,7 @@ import { Button, Container, Modal, Table } from 'react-bootstrap';
 const Shops = () => {
   const [shops, setShops] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [shopId, setShopId] = useState();
 
   //
   const getShopsData = () => {
@@ -17,14 +18,19 @@ const Shops = () => {
   };
 
   // handle delete modal
-  const handleShow = () => setShowModal(true);
+  const handleShow = (id) => {
+    setShowModal(true);
+    setShopId(id);
+  };
+
   const handleClose = () => setShowModal(false);
 
   const deleteShop = (id) => {
     const url = `http://localhost:5000/api/shops/${id}`;
     axios
       .delete(url)
-      .then((response) => response.status === 200 && getShopsData());
+      .then((response) => response.data)
+      .then(getShopsData());
     setShowModal(false);
   };
 
@@ -63,19 +69,21 @@ const Shops = () => {
                     <Button className="button muted-button">Fiche</Button>
                   </Link>
                   <Link to={`/admin/shops/update/${shop.id}`}>
-                    <Button className="button muted-button">Edit</Button>
+                    <Button className="button muted-button">Modifier</Button>
                   </Link>
-                  <Button variant="primary" onClick={handleShow}>
-                    Supprimer
+
+                  <Button variant="primary" onClick={() => handleShow(shop.id)}>
+                    Supprimer {shop.id}
                   </Button>
+
                   {/* Delete Modal */}
                   <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
-                      Supprimer l&apos;enseigne
+                      Supprimer l&apos;enseigne {shopId}
                     </Modal.Header>
                     <Modal.Footer>
                       <Button onClick={handleClose}>Annuler</Button>
-                      <Button onClick={() => deleteShop(shop.id)}>
+                      <Button onClick={() => deleteShop(shopId)}>
                         Supprimer
                       </Button>
                     </Modal.Footer>
