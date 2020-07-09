@@ -32,8 +32,7 @@ const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
               variant="danger"
               onClick={() => deleteCustomer(customer.id)}
             >
-              {' '}
-              X{' '}
+              X
             </Button>
           </td>
           <td>{customer.id}</td>
