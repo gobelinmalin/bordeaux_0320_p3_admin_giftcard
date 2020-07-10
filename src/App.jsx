@@ -14,6 +14,7 @@ import Customers from './components/customers/Customers';
 import UpdateCustomer from './components/customers/UpdateCustomer';
 import Orders from './components/orders/Orders';
 import UpdateOrder from './components/orders/UpdateOrder';
+import Products from './components/products/Products';
 import Shops from './components/shops/Shops';
 import ShopsAdd from './components/shops/ShopsAdd';
 import ShopsUpdate from './components/shops/ShopsUpdate';
@@ -31,6 +32,7 @@ function App() {
             </Col>
             <Col sm={8}>
               <Header />
+              <Route exact path="/admin/products" component={Products} />
               <Route exact path="/admin/shops" component={Shops} />
               <Route exact path="/admin/shops/add" component={ShopsAdd} />
               <Route

@@ -1,16 +1,71 @@
-// import lib
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Button, Container, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-// import components
+import './products.css';
+import '../styles.css';
+import Axios from 'axios';
 
-// import style
+const Products = () => {
+  const [products, setProducts] = useState([]);
 
-const Product = () => {
+  // retrieve products
+  const getProductsData = () => {
+    const url = 'http://localhost:5000/api/products';
+    Axios.get(url)
+      .then((response) => response.data)
+      .then((data) => setProducts(data));
+  };
+
+  useEffect(() => {
+    getProductsData();
+  }, []);
+
   return (
-    <>
-      <div>fake Products</div>
-    </>
+    <Container>
+      <div className="insideNavBar">
+        <Link to="/admin/shops/add">
+          <Button variant="insideNav">Ajouter un produit</Button>
+        </Link>
+      </div>
+      <div>
+        <Table>
+          <thead>
+            <th>id</th>
+            <th>Image</th>
+            <th>Enseigne</th>
+            <th>Produit</th>
+            <th>Theme</th>
+            <th>Categorie</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr>
+                <td>{product.id}</td>
+                <td> </td>
+                <td>{product.id_shop}</td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td>
+                  <Button variant="editing">Fiche</Button>
+                  <Button variant="editing">Modifier</Button>
+                  <Button variant="deleting">Supprimer</Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    </Container>
   );
 };
 
-export default Product;
+export default Products;
