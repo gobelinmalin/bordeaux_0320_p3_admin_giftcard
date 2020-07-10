@@ -46,7 +46,7 @@ const Shops = () => {
     <Container>
       <div className="insideNavBar">
         <Link to="/admin/shops/add">
-          <Button variant="warning">Ajouter une enseigne</Button>
+          <Button variant="insideNav">Ajouter une enseigne</Button>
         </Link>
       </div>
 
@@ -77,8 +77,16 @@ const Shops = () => {
                 <td> </td>
                 <td> </td>
                 <td> </td>
-                <td>{shop.online}</td>
-                <td>{shop.offline}</td>
+                <td>
+                  <div className={shop.online ? 'e-shop' : 'shop'}>
+                    {shop.online}
+                  </div>
+                </td>
+                <td>
+                  <div className={shop.offline ? 'e-shop' : 'shop'}>
+                    {shop.offline}
+                  </div>
+                </td>
                 <th> </th>
                 <td>
                   <Link to={`/admin/shops/details/${shop.id}`}>

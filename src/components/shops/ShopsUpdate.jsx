@@ -47,12 +47,14 @@ const ShopsUpdate = () => {
   if (shop) {
     return (
       <>
-        <Link to="/admin/shops">
-          <Button variant="warning">Retour aux enseignes</Button>
-        </Link>
-        <Link to={`/admin/shops/details/${shop.id}`}>
-          <Button variant="warning">Imprimer la fiche</Button>
-        </Link>
+        <div className="insideNavBar">
+          <Link to="/admin/shops">
+            <Button variant="insideNav">Retour aux enseignes</Button>
+          </Link>
+          <Link to={`/admin/shops/details/${shop.id}`}>
+            <Button variant="insideNav">Fiche de l&apos;enseigne</Button>
+          </Link>
+        </div>
 
         <Form
           onSubmit={(click) => {

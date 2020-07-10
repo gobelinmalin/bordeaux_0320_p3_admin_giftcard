@@ -1,3 +1,5 @@
+/* inside Section NavBar */
+
 .insideNavBar {
   display: flex;
   flex-direction: row;
@@ -5,10 +7,36 @@
   height: 70px;
 }
 
-.insideButton {
+.btn-insideNav {
   background-color: #20124d;
   color: #fff2ceff;
+  margin: 0 10px 0 0;
 }
 
-.editButtons {
+.btn-insideNav:hover {
+  background-color: #fff2ceff;
+}
+
+/* e-shop/ shop  */
+.e-shop {
+  background-color: rgb(22, 202, 22);
+  border-radius: 50%;
+  margin-right: 6px;
+  width: 15px;
+  height: 15px;
+  color: transparent;
+  padding: 5px;
+}
+
+.shop {
+  background-color: #e7e7e7;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+  color: transparent;
+}
+
+.editFormat {
+  width: 500px;
 }

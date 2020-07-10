@@ -56,9 +56,11 @@ const ShopsAdd = () => {
 
   return (
     <>
-      <Link to="/admin/shops">
-        <Button variant="warning">Retour aux enseignes</Button>
-      </Link>
+      <div className="insideNavBar">
+        <Link to="/admin/shops">
+          <Button variant="insideNav">Retour aux enseignes</Button>
+        </Link>
+      </div>
       <Form
         onSubmit={(event) => {
           event.preventDefault();
