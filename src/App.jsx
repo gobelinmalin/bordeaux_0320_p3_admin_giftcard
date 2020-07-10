@@ -12,16 +12,12 @@ import Header from './components/header/Header';
 import NavBar from './components/navbar/NavBar';
 import Customers from './components/customers/Customers';
 import UpdateCustomer from './components/customers/UpdateCustomer';
+import Orders from './components/orders/Orders';
+import UpdateOrder from './components/orders/UpdateOrder';
 import Shops from './components/shops/Shops';
 import ShopsAdd from './components/shops/ShopsAdd';
 import ShopsUpdate from './components/shops/ShopsUpdate';
 import ShopDetails from './components/shops/ShopDetail';
-// import AllCustomers from './components/customers/AllCustomers';
-/* import FormCustomer from './components/customers/FormCustomer';
-import BoardChart from './components/boardchart/BoardChart';
-import DisplayContent from './components/DisplayContent';
-import Products from './components/products/Products';
-import Deliveries from './components/deliveries/Deliveries'; */
 
 function App() {
   return (
@@ -52,6 +48,8 @@ function App() {
                 path="/admin/customers/update/:id"
                 component={UpdateCustomer}
               />
+              <Route exact path="/admin/orders" component={Orders} />
+              <Route path="/admin/orders/update/:id" component={UpdateOrder} />
             </Col>
           </Route>
         </Switch>

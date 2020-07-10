@@ -7,7 +7,7 @@ import { Table, Container, Button } from 'react-bootstrap';
 // import components
 
 // import style
-import '../content-section.css';
+// import '../content-section.css';
 
 const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
   const allCustomers =
@@ -32,8 +32,7 @@ const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
               variant="danger"
               onClick={() => deleteCustomer(customer.id)}
             >
-              {' '}
-              X{' '}
+              X
             </Button>
           </td>
           <td>{customer.id}</td>
@@ -41,7 +40,7 @@ const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
           <td>{customer.firstname}</td>
           <td>{customer.lastname}</td>
           <td>{customer.email}</td>
-          <td>{customer.adresse}</td>
+          <td>{customer.address}</td>
         </tr>
       );
     });
@@ -62,8 +61,8 @@ const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
             <th>Effacer</th>
             <th>#id</th>
             <th>Civilité</th>
-            <th>Nom</th>
             <th>Prénom</th>
+            <th>Nom</th>
             <th>Email</th>
             <th>Adresse</th>
           </tr>

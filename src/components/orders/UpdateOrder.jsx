@@ -7,44 +7,44 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 // import components
 
 // import data
-import fields from './customerFields';
+import fields from './ordersFields';
 
 // import style
 
-function UpdateCustomer() {
+function UpdateOrder() {
   const { id } = useParams();
-  const [customer, setCustomer] = useState(null);
+  const [order, setOrder] = useState(null);
 
-  const refreshCustomer = () => {
+  const getOrder = () => {
     Axios({
       method: 'get',
       // url: 'http://givyoo.fr/api/clients',
-      url: `http://localhost:5000/api/clients/${id}`,
+      url: `http://localhost:5000/api/orders/${id}`,
     })
       .then((response) => response.data)
-      .then((data) => setCustomer(data[0]));
+      .then((data) => setOrder(data));
   };
 
-  const updateCustomer = () => {
-    const url = `http://localhost:5000/api/clients/${id}`;
-    Axios.put(url, customer)
+  const updateOrder = () => {
+    const url = `http://localhost:5000/api/orders/${id}`;
+    Axios.put(url, order)
       .then((res) => res.config)
-      .then((data) => setCustomer(data));
+      .then((data) => setOrder(data));
   };
 
   const handleChange = (event) => {
     event.preventDefault();
     const { value, name } = event.target;
-    setCustomer({ ...customer, [name]: value });
+    setOrder({ ...order, [name]: value });
   };
 
   useEffect(() => {
-    if (!customer) {
-      refreshCustomer(id);
+    if (!order) {
+      getOrder(id);
     }
   });
 
-  if (customer) {
+  if (order) {
     return (
       <Container>
         <Row>
@@ -53,14 +53,14 @@ function UpdateCustomer() {
             <Form
               action=""
               className="form-group"
-              onSubmit={() => updateCustomer()}
+              onSubmit={() => updateOrder()}
             >
               <Form.Group>
                 <Form.Label>{fields[0].label}</Form.Label>
                 <Form.Control
                   name={fields[0].name}
                   type="text"
-                  value={customer.civility}
+                  value={order.id_client}
                   onChange={(event) => handleChange(event)}
                 />
               </Form.Group>
@@ -69,7 +69,7 @@ function UpdateCustomer() {
                 <Form.Control
                   name={fields[1].name}
                   type="text"
-                  value={customer.firstname}
+                  value={order.id_delivery}
                   onChange={(event) => handleChange(event)}
                 />
               </Form.Group>
@@ -78,25 +78,43 @@ function UpdateCustomer() {
                 <Form.Control
                   name={fields[2].name}
                   type="text"
-                  value={customer.lastname}
+                  value={order.status}
                   onChange={(event) => handleChange(event)}
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label>{fields[9].label}</Form.Label>
+                <Form.Label>{fields[3].label}</Form.Label>
                 <Form.Control
-                  name={fields[9].name}
+                  name={fields[3].name}
                   type="text"
-                  value={customer.email}
+                  value={order.delivery_date}
+                  onChange={(event) => handleChange(event)}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>{fields[4].label}</Form.Label>
+                <Form.Control
+                  name={fields[4].name}
+                  type="text"
+                  value={order.shipping_fees}
+                  onChange={(event) => handleChange(event)}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>{fields[5].label}</Form.Label>
+                <Form.Control
+                  name={fields[5].name}
+                  type="text"
+                  value={order.createDate}
                   onChange={(event) => handleChange(event)}
                 />
               </Form.Group>
               <Button type="submit" variant="warning">
-                Modifier le client
+                Modifier la commande
               </Button>
-              <Link to="/admin/customers">
+              <Link to="/admin/orders">
                 <Button type="button" variant="success">
-                  Retourner à la liste des clients
+                  Retourner à la liste des commandes
                 </Button>
               </Link>
             </Form>
@@ -108,4 +126,4 @@ function UpdateCustomer() {
   return null;
 }
 
-export default UpdateCustomer;
+export default UpdateOrder;
