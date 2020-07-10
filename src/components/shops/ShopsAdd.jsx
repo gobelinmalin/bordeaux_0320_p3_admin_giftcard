@@ -68,7 +68,7 @@ const ShopsAdd = () => {
           setShop(initialFormState);
         }}
       >
-        <h1>ajouter une nouvelle enseigne</h1>
+        <h2>Ajout d&apos;une nouvelle enseigne</h2>
 
         {/* Shop identity Form */}
         <div className="formContent">
@@ -277,7 +277,7 @@ const ShopsAdd = () => {
           </Form.Group>
         </div>
         <div className="validationButton">
-          <Button type="submit">Ajouter une enseigne</Button>
+          <Button type="submit">Ajouter l&apos;enseigne</Button>
         </div>
       </Form>
       {/* Shop admin infos Form */}
