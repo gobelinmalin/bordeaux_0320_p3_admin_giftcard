@@ -25,6 +25,9 @@ const ShopsAdd = () => {
 
   const [shop, setShop] = useState(initialFormState);
 
+  // eslint-disable-next-line no-unused-vars
+  const [newId, setNewId] = useState();
+
   // set day time
   const [date, setDate] = useState(new Date());
   useEffect(() => {
@@ -53,14 +56,16 @@ const ShopsAdd = () => {
   };
 
   // CRUD operation
-  const addShop = (id) => {
+  const addShop = () => {
     const url = 'http://localhost:5000/api/shops';
     axios
       .post(url, shop)
       .then((response) => response.data)
       .then((data) => setShop(data))
-      .then(history.push(`/admin/shops/details/${id}`));
+      .then(history.push(`/admin/shops/details/${newId}`));
   };
+
+  // Get the last item of shop array
 
   return (
     <Container>
