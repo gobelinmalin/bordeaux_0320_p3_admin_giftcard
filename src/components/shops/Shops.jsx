@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button, Container, Modal, Table } from 'react-bootstrap';
 
 import './shops.css';
+import '../styles.css';
 
 const Shops = () => {
   const [shops, setShops] = useState([]);
@@ -90,13 +91,16 @@ const Shops = () => {
                 <th> </th>
                 <td>
                   <Link to={`/admin/shops/details/${shop.id}`}>
-                    <Button className="button muted-button">Fiche</Button>
+                    <Button variant="editing">Fiche</Button>
                   </Link>
                   <Link to={`/admin/shops/update/${shop.id}`}>
-                    <Button className="button muted-button">Modifier</Button>
+                    <Button variant="editing">Modifier</Button>
                   </Link>
 
-                  <Button variant="primary" onClick={() => handleShow(shop.id)}>
+                  <Button
+                    variant="deleting"
+                    onClick={() => handleShow(shop.id)}
+                  >
                     Supprimer
                   </Button>
 

@@ -46,3 +46,34 @@
 .shopType {
   padding: 0 50px;
 }
+
+/* INSIDE SECTION NAVBAR */
+
+.insideNavBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 70px;
+}
+
+.btn-insideNav {
+  background-color: #20124d;
+  color: #fff2ceff;
+  margin: 0 10px 0 0;
+}
+
+.btn-insideNav:hover {
+  background-color: #fff2ceff;
+}
+
+/* EDITING BUTTONS*/
+
+.btn-editing {
+  border: 1px solid #20124d;
+  margin: 0 5px;
+}
+
+.btn-deleting {
+  border: 1px solid red;
+  margin: 0 5px;
+}

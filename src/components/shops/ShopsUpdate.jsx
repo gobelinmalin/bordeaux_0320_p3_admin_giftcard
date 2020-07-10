@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-
-import { Form, Button } from 'react-bootstrap';
-
 import axios from 'axios';
+
+import { Form, Button, Container } from 'react-bootstrap';
+
+import './shops.css';
+import '../styles.css';
 
 const ShopsUpdate = () => {
   // catch id of the shop in params url
@@ -46,7 +48,7 @@ const ShopsUpdate = () => {
   // if because we don't have any shop before useEffect call
   if (shop) {
     return (
-      <>
+      <Container>
         <div className="insideNavBar">
           <Link to="/admin/shops">
             <Button variant="insideNav">Retour aux enseignes</Button>
@@ -89,9 +91,9 @@ const ShopsUpdate = () => {
               onChange={handleInputChange}
             />
           </Form.Group>
-          <Button type="submit">Modifier une enseigne</Button>
+          <Button type="submit">Modifier l&apos;enseigne</Button>
         </Form>
-      </>
+      </Container>
     );
   }
   return null;

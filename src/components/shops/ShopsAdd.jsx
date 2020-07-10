@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Form, Button, DropdownButton, Dropdown, Col } from 'react-bootstrap';
+import {
+  Form,
+  Button,
+  DropdownButton,
+  Dropdown,
+  Col,
+  Container,
+} from 'react-bootstrap';
 import axios from 'axios';
 
+import './shops.css';
 import '../styles.css';
 
 const ShopsAdd = () => {
@@ -55,7 +63,7 @@ const ShopsAdd = () => {
   };
 
   return (
-    <>
+    <Container>
       <div className="insideNavBar">
         <Link to="/admin/shops">
           <Button variant="insideNav">Retour aux enseignes</Button>
@@ -281,7 +289,7 @@ const ShopsAdd = () => {
         </div>
       </Form>
       {/* Shop admin infos Form */}
-    </>
+    </Container>
   );
 };
 

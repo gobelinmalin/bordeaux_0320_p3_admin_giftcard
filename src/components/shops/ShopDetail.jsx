@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 import { Table, Button, Container } from 'react-bootstrap';
 
-import axios from 'axios';
+import './shops.css';
+import '../styles.css';
 
 const ShopDetail = () => {
   const { id } = useParams();
