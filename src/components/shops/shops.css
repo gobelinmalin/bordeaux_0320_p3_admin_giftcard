@@ -1,0 +1,14 @@
+.insideNavBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 70px;
+}
+
+.insideButton {
+  background-color: #20124d;
+  color: #fff2ceff;
+}
+
+.editButtons {
+}
