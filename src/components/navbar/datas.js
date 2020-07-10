@@ -4,7 +4,7 @@ const section = [
   { name: 'Produits', route: '/products' },
   { name: 'Customisation', route: '/customization' },
   { name: 'Clients', route: '/customers' },
-  { name: 'Commandes', route: '/deliveries' },
+  { name: 'Commandes', route: '/orders' },
   { name: 'Team', route: '/team' },
 ];
 
