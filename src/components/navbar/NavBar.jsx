@@ -11,29 +11,13 @@ import Logo from './Logo';
 import section from './datas';
 
 // import style
-import './style/left-menu-style.css';
+import './NavBar.css';
 
 const NavBar = () => {
   return (
     <Nav activeKey="/admin" className="d-flex flex-column left-menu">
       <Logo />
       <NavButton section={section} className="" />
-      <nav>
-        <ul>
-          {/* <li>
-              <Link to="/admin/customers">Clients</Link>
-            </li>
-            <li>
-              <Link to="/admin/customers/customer-add">Ajouter un client</Link>
-            </li>
-            <li>
-              <Link to="/admin/shops">Liste des enseignes</Link>
-            </li>
-            <li>
-              <Link to="/admin/shops/add-a-shop">Ajouter une enseigne</Link>
-            </li> */}
-        </ul>
-      </nav>
     </Nav>
   );
 };

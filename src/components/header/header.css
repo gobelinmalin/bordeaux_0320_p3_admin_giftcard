@@ -8,8 +8,7 @@
 
 .title {
   border: solid 1px #20124d;
-  background-color: #fff2ceff;
-  border-radius: 10px 10px 0 0;
+  border-radius: 0px 10px 0px 10px;
   margin: 0 5px;
   padding: 20px;
   font-size: x-large;
@@ -44,7 +43,6 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  background-color: #fff2ceff;
   color: #20124d;
 
   margin: 5px 0;

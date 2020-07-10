@@ -2,7 +2,6 @@
   border-radius: 10px;
   margin: 5px 5px;
   min-height: 100%;
-  border: 1px solid rgb(0, 0, 0);
   display: flex;
   justify-content: flex-start;
   align-content: center;
@@ -10,11 +9,9 @@
 
 .logo-givyoo {
   border-radius: 10px;
-  border: 1px solid;
-  background-color: #20124d;
   color: #fff2ceff;
   height: 85px;
-  margin: 10px 5px;
+  margin: 10px 5px 50px 5px;
   /* flex */
   display: flex;
 }
@@ -35,16 +32,27 @@
   flex-wrap: wrap;
   align-content: flex-start;
 }
-.nav-button {
-  border-radius: 10px;
-  background-color: #fff2ceff;
+
+.navButton {
+  border-radius: 5px;
+  border: 1px solid #726792aa;
   text-decoration: none;
   width: 180px;
-  height: 35px;
+  height: 40px;
   margin: 10px auto;
   padding: 5px 5px;
   /* flex */
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.navButton a {
+  color: #20124d;
+}
+
+.navButton a:hover {
+  font-weight: bold;
+  text-decoration: none;
+  color: #4b30a5;
 }

@@ -2,7 +2,6 @@
 .parent-container {
   display: flex;
   min-width: 100vw;
-  background-color: cadetblue;
   margin: 0;
 }
 /* NavBar component */
