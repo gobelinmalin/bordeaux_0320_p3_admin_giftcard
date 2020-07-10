@@ -4,27 +4,32 @@ import Axios from 'axios';
 import { Form, Container, Col, Row, Button } from 'react-bootstrap';
 
 // import data
-import fields from './customerFields';
+import fields from './ordersFields';
 
-function AddCustomers() {
-  const [customer, setCustomer] = useState([{}]);
+// import components
+
+// import data
+
+// import style
+
+function AddOrder() {
+  const [order, setOrder] = useState([{}]);
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
-    setCustomer(inputValue);
+    setOrder(inputValue);
   }, [inputValue]);
 
-  const addCustomer = () => {
-    const url = 'http://localhost:5000/api/clients';
-    Axios.post(url, customer)
-      .then((res) => res.config)
-      .then((data) => setCustomer(data));
+  const addOrder = () => {
+    const url = 'http://localhost:5000/api/orders';
+    Axios.post(url, order)
+      .then((res) => res.config.data)
+      .then((data) => setOrder(data));
   };
 
   const handleChange = (event) => {
     event.preventDefault();
-    const { value } = event.target;
-    const { name } = event.target;
+    const { value, name } = event.target;
     const newValue = { ...inputValue, [name]: value };
     setInputValue(newValue);
   };
@@ -35,12 +40,13 @@ function AddCustomers() {
       <Row>
         <Col className="col-form-label-sm">
           <h3 id="">Identité du client</h3>
-          <Form action="" className="form-group" onSubmit={() => addCustomer()}>
+          <Form action="" className="form-group" onSubmit={() => addOrder()}>
             <Form.Group>
               <Form.Label>{fields[0].label}</Form.Label>
               <Form.Control
                 name={fields[0].name}
                 type="text"
+                placeholder={fields[0].placeholder}
                 value={inputValue.name}
                 onChange={(event) => handleChange(event)}
               />
@@ -50,6 +56,7 @@ function AddCustomers() {
               <Form.Control
                 name={fields[1].name}
                 type="text"
+                placeholder={fields[1].placeholder}
                 value={inputValue.name}
                 onChange={(event) => handleChange(event)}
               />
@@ -59,21 +66,43 @@ function AddCustomers() {
               <Form.Control
                 name={fields[2].name}
                 type="text"
+                placeholder={fields[2].placeholder}
                 value={inputValue.name}
                 onChange={(event) => handleChange(event)}
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>{fields[9].label}</Form.Label>
+              <Form.Label>{fields[3].label}</Form.Label>
               <Form.Control
-                name={fields[9].name}
+                name={fields[3].name}
                 type="text"
+                placeholder={fields[3].placeholder}
+                value={inputValue.name}
+                onChange={(event) => handleChange(event)}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>{fields[4].label}</Form.Label>
+              <Form.Control
+                name={fields[4].name}
+                type="text"
+                placeholder={fields[4].placeholder}
+                value={inputValue.name}
+                onChange={(event) => handleChange(event)}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>{fields[5].label}</Form.Label>
+              <Form.Control
+                name={fields[5].name}
+                type="text"
+                placeholder={fields[5].placeholder}
                 value={inputValue.name}
                 onChange={(event) => handleChange(event)}
               />
             </Form.Group>
             <Button type="submit" variant="warning">
-              Ajouter un client
+              Ajouter une commande
             </Button>
           </Form>
         </Col>
@@ -82,4 +111,4 @@ function AddCustomers() {
   );
 }
 
-export default AddCustomers;
+export default AddOrder;
