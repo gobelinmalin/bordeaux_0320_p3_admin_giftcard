@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Form, Button, DropdownButton, Dropdown, Col } from 'react-bootstrap';
+import {
+  Form,
+  Button,
+  DropdownButton,
+  Dropdown,
+  Col,
+  Container,
+} from 'react-bootstrap';
 import axios from 'axios';
 
+import './shops.css';
 import '../styles.css';
 
 const ShopsAdd = () => {
@@ -16,6 +24,9 @@ const ShopsAdd = () => {
   };
 
   const [shop, setShop] = useState(initialFormState);
+
+  // eslint-disable-next-line no-unused-vars
+  const [newId, setNewId] = useState();
 
   // set day time
   const [date, setDate] = useState(new Date());
@@ -45,20 +56,24 @@ const ShopsAdd = () => {
   };
 
   // CRUD operation
-  const addShop = (id) => {
+  const addShop = () => {
     const url = 'http://localhost:5000/api/shops';
     axios
       .post(url, shop)
       .then((response) => response.data)
       .then((data) => setShop(data))
-      .then(history.push(`/admin/shops/details/${id}`));
+      .then(history.push(`/admin/shops/details/${newId}`));
   };
 
+  // Get the last item of shop array
+
   return (
-    <>
-      <Link to="/admin/shops">
-        <Button variant="warning">Retour aux enseignes</Button>
-      </Link>
+    <Container>
+      <div className="insideNavBar">
+        <Link to="/admin/shops">
+          <Button variant="insideNav">Retour aux enseignes</Button>
+        </Link>
+      </div>
       <Form
         onSubmit={(event) => {
           event.preventDefault();
@@ -66,7 +81,7 @@ const ShopsAdd = () => {
           setShop(initialFormState);
         }}
       >
-        <h1>ajouter une nouvelle enseigne</h1>
+        <h2>Ajout d&apos;une nouvelle enseigne</h2>
 
         {/* Shop identity Form */}
         <div className="formContent">
@@ -275,11 +290,11 @@ const ShopsAdd = () => {
           </Form.Group>
         </div>
         <div className="validationButton">
-          <Button type="submit">Ajouter une enseigne</Button>
+          <Button type="submit">Ajouter l&apos;enseigne</Button>
         </div>
       </Form>
       {/* Shop admin infos Form */}
-    </>
+    </Container>
   );
 };
 

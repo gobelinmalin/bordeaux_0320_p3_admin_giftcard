@@ -1,0 +1,25 @@
+/* e-shop/ shop  */
+.e-shop {
+  background-color: rgb(22, 202, 22);
+  border-radius: 50%;
+  margin-right: 6px;
+  width: 15px;
+  height: 15px;
+  color: transparent;
+  padding: 5px;
+}
+
+.shop {
+  background-color: #e7e7e7;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+  color: transparent;
+}
+
+/* Editing .e-shop format */
+
+.editFormat {
+  width: 596px;
+}

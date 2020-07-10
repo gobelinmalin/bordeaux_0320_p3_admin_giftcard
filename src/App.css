@@ -1,8 +1,10 @@
 .App {
-  width: 100%;
+  width: 100vh;
   height: 100%;
   /* FLEX */
   display: flex;
-  justify-content: start;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
   flex-wrap: nowrap;
 }

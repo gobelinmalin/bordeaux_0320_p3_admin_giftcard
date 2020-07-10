@@ -3,6 +3,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Button, Container, Modal, Table } from 'react-bootstrap';
 
+import './shops.css';
+import '../styles.css';
+
 const Shops = () => {
   const [shops, setShops] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -42,45 +45,69 @@ const Shops = () => {
 
   return (
     <Container>
-      <Link to="/admin/shops/add">
-        <Button variant="warning">Ajouter une enseigne</Button>
-      </Link>
+      <div className="insideNavBar">
+        <Link to="/admin/shops/add">
+          <Button variant="insideNav">Ajouter une enseigne</Button>
+        </Link>
+      </div>
 
       <div>
         <Table>
           <thead>
             <tr>
               <th>id</th>
+              <th>Logo</th>
               <th>Name</th>
+              <th>Ville</th>
+              <th>Pays</th>
+              <th>Theme</th>
               <th>E-Shop</th>
               <th>Boutique</th>
+              <th>Statut</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {shops.map((shop) => (
               <tr>
                 <td>{shop.id}</td>
+                <td>logo</td>
                 <td>
                   <Link to={`/admin/shops/update/${shop.id}`}>{shop.name}</Link>
                 </td>
-                <td>{shop.online}</td>
-                <td>{shop.offline}</td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td>
+                  <div className={shop.online ? 'e-shop' : 'shop'}>
+                    {shop.online}
+                  </div>
+                </td>
+                <td>
+                  <div className={shop.offline ? 'e-shop' : 'shop'}>
+                    {shop.offline}
+                  </div>
+                </td>
+                <th> </th>
                 <td>
                   <Link to={`/admin/shops/details/${shop.id}`}>
-                    <Button className="button muted-button">Fiche</Button>
+                    <Button variant="editing">Fiche</Button>
                   </Link>
                   <Link to={`/admin/shops/update/${shop.id}`}>
-                    <Button className="button muted-button">Modifier</Button>
+                    <Button variant="editing">Modifier</Button>
                   </Link>
 
-                  <Button variant="primary" onClick={() => handleShow(shop.id)}>
-                    Supprimer {shop.id}
+                  <Button
+                    variant="deleting"
+                    onClick={() => handleShow(shop.id)}
+                  >
+                    Supprimer
                   </Button>
 
                   {/* Delete Modal */}
                   <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
-                      Supprimer l&apos;enseigne {shopId}
+                      Supprimer l&apos;enseigne
                     </Modal.Header>
                     <Modal.Footer>
                       <Button onClick={handleClose}>Annuler</Button>
