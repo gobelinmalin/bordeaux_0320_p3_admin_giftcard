@@ -24,7 +24,7 @@ const Products = () => {
   return (
     <Container>
       <div className="insideNavBar">
-        <Link to="/admin/shops/add">
+        <Link to="/admin/products/add">
           <Button variant="insideNav">Ajouter un produit</Button>
         </Link>
       </div>
@@ -48,12 +48,12 @@ const Products = () => {
                 <td>{product.id}</td>
                 <td> </td>
                 <td>{product.id_shop}</td>
+                <td>{product.name}</td>
+                <td>{product.theme}</td>
                 <td> </td>
+                <td>{product.price}</td>
                 <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td>{product.sale_status}</td>
                 <td>
                   <Button variant="editing">Fiche</Button>
                   <Button variant="editing">Modifier</Button>
