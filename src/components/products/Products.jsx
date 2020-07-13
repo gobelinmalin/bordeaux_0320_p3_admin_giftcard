@@ -24,6 +24,14 @@ const Products = () => {
   return (
     <Container>
       <div className="insideNavBar">
+        <Link to="/admin/products">
+          <Button variant="insideNav">PRODUITS</Button>
+        </Link>
+        <Button variant="insideNav">CATEGORIES</Button>
+        <Button variant="insideNav">THEME</Button>
+        <Button variant="insideNav">TAGS</Button>
+      </div>
+      <div className="insideNavBar">
         <Link to="/admin/products/add">
           <Button variant="insideNav">Ajouter un produit</Button>
         </Link>
