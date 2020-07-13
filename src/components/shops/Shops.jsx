@@ -13,7 +13,7 @@ const Shops = () => {
   // catch shop to pass to delete Modal
   const [shopId, setShopId] = useState();
 
-  //
+  // retrieve all shops from bdd
   const getShopsData = () => {
     const url = 'http://localhost:5000/api/shops';
     axios
