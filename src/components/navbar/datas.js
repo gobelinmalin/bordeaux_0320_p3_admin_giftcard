@@ -5,7 +5,7 @@ const section = [
   { name: 'Customisation', route: '/customization' },
   { name: 'Clients', route: '/customers' },
   { name: 'Commandes', route: '/orders' },
-  { name: 'Team', route: '/team' },
+  { name: 'Administrateurs', route: '/admins' },
 ];
 
 export default section;

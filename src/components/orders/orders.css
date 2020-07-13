@@ -1,0 +1,10 @@
+.btn-primary {
+  width: 100%;
+  background-color: #20124d;
+  border: #20124d;
+}
+
+thead tr:nth-of-type(1) {
+  width: min-content;
+  border-bottom: 0px solid #dee2e6;
+}
