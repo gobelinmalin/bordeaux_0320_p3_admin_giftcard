@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
+
+import ProductsNavbar from './ProductsNavbar';
 
 import './products.css';
 import '../styles.css';
-import Axios from 'axios';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -23,14 +25,7 @@ const Products = () => {
 
   return (
     <Container>
-      <div className="insideNavBar">
-        <Link to="/admin/products">
-          <Button variant="insideNav">PRODUITS</Button>
-        </Link>
-        <Button variant="insideNav">CATEGORIES</Button>
-        <Button variant="insideNav">THEME</Button>
-        <Button variant="insideNav">TAGS</Button>
-      </div>
+      <ProductsNavbar />
       <div className="insideNavBar">
         <Link to="/admin/products/add">
           <Button variant="insideNav">Ajouter un produit</Button>

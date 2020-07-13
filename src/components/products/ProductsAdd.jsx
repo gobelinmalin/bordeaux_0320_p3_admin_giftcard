@@ -2,23 +2,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Container } from 'react-bootstrap';
 
+import ProductNavbar from './ProductsNavbar';
+
 import './products.css';
 import '../styles.css';
 
 const ProductsAdd = () => {
   return (
     <Container>
+      <ProductNavbar />
       <div className="insideNavBar">
         <Link to="/admin/products">
-          <Button variant="insideNav">PRODUITS</Button>
+          <Button variant="insideNav">Cartes Cadeaux</Button>
         </Link>
-        <Button variant="insideNav">CATEGORIES</Button>
-        <Button variant="insideNav">THEME</Button>
-        <Button variant="insideNav">TAGS</Button>
-      </div>
-      <div className="insideNavBar">
-        <Link to="/admin/products">
-          <Button variant="insideNav">Retour aux produits</Button>
+        <Link to=" ">
+          <Button variant="insideNav">Abonnements</Button>
+        </Link>
+        <Link to=" ">
+          <Button variant="insideNav">Coffrets</Button>
         </Link>
       </div>
 
