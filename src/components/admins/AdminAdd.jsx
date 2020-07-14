@@ -1,12 +1,12 @@
 // import libs
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import PropTypes from 'prop-types';
 import { Form, Container, Col, Row, Button } from 'react-bootstrap';
 
 // import data
-// import fields from './customerFields';
 
-function AdminForm() {
+function AdminsAdd({ getAdminsDatas }) {
   const [admin, setAdmin] = useState([{}]);
   const [inputValue, setInputValue] = useState('');
 
@@ -17,14 +17,13 @@ function AdminForm() {
   const addAdmin = () => {
     const url = 'http://localhost:5000/api/admins';
     Axios.post(url, admin)
-      .then((res) => res.config)
-      .then((data) => setAdmin(data));
+      .then((response) => response.config.data)
+      .finally(() => getAdminsDatas());
   };
 
   const handleChange = (event) => {
     event.preventDefault();
-    const { value } = event.target;
-    const { name } = event.target;
+    const { value, name } = event.target;
     const newValue = { ...inputValue, [name]: value };
     setInputValue(newValue);
   };
@@ -39,9 +38,9 @@ function AdminForm() {
             <Form.Group>
               <Form.Label>Nom</Form.Label>
               <Form.Control
-                name="nom"
+                name="fullname"
                 type="text"
-                value={inputValue.name}
+                value={inputValue.fullname}
                 onChange={(event) => handleChange(event)}
               />
             </Form.Group>
@@ -49,22 +48,12 @@ function AdminForm() {
               <Form.Label>Email</Form.Label>
               <Form.Control
                 name="email"
-                type="text"
-                value={inputValue.name}
+                type="email"
+                value={inputValue.email}
                 onChange={(event) => handleChange(event)}
               />
             </Form.Group>
-            <Form.Group>
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control
-                name="password"
-                type="text"
-                value={inputValue.name}
-                onChange={(event) => handleChange(event)}
-              />
-            </Form.Group>
-
-            <Button type="submit" variant="warning">
+            <Button type="submit" variant="success">
               Ajouter un administrateur
             </Button>
           </Form>
@@ -74,4 +63,12 @@ function AdminForm() {
   );
 }
 
-export default AdminForm;
+AdminsAdd.defaultProps = {
+  getAdminsDatas: PropTypes.func,
+};
+
+AdminsAdd.propTypes = {
+  getAdminsDatas: PropTypes.func,
+};
+
+export default AdminsAdd;
