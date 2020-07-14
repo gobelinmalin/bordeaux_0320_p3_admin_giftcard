@@ -7,6 +7,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import components
+import Admins from './components/admins/Admins';
+import AdminUpdate from './components/admins/AdminUpdate';
 import Signin from './components/Signin';
 import Header from './components/header/Header';
 import NavBar from './components/navbar/NavBar';
@@ -50,6 +52,12 @@ function App() {
               />
               <Route exact path="/admin/orders" component={Orders} />
               <Route path="/admin/orders/update/:id" component={UpdateOrder} />
+              <Route exact path="/admin/admins" component={Admins} />
+              <Route
+                exact
+                path="/admin/admins/update/:id"
+                component={AdminUpdate}
+              />
             </Col>
           </Route>
         </Switch>
