@@ -9,3 +9,12 @@ thead tr:nth-of-type(1) {
   width: min-content;
   border-bottom: 0px solid #dee2e6;
 }
+
+a.edit-link {
+  color: #20124d;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  margin: 0 auto;
+  width: min-content;
+}

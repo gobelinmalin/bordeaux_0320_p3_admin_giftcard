@@ -1,13 +1,15 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Table, Container, Button } from 'react-bootstrap';
+import { Table, Container } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // import components
 
 // import data
 
 // import style
+import './orders.css';
 
 function OrdersList({ orders, deleteOrder, updateOrder }) {
   const [allOrders, setAllOrders] = useState([]);
@@ -52,24 +54,15 @@ function OrdersList({ orders, deleteOrder, updateOrder }) {
         <td>{order.shipping_fees}</td>
         <td>{order.createDate}</td>
         <td>
-          <Link to={`/admin/orders/update/${order.id}`}>
-            <Button
-              type="submit"
-              variant="editing"
+          <Link className="edit-link" to={`/admin/orders/update/${order.id}`}>
+            <FontAwesomeIcon
+              icon="edit"
               onClick={() => updateOrder(order.id)}
-            >
-              Editer
-            </Button>
+            />
           </Link>
         </td>
         <td>
-          <Button
-            type="submit"
-            variant="editing"
-            onClick={() => deleteOrder(order.id)}
-          >
-            Effacer
-          </Button>
+          <FontAwesomeIcon icon="trash" onClick={() => deleteOrder(order.id)} />
         </td>
       </tr>
     );
@@ -78,54 +71,51 @@ function OrdersList({ orders, deleteOrder, updateOrder }) {
   return (
     <Container>
       <h3>Liste des commandes</h3>
-      {/* <Table className="table,table-responsive" striped bordered hover> */}
       <Table responsive hover>
         <thead>
           <tr>
             <th>
-              <Button size="sm" onClick={() => requestSort('id_client')}>
-                filtrer
-              </Button>
+              N° de client
+              <FontAwesomeIcon
+                icon="sort"
+                onClick={() => requestSort('id_client')}
+              />
             </th>
             <th>
-              <Button size="sm" onClick={() => requestSort('id_delivery')}>
-                filtrer
-              </Button>
+              N° de commande
+              <FontAwesomeIcon
+                icon="sort"
+                onClick={() => requestSort('id_delivery')}
+              />
             </th>
             <th>
-              <Button size="sm" onClick={() => requestSort('status')}>
-                filtrer
-              </Button>
+              Online / Offline
+              <FontAwesomeIcon
+                icon="sort"
+                onClick={() => requestSort('status')}
+              />
             </th>
             <th>
-              <Button size="sm" onClick={() => requestSort('delivery_date')}>
-                filtrer
-              </Button>
+              Date de livraison
+              <FontAwesomeIcon
+                icon="sort"
+                onClick={() => requestSort('delivery_date')}
+              />
             </th>
             <th>
-              <Button size="sm" onClick={() => requestSort('shipping_fees')}>
-                filtrer
-              </Button>
+              Frais de port{' '}
+              <FontAwesomeIcon
+                icon="sort"
+                onClick={() => requestSort('shipping_fees')}
+              />
             </th>
             <th>
-              <Button size="sm" onClick={() => requestSort('createDate')}>
-                filtrer
-              </Button>
+              Date de création
+              <FontAwesomeIcon
+                icon="sort"
+                onClick={() => requestSort('createDate')}
+              />
             </th>
-            <th>
-              <Button size="sm"> O </Button>
-            </th>
-            <th>
-              <Button size="sm"> X </Button>
-            </th>
-          </tr>
-          <tr>
-            <th>N° de client</th>
-            <th>N° de commande</th>
-            <th>Online / Offline</th>
-            <th>Date de livraison</th>
-            <th>Frais de port</th>
-            <th>Date de création</th>
             <th>Modifier</th>
             <th>Effacer</th>
           </tr>

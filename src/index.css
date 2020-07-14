@@ -14,7 +14,8 @@ code {
 
 .fa-user-plus,
 .fa-user-edit,
-.fa-trash {
+.fa-trash,
+.fa-sort .fa-edit {
   color: #20124d;
   display: flex;
   justify-self: center;
