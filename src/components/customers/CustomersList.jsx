@@ -2,12 +2,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Table, Container, Button } from 'react-bootstrap';
+import { Table, Container } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // import components
 
 // import style
 import './customers.css';
+import '../../index.css';
 
 const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
   const allCustomers =
@@ -23,15 +25,17 @@ const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
           <td>{customer.address}</td>
           <td>
             <Link to={`/admin/customers/update/${customer.id}`}>
-              <Button type="submit" onClick={() => editCustomer(customer.id)}>
-                Editer
-              </Button>
+              <FontAwesomeIcon
+                icon="user-edit"
+                onClick={() => editCustomer(customer.id)}
+              />
             </Link>
           </td>
           <td>
-            <Button type="submit" onClick={() => deleteCustomer(customer.id)}>
-              Effacer
-            </Button>
+            <FontAwesomeIcon
+              icon="trash"
+              onClick={() => deleteCustomer(customer.id)}
+            />
           </td>
         </tr>
       );
@@ -41,8 +45,8 @@ const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
     <Container>
       <div className="table-title">
         <h3>Liste des clients</h3>
-        <Link to="/admin/customers">
-          <Button>Cliquer ici pour ajouter un client</Button>
+        <Link to="/admin/customers/add">
+          <FontAwesomeIcon icon="user-plus" size="3x" />
         </Link>
       </div>
       <Table responsive hover>
