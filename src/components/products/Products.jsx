@@ -9,9 +9,9 @@ import './products.css';
 import '../styles.css';
 
 const Products = () => {
+  // retrieve products
   const [products, setProducts] = useState([]);
 
-  // retrieve products
   const getProductsData = () => {
     const url = 'http://localhost:5000/api/products';
     Axios.get(url)
@@ -23,12 +23,39 @@ const Products = () => {
     getProductsData();
   }, []);
 
+  // retrieve shopNames
+  const [shops, setShops] = useState([]);
+
+  const getShopsData = () => {
+    const url = 'http://localhost:5000/api/shops';
+    Axios.get(url)
+      .then((response) => response.data)
+      .then((data) => setShops(data));
+  };
+
+  useEffect(() => {
+    getShopsData();
+  }, []);
+
+  // eslint-disable-next-line no-unused-vars
+  const shopName = shops
+    .filter((element) => element.id === shops && element.name)
+    .map((shop) => shop.name);
+
+  /* console.log(products);
+  console.log(shops); */
+
   return (
     <Container>
       <ProductsNavbar />
       <div className="insideNavBar">
         <Link to="/admin/products/add">
           <Button variant="insideNav">Ajouter un produit</Button>
+        </Link>
+      </div>
+      <div className="insideNavBar">
+        <Link to="/admin/products/add">
+          <Button variant="insideNav">Selectionner une enseigne</Button>
         </Link>
       </div>
       <div>
@@ -52,8 +79,8 @@ const Products = () => {
                 <td> </td>
                 <td>{product.id_shop}</td>
                 <td>{product.name}</td>
-                <td>{product.theme}</td>
-                <td> </td>
+                <td>{product.id_theme}</td>
+                <td>{product.id_category}</td>
                 <td>{product.price}</td>
                 <td> </td>
                 <td>{product.sale_status}</td>
