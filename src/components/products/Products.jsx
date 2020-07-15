@@ -23,7 +23,7 @@ const Products = () => {
     getProductsData();
   }, []);
 
-  // retrieve shopNames
+  // retrieve shops names
   const [shops, setShops] = useState([]);
 
   const getShopsData = () => {
@@ -37,13 +37,10 @@ const Products = () => {
     getShopsData();
   }, []);
 
-  // eslint-disable-next-line no-unused-vars
-  const shopName = shops
-    .filter((element) => element.id === shops && element.name)
-    .map((shop) => shop.name);
-
-  /* console.log(products);
-  console.log(shops); */
+  const getShopName = (shopId) => {
+    const foundShop = shops.find((shop) => shop.id === shopId);
+    return foundShop ? foundShop.name : '';
+  };
 
   return (
     <Container>
@@ -77,7 +74,7 @@ const Products = () => {
               <tr>
                 <td>{product.id}</td>
                 <td> </td>
-                <td>{product.id_shop}</td>
+                <td>{getShopName(product.id_shop)}</td>
                 <td>{product.name}</td>
                 <td>{product.id_theme}</td>
                 <td>{product.id_category}</td>
