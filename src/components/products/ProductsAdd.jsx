@@ -1,6 +1,14 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button, Container } from 'react-bootstrap';
+import {
+  Form,
+  Button,
+  DropdownButton,
+  Dropdown,
+  Col,
+  Container,
+} from 'react-bootstrap';
 
 import ProductNavbar from './ProductsNavbar';
 
@@ -23,12 +31,38 @@ const ProductsAdd = () => {
         </Link>
       </div>
 
-      <Form>
-        <Form.Group>
-          <Form.Label>Nom</Form.Label>
-          <Form.Control size="sm" type="text" name="" value="" onchange="" />
-        </Form.Group>
-      </Form>
+      <div className="formContent">
+        <Form>
+          <Form.Group>
+            <Form.Label>Enseigne</Form.Label>
+            <Form.Control size="sm" type="text" placeholder="Search" />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Category</Form.Label>
+            <Form.Control size="sm" type="text" placeholder="Search" />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Nom</Form.Label>
+            <Form.Control size="sm" type="text" />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>image</Form.Label>
+            <Form.Control size="sm" type="text" placeholder="Upload" />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Theme</Form.Label>
+            <Form.Control size="sm" type="text" placeholder="Search" />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Description</Form.Label>
+            <Form.Control size="sm" type="text" />
+          </Form.Group>
+        </Form>
+      </div>
+
+      <div className="formContent">
+        <p> ici le composant du produit selectionné</p>
+      </div>
     </Container>
   );
 };
