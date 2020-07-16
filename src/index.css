@@ -11,14 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+.fa-store,
+.fa-tasks,
 .fa-user-plus,
 .fa-user-edit,
 .fa-trash,
-.fa-sort .fa-edit {
+.fa-sort,
+.fa-edit,
+.fa-pen {
   color: #20124d;
   display: flex;
-  justify-self: center;
-  align-self: center;
-  margin: 0 auto;
+  margin: 5px auto;
+}
+
+.add-admin {
+  width: min-content;
 }
