@@ -35,6 +35,24 @@ const ProductsAdd = () => {
     const { name, value } = event.target;
     setProduct({ ...product, [name]: value });
   };
+  // retrieve shops names
+  const [shops, setShops] = useState([]);
+
+  const getShopsData = () => {
+    const url = 'http://localhost:5000/api/shops';
+    Axios.get(url)
+      .then((response) => response.data)
+      .then((data) => setShops(data));
+  };
+
+  useEffect(() => {
+    getShopsData();
+  }, []);
+
+  const getShopName = (shopId) => {
+    const foundShop = shops.find((shop) => shop.id === shopId);
+    return foundShop ? foundShop.name : '';
+  };
 
   // get categories
   const [categories, setCategories] = useState();
@@ -63,6 +81,9 @@ const ProductsAdd = () => {
   useEffect(() => {
     getThemesData();
   }, []);
+
+  /*   console.log(product);
+  console.log(shops); */
 
   return (
     <Container>
