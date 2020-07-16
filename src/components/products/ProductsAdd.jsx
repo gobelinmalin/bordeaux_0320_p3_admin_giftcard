@@ -12,6 +12,7 @@ import {
 } from 'react-bootstrap';
 
 import ProductNavbar from './ProductsNavbar';
+import CardAdd from './CardAdd';
 
 import './products.css';
 import '../styles.css';
@@ -50,20 +51,20 @@ const ProductsAdd = () => {
   }, []);
 
   // Shops searchBar
-  const [word, setWord] = useState('');
+  const [query, setQuery] = useState('');
   const [filterShop, setFilterShop] = useState(shops);
 
   const handleShopsSearch = (event) => {
-    setWord(event);
+    setQuery(event);
     const oldList = shops.map((shop) => {
       return { id: shop.id, name: shop.name.toLowerCase() };
     });
 
-    if (word !== '') {
+    if (query !== '') {
       let newList = [];
 
       newList = oldList.filter((shop) =>
-        shop.name.startsWith(word.toLowerCase())
+        shop.name.startsWith(query.toLowerCase())
       );
       setFilterShop(newList);
     } else {
@@ -106,7 +107,7 @@ const ProductsAdd = () => {
 
   /*   console.log(product);
   console.log(shops);
-  console.log(word); */
+  console.log(query); */
 
   return (
     <Container>
@@ -188,7 +189,7 @@ const ProductsAdd = () => {
       </div>
 
       <div className="formContent">
-        <p> ici le composant du produit selectionné</p>
+        <CardAdd />
       </div>
     </Container>
   );
