@@ -17,6 +17,7 @@ import {
   faEdit,
   faTasks,
   faStore,
+  faPen,
 } from '@fortawesome/free-solid-svg-icons';
 
 // import components
@@ -45,7 +46,8 @@ function App() {
     faSort,
     faEdit,
     faTasks,
-    faStore
+    faStore,
+    faPen
   );
   return (
     <Container fluid className=" parent-container flex-column ">

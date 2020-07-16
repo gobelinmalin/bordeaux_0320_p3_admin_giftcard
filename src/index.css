@@ -17,7 +17,8 @@ code {
 .fa-user-edit,
 .fa-trash,
 .fa-sort,
-.fa-edit {
+.fa-edit,
+.fa-pen {
   color: #20124d;
   display: flex;
   margin: 5px auto;

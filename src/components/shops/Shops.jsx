@@ -48,9 +48,7 @@ const Shops = () => {
     <Container>
       <div className="insideNavBar">
         <Link to="/admin/shops/add">
-          <h1 className="add-shop">
-            <FontAwesomeIcon icon="store" /> +
-          </h1>
+          <Button variant="insideNav"> Ajouter une enseigne </Button>
         </Link>
       </div>
 
@@ -97,7 +95,7 @@ const Shops = () => {
                     <FontAwesomeIcon className="action-icon" icon="tasks" />
                   </Link>
                   <Link to={`/admin/shops/update/${shop.id}`}>
-                    <FontAwesomeIcon className="action-icon" icon="user-edit" />
+                    <FontAwesomeIcon className="action-icon" icon="pen" />
                   </Link>
                   <FontAwesomeIcon
                     className="action-icon"
