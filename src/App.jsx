@@ -27,6 +27,7 @@ import Customers from './components/customers/Customers';
 import AddCustomer from './components/customers/AddCustomer';
 import UpdateCustomer from './components/customers/UpdateCustomer';
 import Orders from './components/orders/Orders';
+import OrdersByCustomer from './components/orders/OrdersByCustomer';
 import UpdateOrder from './components/orders/UpdateOrder';
 import Shops from './components/shops/Shops';
 import ShopsAdd from './components/shops/ShopsAdd';
@@ -70,6 +71,11 @@ function App() {
               />
               <Route exact path="/admin/orders" component={Orders} />
               <Route path="/admin/orders/update/:id" component={UpdateOrder} />
+              <Route
+                path="/admin/orders/by-client/:idClient"
+                component={OrdersByCustomer}
+              />
+
               <Route exact path="/admin/admins" component={Admins} />
               <Route
                 exact

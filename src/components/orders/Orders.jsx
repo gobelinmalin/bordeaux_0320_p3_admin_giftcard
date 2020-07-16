@@ -18,6 +18,7 @@ function Orders() {
 
   // GET all customers
   const [orders, setOrders] = useState([]);
+  // const [allOrdersByCustomer, setAllOrdersByCustomer] = useState([]);
 
   const getAllOrders = () => {
     Axios({
