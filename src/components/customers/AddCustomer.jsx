@@ -72,7 +72,7 @@ function AddCustomers() {
                 onChange={(event) => handleChange(event)}
               />
             </Form.Group>
-            <Button type="submit" variant="warning">
+            <Button type="submit" variant="success">
               Ajouter un client
             </Button>
           </Form>
