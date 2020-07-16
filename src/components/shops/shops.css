@@ -23,3 +23,17 @@
 .editFormat {
   width: 596px;
 }
+
+.add-shop {
+  color: #20124d;
+  display: flex;
+}
+
+.action {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.action-icon {
+  margin: 0 15px;
+}

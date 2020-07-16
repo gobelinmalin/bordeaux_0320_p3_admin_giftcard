@@ -15,6 +15,8 @@ import {
   faTrash,
   faSort,
   faEdit,
+  faTasks,
+  faStore,
 } from '@fortawesome/free-solid-svg-icons';
 
 // import components
@@ -35,7 +37,16 @@ import ShopsUpdate from './components/shops/ShopsUpdate';
 import ShopDetails from './components/shops/ShopDetail';
 
 function App() {
-  library.add(fab, faUserPlus, faUserEdit, faTrash, faSort, faEdit);
+  library.add(
+    fab,
+    faUserPlus,
+    faUserEdit,
+    faTrash,
+    faSort,
+    faEdit,
+    faTasks,
+    faStore
+  );
   return (
     <Container fluid className=" parent-container flex-column ">
       <Row>

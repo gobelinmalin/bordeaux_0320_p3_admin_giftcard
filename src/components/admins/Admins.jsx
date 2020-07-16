@@ -1,6 +1,7 @@
 // import modules
 import React, { useState, useEffect } from 'react';
-import { Table, Container, Button } from 'react-bootstrap';
+import { Table, Container } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
@@ -39,15 +40,19 @@ const Admins = () => {
         <td>{admin.email}</td>
         <td>
           <Link to={`/admin/admins/update/${admin.id}`}>
-            <Button type="submit" size="sm" onClick={() => editAdmin(admin.id)}>
-              Editer
-            </Button>
+            <FontAwesomeIcon
+              type="submit"
+              icon="user-edit"
+              onClick={() => editAdmin(admin.id)}
+            />
           </Link>
         </td>
         <td>
-          <Button type="submit" size="sm" onClick={() => deleteAdmin(admin.id)}>
-            Effacer
-          </Button>
+          <FontAwesomeIcon
+            type="submit"
+            icon="trash"
+            onClick={() => deleteAdmin(admin.id)}
+          />
         </td>
       </tr>
     );

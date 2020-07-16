@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
-import { Form, Container, Col, Row, Button } from 'react-bootstrap';
+import { Form, Container, Col, Row } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// import data
+// import style
+import '../../index.css';
 
 function AdminsAdd({ getAdminsDatas }) {
   const [admin, setAdmin] = useState([{}]);
@@ -53,9 +55,9 @@ function AdminsAdd({ getAdminsDatas }) {
                 onChange={(event) => handleChange(event)}
               />
             </Form.Group>
-            <Button type="submit" variant="success">
-              Ajouter un administrateur
-            </Button>
+            <h1 className="add-admin">
+              <FontAwesomeIcon type="submit" icon="user-plus" />
+            </h1>
           </Form>
         </Col>
       </Row>

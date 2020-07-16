@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Button, Container, Modal, Table } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './shops.css';
 import '../styles.css';
@@ -47,7 +48,9 @@ const Shops = () => {
     <Container>
       <div className="insideNavBar">
         <Link to="/admin/shops/add">
-          <Button variant="insideNav">Ajouter une enseigne</Button>
+          <h1 className="add-shop">
+            <FontAwesomeIcon icon="store" /> +
+          </h1>
         </Link>
       </div>
 
@@ -89,21 +92,18 @@ const Shops = () => {
                   </div>
                 </td>
                 <th> </th>
-                <td>
+                <td className="action">
                   <Link to={`/admin/shops/details/${shop.id}`}>
-                    <Button variant="editing">Fiche</Button>
+                    <FontAwesomeIcon className="action-icon" icon="tasks" />
                   </Link>
                   <Link to={`/admin/shops/update/${shop.id}`}>
-                    <Button variant="editing">Modifier</Button>
+                    <FontAwesomeIcon className="action-icon" icon="user-edit" />
                   </Link>
-
-                  <Button
-                    variant="deleting"
+                  <FontAwesomeIcon
+                    className="action-icon"
+                    icon="trash"
                     onClick={() => handleShow(shop.id)}
-                  >
-                    Supprimer
-                  </Button>
-
+                  />
                   {/* Delete Modal */}
                   <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
