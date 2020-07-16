@@ -49,10 +49,32 @@ const ProductsAdd = () => {
     getShopsData();
   }, []);
 
-  const getShopName = (shopId) => {
+  // Shops searchBar
+  const [word, setWord] = useState('');
+  const [filterShop, setFilterShop] = useState(shops);
+
+  const handleShopsSearch = (event) => {
+    setWord(event);
+    const oldList = shops.map((shop) => {
+      return { id: shop.id, name: shop.name.toLowerCase() };
+    });
+
+    if (word !== '') {
+      let newList = [];
+
+      newList = oldList.filter((shop) =>
+        shop.name.startsWith(word.toLowerCase())
+      );
+      setFilterShop(newList);
+    } else {
+      setFilterShop(shops);
+    }
+  };
+
+  /*   const getShopName = (shopId) => {
     const foundShop = shops.find((shop) => shop.id === shopId);
     return foundShop ? foundShop.name : '';
-  };
+  }; */
 
   // get categories
   const [categories, setCategories] = useState();
@@ -83,7 +105,8 @@ const ProductsAdd = () => {
   }, []);
 
   /*   console.log(product);
-  console.log(shops); */
+  console.log(shops);
+  console.log(word); */
 
   return (
     <Container>
@@ -109,7 +132,15 @@ const ProductsAdd = () => {
         >
           <Form.Group>
             <Form.Label>Enseigne</Form.Label>
-            <Form.Control size="sm" type="text" placeholder="Search" />
+            <Form.Control
+              size="sm"
+              type="text"
+              value=""
+              onChange={(event) => handleShopsSearch(event.target.value)}
+            />
+            {filterShop.map((shop) => (
+              <div>{shop.name}</div>
+            ))}
           </Form.Group>
           <Form.Group>
             <Form.Label>Category</Form.Label>
@@ -118,7 +149,7 @@ const ProductsAdd = () => {
               id="dropdown-basic-button"
               title="Catégorie"
               name="category"
-              value=" "
+              value=""
             >
               {categories &&
                 categories.map((category) => (
@@ -138,17 +169,16 @@ const ProductsAdd = () => {
           <Form.Group>
             <Form.Label>Theme</Form.Label>
 
-            <DropdownButton
-              id="dropdown-basic-button"
+            <Form.Control
+              as="select"
+              defaultValue="Choisir un thème"
               title="Theme"
               name="theme"
-              value=" "
+              value=""
             >
-              {themes &&
-                themes.map((theme) => (
-                  <Dropdown.Item>{theme.name}</Dropdown.Item>
-                ))}
-            </DropdownButton>
+              <option>Choisir un thème</option>
+              {themes && themes.map((theme) => <option>{theme.name}</option>)}
+            </Form.Control>
           </Form.Group>
           <Form.Group>
             <Form.Label>Description</Form.Label>
