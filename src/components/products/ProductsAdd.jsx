@@ -31,12 +31,14 @@ const ProductsAdd = () => {
 
   const [product, setProduct] = useState(initialFormState);
 
-  // Product : handle string input
+  // PRODUCT : handle input changes
+  // handle string changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setProduct({ ...product, [name]: value });
   };
-  // retrieve shops names
+
+  // SHOPS : handle shop field
   const [shops, setShops] = useState([]);
 
   const getShopsData = () => {
@@ -77,7 +79,7 @@ const ProductsAdd = () => {
     return foundShop ? foundShop.name : '';
   }; */
 
-  // get categories
+  // CATEGORIES : handle categories field
   const [categories, setCategories] = useState();
 
   const getCategoriesData = () => {
@@ -91,7 +93,7 @@ const ProductsAdd = () => {
     getCategoriesData();
   }, []);
 
-  // get theme
+  // THEME : handle theme field
   const [themes, setThemes] = useState();
 
   const getThemesData = () => {
@@ -105,13 +107,14 @@ const ProductsAdd = () => {
     getThemesData();
   }, []);
 
-  /*   console.log(product);
-  console.log(shops);
+  /*   console.log(shops);
+  console.log(product);
   console.log(query); */
 
   return (
     <Container>
       <ProductNavbar />
+
       <div className="insideNavBar">
         <Link to="/admin/products">
           <Button variant="insideNav">Cartes Cadeaux</Button>
@@ -124,13 +127,13 @@ const ProductsAdd = () => {
         </Link>
       </div>
 
-      <div className="formContent">
-        <Form
-          onSubmit={(event) => {
-            event.preventDefault();
-            setProduct(initialFormState);
-          }}
-        >
+      <Form
+        onSubmit={(event) => {
+          event.preventDefault();
+          setProduct(initialFormState);
+        }}
+      >
+        <div className="formContent">
           <Form.Group>
             <Form.Label>Enseigne</Form.Label>
             <Form.Control
@@ -143,29 +146,37 @@ const ProductsAdd = () => {
               <div>{shop.name}</div>
             ))}
           </Form.Group>
-          <Form.Group>
-            <Form.Label>Category</Form.Label>
 
-            <DropdownButton
+          <Form.Group>
+            <Form.Label>Catégorie de produit</Form.Label>
+
+            <Form.Control
+              as="select"
+              defaultValue="Choix..."
               id="dropdown-basic-button"
               title="Catégorie"
               name="category"
               value=""
             >
+              <option>Choix...</option>
               {categories &&
-                categories.map((category) => (
-                  <Dropdown.Item as="button">{category.type}</Dropdown.Item>
-                ))}
-            </DropdownButton>
+                categories.map((category) => <option>{category.type}</option>)}
+            </Form.Control>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Nom</Form.Label>
-            <Form.Control size="sm" type="text" />
+            <Form.Control
+              size="sm"
+              type="text"
+              name="name"
+              value={product.name}
+              onChange={handleInputChange}
+            />
           </Form.Group>
+
           <Form.Group>
-            <Form.Label>image</Form.Label>
-            <Form.Control size="sm" type="text" placeholder="Upload" />
+            <Form.File id="productImg" label="Image" />
           </Form.Group>
           <Form.Group>
             <Form.Label>Theme</Form.Label>
@@ -183,14 +194,20 @@ const ProductsAdd = () => {
           </Form.Group>
           <Form.Group>
             <Form.Label>Description</Form.Label>
-            <Form.Control size="sm" type="text" />
+            <Form.Control
+              size="sm"
+              type="text"
+              name="description"
+              value={product.description}
+              onChange={handleInputChange}
+            />
           </Form.Group>
-        </Form>
-      </div>
+        </div>
 
-      <div className="formContent">
-        <CardAdd />
-      </div>
+        <div className="formContent">
+          <CardAdd />
+        </div>
+      </Form>
     </Container>
   );
 };
