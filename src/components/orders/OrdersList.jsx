@@ -45,9 +45,12 @@ function OrdersList({ orders, deleteOrder, updateOrder }) {
   };
 
   const allOrdersTable = allOrders.map((order) => {
+    // const ordersByClientRL = `/admins/orders/by-client/${order.id_client}`;
     return (
       <tr key={order.id}>
-        <td>{order.id_client}</td>
+        <Link to={`/admin/orders/by-client/${order.id_client}`}>
+          <td>{order.id_client}</td>
+        </Link>
         <td>{order.id_delivery}</td>
         <td>{order.status}</td>
         <td>{order.delivery_date}</td>
