@@ -17,7 +17,11 @@
 }
 
 .logo-givyoo img {
-  margin: auto;
+  height: 85px;
+}
+
+.logo-givyoo img {
+  height: 100%;
 }
 
 .all-button {
