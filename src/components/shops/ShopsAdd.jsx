@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Form,
   Button,
@@ -14,8 +14,6 @@ import './shops.css';
 import '../styles.css';
 
 const ShopsAdd = () => {
-  // useHistory to redirect after submission
-  const history = useHistory();
   const initialFormState = {
     id: null,
     name: '',
@@ -24,9 +22,6 @@ const ShopsAdd = () => {
   };
 
   const [shop, setShop] = useState(initialFormState);
-
-  // eslint-disable-next-line no-unused-vars
-  const [newId, setNewId] = useState();
 
   // set day time
   const [date, setDate] = useState(new Date());
@@ -61,11 +56,8 @@ const ShopsAdd = () => {
     axios
       .post(url, shop)
       .then((response) => response.data)
-      .then((data) => setShop(data))
-      .then(history.push(`/admin/shops/details/${newId}`));
+      .then((data) => setShop(data));
   };
-
-  // Get the last item of shop array
 
   return (
     <Container>
@@ -101,10 +93,7 @@ const ShopsAdd = () => {
           <div className="flex spaceBetween">
             <Form.Group>
               <Form.Label>Forme Juridique*</Form.Label>
-              <DropdownButton
-                id="dropdown-basic-button"
-                title="statut" /* onSelect={handleSelect} */
-              >
+              <DropdownButton id="dropdown-basic-button" title="statut">
                 <Dropdown.Item href="#/action-1">SAS</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">SARL</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">SA</Dropdown.Item>
@@ -131,7 +120,7 @@ const ShopsAdd = () => {
                 id="dropdown-basic-button"
                 name="theme"
                 role="menuitem"
-                title="choix du theme" /* onSelect={handleSelect} */
+                title="choix du theme"
               >
                 <Dropdown.Item href="#/action-1">Mode</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Bien-etre</Dropdown.Item>
@@ -293,13 +282,8 @@ const ShopsAdd = () => {
           <Button type="submit">Ajouter l&apos;enseigne</Button>
         </div>
       </Form>
-      {/* Shop admin infos Form */}
     </Container>
   );
 };
-
-/* ShopsAdd.propTypes = {
-  addShop: PropTypes.func.isRequired,
-}; */
 
 export default ShopsAdd;

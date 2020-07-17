@@ -17,7 +17,6 @@ function AdminUpdate() {
   const getAdminData = () => {
     Axios({
       method: 'get',
-      // url: 'http://givyoo.fr/api/clients',
       url: `http://localhost:5000/api/admins/${id}`,
     })
       .then((response) => response.data)

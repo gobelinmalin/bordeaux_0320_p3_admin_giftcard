@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import { Table, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// import components
-
-// import data
-
 // import style
 import './orders.css';
 
@@ -23,8 +19,6 @@ function OrdersList({ orders, deleteOrder, updateOrder }) {
   useMemo(() => {
     if (sortConfig !== null) {
       allOrders.sort((a, b) => {
-        // sortedOrder est un array?
-
         if (a[sortConfig.key] < b[sortConfig.key]) {
           return sortConfig.direction === 'ascending' ? -1 : 1;
         }
@@ -45,7 +39,6 @@ function OrdersList({ orders, deleteOrder, updateOrder }) {
   };
 
   const allOrdersTable = allOrders.map((order) => {
-    // const ordersByClientRL = `/admins/orders/by-client/${order.id_client}`;
     return (
       <tr key={order.id}>
         <Link to={`/admin/orders/by-client/${order.id_client}`}>
