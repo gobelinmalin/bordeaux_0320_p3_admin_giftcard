@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Form,
   Button,
@@ -15,7 +15,6 @@ import '../styles.css';
 
 const ShopsAdd = () => {
   // useHistory to redirect after submission
-  const history = useHistory();
   const initialFormState = {
     id: null,
     name: '',
@@ -24,9 +23,6 @@ const ShopsAdd = () => {
   };
 
   const [shop, setShop] = useState(initialFormState);
-
-  // eslint-disable-next-line no-unused-vars
-  const [newId, setNewId] = useState();
 
   // set day time
   const [date, setDate] = useState(new Date());
@@ -61,8 +57,7 @@ const ShopsAdd = () => {
     axios
       .post(url, shop)
       .then((response) => response.data)
-      .then((data) => setShop(data))
-      .then(history.push(`/admin/shops/details/${newId}`));
+      .then((data) => setShop(data));
   };
 
   // Get the last item of shop array
