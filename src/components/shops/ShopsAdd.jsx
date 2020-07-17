@@ -14,7 +14,6 @@ import './shops.css';
 import '../styles.css';
 
 const ShopsAdd = () => {
-  // useHistory to redirect after submission
   const initialFormState = {
     id: null,
     name: '',
@@ -60,8 +59,6 @@ const ShopsAdd = () => {
       .then((data) => setShop(data));
   };
 
-  // Get the last item of shop array
-
   return (
     <Container>
       <div className="insideNavBar">
@@ -96,10 +93,7 @@ const ShopsAdd = () => {
           <div className="flex spaceBetween">
             <Form.Group>
               <Form.Label>Forme Juridique*</Form.Label>
-              <DropdownButton
-                id="dropdown-basic-button"
-                title="statut" /* onSelect={handleSelect} */
-              >
+              <DropdownButton id="dropdown-basic-button" title="statut">
                 <Dropdown.Item href="#/action-1">SAS</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">SARL</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">SA</Dropdown.Item>
@@ -126,7 +120,7 @@ const ShopsAdd = () => {
                 id="dropdown-basic-button"
                 name="theme"
                 role="menuitem"
-                title="choix du theme" /* onSelect={handleSelect} */
+                title="choix du theme"
               >
                 <Dropdown.Item href="#/action-1">Mode</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Bien-etre</Dropdown.Item>
@@ -288,13 +282,8 @@ const ShopsAdd = () => {
           <Button type="submit">Ajouter l&apos;enseigne</Button>
         </div>
       </Form>
-      {/* Shop admin infos Form */}
     </Container>
   );
 };
-
-/* ShopsAdd.propTypes = {
-  addShop: PropTypes.func.isRequired,
-}; */
 
 export default ShopsAdd;
