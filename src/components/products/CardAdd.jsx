@@ -6,7 +6,7 @@ const cardAdd = () => {
   return (
     <div>
       <Form>
-        <p>Ajout de carte cadeaux</p>
+        <p>Ajout de carte(s) cadeau(x)</p>
         <Form.Group>
           <Form.Label>Date d&apos;ajout</Form.Label>
           <Form.Control size="sm" type="text" name="add_time" />
@@ -21,7 +21,7 @@ const cardAdd = () => {
           <Form.Control />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Credit</Form.Label>
+          <Form.Label>Crédit</Form.Label>
           <Form.Control />
         </Form.Group>
         <Form.Group>

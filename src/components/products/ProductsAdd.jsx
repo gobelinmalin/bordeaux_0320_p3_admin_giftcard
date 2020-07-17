@@ -139,7 +139,8 @@ const ProductsAdd = () => {
             <Form.Control
               size="sm"
               type="text"
-              value=""
+              name="shop"
+              value={product.shop}
               onChange={(event) => handleShopsSearch(event.target.value)}
             />
             {filterShop.map((shop) => (

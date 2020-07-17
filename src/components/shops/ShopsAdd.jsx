@@ -8,6 +8,7 @@ import {
   Col,
   Container,
 } from 'react-bootstrap';
+
 import axios from 'axios';
 
 import './shops.css';
@@ -117,6 +118,7 @@ const ShopsAdd = () => {
             <Form.Group>
               <Form.Label>n° SIREN*</Form.Label>
               <Form.Control
+                size="sm"
                 type="text"
                 name="registration_number"
                 value=""
