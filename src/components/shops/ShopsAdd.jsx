@@ -411,6 +411,27 @@ const ShopsAdd = () => {
       </Form>
 
       {/* Bank infos */}
+      <div className="formContent">
+        <p>Informations bancaires</p>
+        <Form.Group>
+          <Form.Label>Nom du compte</Form.Label>
+          <Form.Control
+            type="text"
+            name="bank_account_name"
+            value={shop.bank_account_name}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Eban</Form.Label>
+          <Form.Control
+            type="text"
+            name="eban"
+            value={shop.eban}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+      </div>
 
       {/* Form validation button */}
       <div className="validationButton">
