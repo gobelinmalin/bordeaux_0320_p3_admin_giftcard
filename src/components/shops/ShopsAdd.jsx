@@ -129,16 +129,16 @@ const ShopsAdd = () => {
           <div className="flex spaceBetween">
             <Form.Group>
               <Form.Label>Forme Juridique*</Form.Label>
-              <DropdownButton id="dropdown-basic-button" title="statut">
-                <Dropdown.Item href="#/action-1">SAS</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">SARL</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">SA</Dropdown.Item>
-                <Dropdown.Item href="#/action-4">EURL</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">
-                  Auto-Entrepreneur
-                </Dropdown.Item>
-              </DropdownButton>
+              <Form.Control as="select" name="legal_status">
+                <option>EURL</option>
+                <option>SA</option>
+                <option>SARL</option>
+                <option>SAS</option>
+                <option>Auto-Entrepreneur</option>
+                <option>Autre</option>
+              </Form.Control>
             </Form.Group>
+
             <Form.Group>
               <Form.Label>n° SIREN*</Form.Label>
               <Form.Control
@@ -199,6 +199,8 @@ const ShopsAdd = () => {
           <Form.Group>
             <Form.Label>Description*</Form.Label>
             <Form.Control
+              as="textarea"
+              rows="3"
               type="text"
               name="description"
               value={shop.description}
@@ -208,6 +210,8 @@ const ShopsAdd = () => {
           <Form.Group>
             <Form.Label>Conditions de vente</Form.Label>
             <Form.Control
+              as="textarea"
+              rows="5"
               type="text"
               name="sales_conditions"
               value={shop.sales_conditions}
