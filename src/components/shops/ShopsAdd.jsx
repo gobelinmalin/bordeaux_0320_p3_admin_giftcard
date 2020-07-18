@@ -30,21 +30,21 @@ const ShopsAdd = () => {
     website: '',
     store: '',
     headOffice: '',
-    street1: '',
-    street2: '',
-    city: '',
-    zipcode: '',
-    state: '',
-    country: '',
-    c1_name: '',
-    c1_phone1: '',
-    c1_phone2: '',
-    c1_email: '',
-    c2_name: '',
-    c2_phone1: '',
-    c2_phone2: '',
-    c2_email: '',
-    account_name: '',
+    head_street: '',
+    head_street2: '',
+    head_city: '',
+    head_zipcode: '',
+    head_state: '',
+    head_country: '',
+    contact1_name: '',
+    contact1_phone1: '',
+    contact1_phone2: '',
+    contact1_email: '',
+    contact2_name: '',
+    contact2_phone1: '',
+    contact2_phone2: '',
+    contact2_email: '',
+    bank_account_name: '',
     eban: '',
     notes: '',
   };
@@ -252,11 +252,20 @@ const ShopsAdd = () => {
         <div className="formContent">
           <p>Siège Social</p>
           <Form.Group>
+            <Form.Label>Nom du siège social</Form.Label>
+            <Form.Control
+              type="text"
+              name="headOffice"
+              value={shop.headOffice}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
             <Form.Label>N° et Voie</Form.Label>
             <Form.Control
               type="text"
-              name="street"
-              value=""
+              name="head_street"
+              value={shop.head_street}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -264,24 +273,52 @@ const ShopsAdd = () => {
             <Form.Label>Complement</Form.Label>
             <Form.Control
               type="text"
-              name="street2"
-              value=""
+              name="head_street2"
+              value={shop.head_street2}
               onChange={handleInputChange}
             />
           </Form.Group>
           <Form.Group>
             <Form.Row>
-              <Col xs={7}>
+              <Col xs={8}>
                 <Form.Label>Ville</Form.Label>
-                <Form.Control name="city" />
+                <Form.Control
+                  type="text"
+                  name="head_city"
+                  value={shop.head_city}
+                  onChange={handleInputChange}
+                />
               </Col>
               <Col>
                 <Form.Label>Code postal</Form.Label>
-                <Form.Control name="zip code" />
+                <Form.Control
+                  type="text"
+                  name="head_zipcode"
+                  value={shop.head_zipcode}
+                  onChange={handleInputChange}
+                />
+              </Col>
+            </Form.Row>
+          </Form.Group>
+          <Form.Group>
+            <Form.Row>
+              <Col>
+                <Form.Label>Région/Etat</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="head_state"
+                  value={shop.head_state}
+                  onChange={handleInputChange}
+                />
               </Col>
               <Col>
                 <Form.Label>Pays</Form.Label>
-                <Form.Control name="country" />
+                <Form.Control
+                  type="text"
+                  name="head_country"
+                  value={shop.head_country}
+                  onChange={handleInputChange}
+                />
               </Col>
             </Form.Row>
           </Form.Group>
