@@ -339,7 +339,7 @@ const ShopsAdd = () => {
           <Form.Group>
             <Form.Label>email</Form.Label>
             <Form.Control
-              type="text"
+              type="email"
               name="contact1_email"
               value={shop.contact1_email}
               onChange={handleInputChange}
@@ -379,7 +379,7 @@ const ShopsAdd = () => {
           <Form.Group>
             <Form.Label>email</Form.Label>
             <Form.Control
-              type="text"
+              type="email"
               name="contact2_email"
               value={shop.contact2_email}
               onChange={handleInputChange}
@@ -428,6 +428,22 @@ const ShopsAdd = () => {
             type="text"
             name="eban"
             value={shop.eban}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+      </div>
+
+      {/* Notes */}
+      <div className="formContent">
+        <p>Notes</p>
+        <Form.Group>
+          <Form.Label>Notes</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows="5"
+            type="text"
+            name="notes"
+            value={shop.notes}
             onChange={handleInputChange}
           />
         </Form.Group>
