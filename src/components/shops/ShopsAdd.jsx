@@ -78,6 +78,12 @@ const ShopsAdd = () => {
     setShop({ ...shop, [name]: !shop.offline });
   };
 
+  // handle checkbox status
+  const handleCheckStatus = (event) => {
+    const { name } = event.target;
+    setShop({ ...shop, [name]: !shop.status });
+  };
+
   // CRUD operation
   const addShop = () => {
     const url = 'http://localhost:5000/api/shops';
@@ -188,6 +194,33 @@ const ShopsAdd = () => {
               name="name"
               value={shop.name}
               onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Description*</Form.Label>
+            <Form.Control
+              type="text"
+              name="description"
+              value={shop.description}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Conditions de vente</Form.Label>
+            <Form.Control
+              type="text"
+              name="sales_conditions"
+              value={shop.sales_conditions}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Statut de l&apos;enseigne partenaire</Form.Label>
+            <Form.Check
+              label="activer l'enseigne"
+              name="status"
+              value={shop.status}
+              onChange={(event) => handleCheckStatus(event)}
             />
           </Form.Group>
         </div>
