@@ -18,15 +18,20 @@
   color: transparent;
 }
 
+/* Add e-shop */
+
+.AddButton {
+  width: 700px;
+  padding: 10px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Editing .e-shop format */
 
 .editFormat {
   width: 596px;
-}
-
-.add-shop {
-  color: #20124d;
-  display: flex;
 }
 
 .action {

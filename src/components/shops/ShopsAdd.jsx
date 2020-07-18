@@ -454,7 +454,7 @@ const ShopsAdd = () => {
       </div>
 
       {/* Form validation button */}
-      <div className="validationButton">
+      <div className="AddButton">
         <Button type="submit">Ajouter l&apos;enseigne</Button>
       </div>
     </Container>
