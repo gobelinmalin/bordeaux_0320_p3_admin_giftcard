@@ -16,9 +16,36 @@ import '../styles.css';
 const ShopsAdd = () => {
   const initialFormState = {
     id: null,
-    name: '',
+    date: '',
+    legal_status: '',
+    siren: '',
     online: false,
     offline: false,
+    name: '',
+    logo: '',
+    description: '',
+    sales_conditions: '',
+    status: false,
+    website: '',
+    store: '',
+    headOffice: '',
+    street1: '',
+    street2: '',
+    city: '',
+    zipcode: '',
+    state: '',
+    country: '',
+    c1_name: '',
+    c1_phone1: '',
+    c1_phone2: '',
+    c1_email: '',
+    c2_name: '',
+    c2_phone1: '',
+    c2_phone2: '',
+    c2_email: '',
+    account_name: '',
+    eban: '',
+    notes: '',
   };
 
   const [shop, setShop] = useState(initialFormState);
@@ -26,7 +53,7 @@ const ShopsAdd = () => {
   // set day time
   const [date, setDate] = useState(new Date());
   useEffect(() => {
-    const timer = setInterval(() => setDate(new Date()), 1000);
+    const timer = setInterval(() => setDate(new Date()), 60000);
     return function cleanup() {
       clearInterval(timer);
     };
@@ -86,7 +113,7 @@ const ShopsAdd = () => {
               name="add_time"
               value={date.toLocaleDateString()}
               placeholder={date.toLocaleDateString()}
-              onChange={handleInputChange}
+              onChange=""
             />
           </Form.Group>
 
@@ -109,7 +136,7 @@ const ShopsAdd = () => {
                 type="text"
                 name="registration_number"
                 value=""
-                onChange={handleInputChange}
+                onChange=""
               />
             </Form.Group>
           </div>
@@ -170,7 +197,7 @@ const ShopsAdd = () => {
             <Form.Control
               type="text"
               name="website"
-              value=""
+              value={shop.website}
               onChange={handleInputChange}
             />
           </Form.Group>
