@@ -214,8 +214,12 @@ const ShopsAdd = () => {
               onChange={handleInputChange}
             />
           </Form.Group>
+        </div>
+
+        {/* Shop status */}
+        <div className="formContent">
           <Form.Group>
-            <Form.Label>Statut de l&apos;enseigne partenaire</Form.Label>
+            <p>Statut de l&apos;enseigne partenaire</p>
             <Form.Check
               label="activer l'enseigne"
               name="status"
@@ -238,10 +242,10 @@ const ShopsAdd = () => {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Liste des boutiques</Form.Label>
+            <Form.Label>Boutique(s)</Form.Label>
             <Form.Control
               type="text"
-              name="shopslist_link"
+              name="store"
               value=""
               onChange={handleInputChange}
             />
