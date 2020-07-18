@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -53,7 +54,7 @@ const ShopsAdd = () => {
   // set day time
   const [date, setDate] = useState(new Date());
   useEffect(() => {
-    const timer = setInterval(() => setDate(new Date()), 60000);
+    const timer = setInterval(() => setDate(new Date()), 3600000);
     return function cleanup() {
       clearInterval(timer);
     };
@@ -85,6 +86,8 @@ const ShopsAdd = () => {
       .then((response) => response.data)
       .then((data) => setShop(data));
   };
+
+  console.log(shop);
 
   return (
     <Container>
