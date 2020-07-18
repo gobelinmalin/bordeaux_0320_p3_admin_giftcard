@@ -331,24 +331,39 @@ const ShopsAdd = () => {
             <Form.Label>Nom du contact 1</Form.Label>
             <Form.Control
               type="text"
-              name="contact_name"
-              value=""
+              name="contact1_name"
+              value={shop.contact1_name}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>email</Form.Label>
+            <Form.Control
+              type="text"
+              name="contact1_email"
+              value={shop.contact1_email}
               onChange={handleInputChange}
             />
           </Form.Group>
           <Form.Group>
             <Form.Row>
-              <Col xs={5}>
-                <Form.Label>email</Form.Label>
-                <Form.Control name="mail_contact1" />
-              </Col>
               <Col>
                 <Form.Label>tel 1</Form.Label>
-                <Form.Control name="phone1_contact1" />
+                <Form.Control
+                  type="text"
+                  name="contact1_phone1"
+                  value={shop.contact1_phone1}
+                  onChange={handleInputChange}
+                />
               </Col>
               <Col>
                 <Form.Label>tel 2</Form.Label>
-                <Form.Control name="phone2_contact2" />
+                <Form.Control
+                  type="text"
+                  name="contact1_phone2"
+                  value={shop.contact1_phone2}
+                  onChange={handleInputChange}
+                />
               </Col>
             </Form.Row>
           </Form.Group>
@@ -356,32 +371,51 @@ const ShopsAdd = () => {
             <Form.Label>Nom du contact 2</Form.Label>
             <Form.Control
               type="text"
-              name="contact_name"
-              value=""
+              name="contact2_name"
+              value={shop.contact2_name}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>email</Form.Label>
+            <Form.Control
+              type="text"
+              name="contact2_email"
+              value={shop.contact2_email}
               onChange={handleInputChange}
             />
           </Form.Group>
           <Form.Group>
             <Form.Row>
-              <Col xs={5}>
-                <Form.Label>email</Form.Label>
-                <Form.Control name="mail_contact2" />
-              </Col>
               <Col>
                 <Form.Label>tel 1</Form.Label>
-                <Form.Control name="phone1_contact2" />
+                <Form.Control
+                  type="text"
+                  name="contact2_phone1"
+                  value={shop.contact2_phone1}
+                  onChange={handleInputChange}
+                />
               </Col>
               <Col>
                 <Form.Label>tel 2</Form.Label>
-                <Form.Control name="phone2_contact2" />
+                <Form.Control
+                  type="text"
+                  name="contact2_phone2"
+                  value={shop.contact2_phone2}
+                  onChange={handleInputChange}
+                />
               </Col>
             </Form.Row>
           </Form.Group>
         </div>
-        <div className="validationButton">
-          <Button type="submit">Ajouter l&apos;enseigne</Button>
-        </div>
       </Form>
+
+      {/* Bank infos */}
+
+      {/* Form validation button */}
+      <div className="validationButton">
+        <Button type="submit">Ajouter l&apos;enseigne</Button>
+      </div>
     </Container>
   );
 };
