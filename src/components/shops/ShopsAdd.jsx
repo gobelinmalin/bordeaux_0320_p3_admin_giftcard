@@ -1,15 +1,9 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Form,
-  Button,
-  Col,
-  Container,
-  DropdownButton,
-  Dropdown,
-} from 'react-bootstrap';
-import axios from 'axios';
+import Axios from 'axios';
+
+import { Form, Button, Col, Container } from 'react-bootstrap';
 
 import './shops.css';
 import '../styles.css';
@@ -20,6 +14,7 @@ const ShopsAdd = () => {
     add_time: '',
     legal_status: '',
     siren: '',
+    theme: '',
     online: false,
     offline: false,
     name: '',
@@ -66,7 +61,7 @@ const ShopsAdd = () => {
     setShop({ ...shop, [name]: value });
   };
 
-  // handle select legal form
+  // handle legal form selection
   const [showOther, setShowOther] = useState(false);
 
   const handleLegalForm = (event) => {
@@ -93,6 +88,25 @@ const ShopsAdd = () => {
     setShop({ ...shop, [name]: !shop.offline });
   };
 
+  // handle theme selection
+  const [themes, setThemes] = useState([]);
+
+  const getThemesData = () => {
+    const url = 'http://localhost:5000/api/themes';
+    Axios.get(url)
+      .then((response) => response.data)
+      .then((data) => setThemes(data));
+  };
+
+  useEffect(() => {
+    getThemesData();
+  }, []);
+
+  const handleTheme = (event) => {
+    const { value } = event.target;
+    setShop({ theme: value });
+  };
+
   // handle checkbox status
   const handleCheckStatus = (event) => {
     const { name } = event.target;
@@ -102,13 +116,13 @@ const ShopsAdd = () => {
   // CRUD operation
   const addShop = () => {
     const url = 'http://localhost:5000/api/shops';
-    axios
-      .post(url, shop)
+    Axios.post(url, shop)
       .then((response) => response.data)
       .then((data) => setShop(data));
   };
 
-  console.log(shop.status);
+  console.log(themes);
+  console.log(shop.theme);
 
   return (
     <Container>
@@ -164,7 +178,7 @@ const ShopsAdd = () => {
                 <Form.Control
                   type="text"
                   name="legal_status"
-                  placeholder="preciser la forme légale"
+                  placeholder="préciser la forme légale"
                   value={shop.legal_status}
                   onChange={handleInputChange}
                 />
@@ -183,26 +197,24 @@ const ShopsAdd = () => {
               />
             </Form.Group>
           </div>
+
           <div className="flex spaceBetween">
             <Form.Group>
               <Form.Label>Theme*</Form.Label>
-              <DropdownButton
-                id="dropdown-basic-button"
-                name="theme"
-                role="menuitem"
-                title="choix du theme"
+              <Form.Control
+                as="select"
+                defaultValue="choose"
+                name="legal_status"
+                value={shop.theme}
+                onChange={handleTheme}
               >
-                <Dropdown.Item href="#/action-1">Mode</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Bien-etre</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Maison</Dropdown.Item>
-                <Dropdown.Item href="#/action-4">Sport</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Gastronomie</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Evasion</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Culture</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Education</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Adulte</Dropdown.Item>
-              </DropdownButton>
+                <option value="choose">Choisir...</option>
+                {themes.map((theme) => (
+                  <option value={theme.id}>{theme.name}</option>
+                ))}
+              </Form.Control>
             </Form.Group>
+
             <Form.Group className="shopType">
               <Form.Label>Type d&apos;enseigne*</Form.Label>
               <div>
