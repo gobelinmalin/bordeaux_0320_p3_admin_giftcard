@@ -17,7 +17,7 @@ import '../styles.css';
 const ShopsAdd = () => {
   const initialFormState = {
     id: null,
-    date: '',
+    add_time: '',
     legal_status: '',
     siren: '',
     online: false,
@@ -66,6 +66,21 @@ const ShopsAdd = () => {
     setShop({ ...shop, [name]: value });
   };
 
+  // handle select legal form
+  const [showOther, setShowOther] = useState(false);
+
+  const handleLegalForm = (event) => {
+    const { name, value } = event.target;
+
+    if (value === 'other') {
+      setShowOther(true);
+      setShop({ ...shop, [name]: '' });
+    } else {
+      setShowOther(false);
+      setShop({ ...shop, [name]: value });
+    }
+  };
+
   // handle checkbox e-shop
   const handleCheckOnline = (event) => {
     const { name } = event.target;
@@ -94,6 +109,7 @@ const ShopsAdd = () => {
   };
 
   console.log(shop);
+  console.log(showOther);
 
   return (
     <Container>
@@ -120,32 +136,51 @@ const ShopsAdd = () => {
               size="sm"
               type="text"
               name="add_time"
-              value={date.toLocaleDateString()}
+              defaultValue={date.toLocaleDateString()}
+              value={shop.add_time}
               placeholder={date.toLocaleDateString()}
-              onChange=""
+              onChange={handleInputChange}
             />
           </Form.Group>
 
           <div className="flex spaceBetween">
             <Form.Group>
               <Form.Label>Forme Juridique*</Form.Label>
-              <Form.Control as="select" name="legal_status">
-                <option>EURL</option>
-                <option>SA</option>
-                <option>SARL</option>
-                <option>SAS</option>
-                <option>Auto-Entrepreneur</option>
-                <option>Autre</option>
+              <Form.Control
+                as="select"
+                name="legal_status"
+                value={shop.legal_status}
+                onChange={handleLegalForm}
+              >
+                <option value="">Choisir...</option>
+                <option value="EURL">EURL</option>
+                <option value="SA">SA</option>
+                <option value="SARL">SARL</option>
+                <option value="SAS">SAS</option>
+                <option value="Auto-Entrepreneur">Auto-Entrepreneur</option>
+                <option value="other">Autre</option>
               </Form.Control>
+
+              {showOther ? (
+                <Form.Control
+                  type="text"
+                  name="legal_status"
+                  placeholder="preciser la forme légale"
+                  value={shop.legal_status}
+                  onChange={handleInputChange}
+                />
+              ) : (
+                ''
+              )}
             </Form.Group>
 
             <Form.Group>
               <Form.Label>n° SIREN*</Form.Label>
               <Form.Control
                 type="text"
-                name="registration_number"
-                value=""
-                onChange=""
+                name="siren"
+                value={shop.siren}
+                onChange={handleInputChange}
               />
             </Form.Group>
           </div>
