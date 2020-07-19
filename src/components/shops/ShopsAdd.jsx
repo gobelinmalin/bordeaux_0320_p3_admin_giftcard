@@ -234,12 +234,22 @@ const ShopsAdd = () => {
             </Form.Group>
           </div>
           <Form.Group>
-            <Form.Label>Nom*</Form.Label>
+            <Form.Label>Nom de l&apos;enseigne*</Form.Label>
             <Form.Control
               type="text"
               name="name"
               value={shop.name}
               onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Logo de l&apos;enseigne (en cours)</Form.Label>
+            <Form.File
+              id="custom-file"
+              label="Uploader une image"
+              name={shop.logo}
+              onChange=""
+              custom
             />
           </Form.Group>
           <Form.Group>
@@ -293,7 +303,7 @@ const ShopsAdd = () => {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Boutique(s)</Form.Label>
+            <Form.Label>Boutique(s) (en cours)</Form.Label>
             <Form.Control
               type="text"
               name="store"
