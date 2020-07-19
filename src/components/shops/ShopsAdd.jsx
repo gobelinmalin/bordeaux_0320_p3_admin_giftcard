@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import {
   Form,
   Button,
-  DropdownButton,
-  Dropdown,
   Col,
   Container,
+  DropdownButton,
+  Dropdown,
 } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -108,8 +108,7 @@ const ShopsAdd = () => {
       .then((data) => setShop(data));
   };
 
-  console.log(shop);
-  console.log(showOther);
+  console.log(shop.status);
 
   return (
     <Container>
@@ -259,8 +258,9 @@ const ShopsAdd = () => {
         <div className="formContent">
           <Form.Group>
             <p>Statut de l&apos;enseigne partenaire</p>
-            <Form.Check
+            <Form.Switch
               label="activer l'enseigne"
+              id="custom-switch"
               name="status"
               value={shop.status}
               onChange={(event) => handleCheckStatus(event)}
