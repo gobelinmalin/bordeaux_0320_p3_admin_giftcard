@@ -1,6 +1,6 @@
 /* e-shop/ shop  */
 .e-shop {
-  background-color: rgb(22, 202, 22);
+  background-color: #4593db;
   border-radius: 50%;
   margin-right: 6px;
   width: 15px;
@@ -10,6 +10,25 @@
 }
 
 .shop {
+  background-color: #e7e7e7;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+  color: transparent;
+}
+
+.activated {
+  background-color: #16ca16;
+  border-radius: 50%;
+  margin-right: 6px;
+  width: 15px;
+  height: 15px;
+  color: transparent;
+  padding: 5px;
+}
+
+.standby {
   background-color: #e7e7e7;
   border-radius: 50%;
   width: 15px;

@@ -91,7 +91,11 @@ const Shops = () => {
                     {shop.offline}
                   </div>
                 </td>
-                <th> </th>
+                <th>
+                  <div className={shop.status ? 'activated' : 'standby'}>
+                    {shop.status}
+                  </div>
+                </th>
                 <td className="action">
                   <Link to={`/admin/shops/details/${shop.id}`}>
                     <FontAwesomeIcon className="action-icon" icon="tasks" />
