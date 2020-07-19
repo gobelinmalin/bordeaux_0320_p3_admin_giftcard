@@ -200,10 +200,9 @@ const ShopsAdd = () => {
 
           <div className="flex spaceBetween">
             <Form.Group>
-              <Form.Label>Theme*</Form.Label>
+              <Form.Label>Theme (en cours)</Form.Label>
               <Form.Control
                 as="select"
-                defaultValue="choose"
                 name="legal_status"
                 value={shop.theme}
                 onChange={handleTheme}
