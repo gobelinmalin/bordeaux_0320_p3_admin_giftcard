@@ -23,7 +23,3 @@ code {
   display: flex;
   margin: 5px auto;
 }
-
-.add-admin {
-  width: min-content;
-}

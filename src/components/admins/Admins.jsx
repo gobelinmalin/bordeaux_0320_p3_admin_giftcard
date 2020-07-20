@@ -36,7 +36,7 @@ const Admins = () => {
     return (
       <tr>
         <td>{admin.id}</td>
-        <td>{admin.fullname}</td>
+        <td>{admin.name}</td>
         <td>{admin.email}</td>
         <td>
           <Link to={`/admin/admins/update/${admin.id}`}>

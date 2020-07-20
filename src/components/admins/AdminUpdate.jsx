@@ -57,14 +57,14 @@ function AdminUpdate() {
               <Form.Group>
                 <Form.Label>Nom</Form.Label>
                 <Form.Control
-                  name="fullname"
+                  name="name"
                   type="text"
-                  value={admin.fullname}
+                  value={admin.name}
                   onChange={(event) => handleChange(event)}
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label>Nom</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control
                   name="email"
                   type="email"

@@ -15,8 +15,9 @@ const Shops = () => {
   const [shopId, setShopId] = useState();
 
   // retrieve all shops from bdd
+
   const getShopsData = () => {
-    const url = 'http://localhost:5000/api/shops';
+    const url = `${process.env.REACT_APP_HOST}/api/shops`;
     axios
       .get(url)
       .then((response) => response.data)
