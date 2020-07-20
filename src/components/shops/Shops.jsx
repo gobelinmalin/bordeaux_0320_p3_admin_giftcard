@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Button, Container, Modal, Table } from 'react-bootstrap';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button, Container, Modal, Table } from 'react-bootstrap';
 
 import './shops.css';
 import '../styles.css';
 
 const Shops = () => {
   const [shops, setShops] = useState([]);
-  const [showModal, setShowModal] = useState(false);
 
   // catch shop to pass to delete Modal
   const [shopId, setShopId] = useState();
@@ -25,6 +25,8 @@ const Shops = () => {
   };
 
   // handle delete modal
+  const [showModal, setShowModal] = useState(false);
+
   const handleShow = (id) => {
     setShowModal(true);
     setShopId(id);
@@ -90,7 +92,11 @@ const Shops = () => {
                     {shop.offline}
                   </div>
                 </td>
-                <th> </th>
+                <th>
+                  <div className={shop.status ? 'activated' : 'standby'}>
+                    {shop.status}
+                  </div>
+                </th>
                 <td className="action">
                   <Link to={`/admin/shops/details/${shop.id}`}>
                     <FontAwesomeIcon className="action-icon" icon="tasks" />
