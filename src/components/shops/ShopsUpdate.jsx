@@ -97,6 +97,8 @@ const ShopsUpdate = () => {
     }
   });
 
+  console.log(shop);
+
   // if because we don't have any shop before useEffect call
   if (shop) {
     return (
@@ -193,12 +195,14 @@ const ShopsUpdate = () => {
                   <Form.Check
                     label="e-shop"
                     name="online"
+                    defaultChecked={shop.online}
                     check={shop.online}
                     onChange={(event) => handleCheckOnline(event)}
                   />
                   <Form.Check
                     label="boutique(s)"
                     name="offline"
+                    defaultChecked={shop.offline}
                     check={shop.offline}
                     onChange={(event) => handleCheckOffline(event)}
                   />
@@ -218,7 +222,7 @@ const ShopsUpdate = () => {
               <Form.Label>Logo de l&apos;enseigne (en cours)</Form.Label>
               <Form.File
                 id="custom-file"
-                label="Uploader une image"
+                label="modifier l'image"
                 name={shop.logo}
                 onChange=""
                 custom
@@ -251,11 +255,17 @@ const ShopsUpdate = () => {
           {/* Shop status */}
           <div className="formContent">
             <Form.Group>
-              <p>Statut de l&apos;enseigne partenaire</p>
+              <p>
+                Statut de l&apos;enseigne partenaire:{' '}
+                {shop.status ? 'activée' : 'désactivée'}
+              </p>
               <Form.Switch
-                label="activer l'enseigne"
+                label={
+                  shop.status ? "désactiver l'enseigne" : "activer l'enseigne"
+                }
                 id="custom-switch"
                 name="status"
+                defaultChecked={shop.status}
                 value={shop.status}
                 onChange={(event) => handleCheckStatus(event)}
               />

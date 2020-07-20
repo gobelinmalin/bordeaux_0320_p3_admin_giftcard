@@ -275,9 +275,14 @@ const ShopsAdd = () => {
         {/* Shop status */}
         <div className="formContent">
           <Form.Group>
-            <p>Statut de l&apos;enseigne partenaire</p>
+            <p>
+              Statut de l&apos;enseigne partenaire:{' '}
+              {shop.status ? 'activée' : 'désactivée'}
+            </p>
             <Form.Switch
-              label="activer l'enseigne"
+              label={
+                shop.status ? "désactiver l'enseigne" : "activer l'enseigne"
+              }
               id="custom-switch"
               name="status"
               value={shop.status}
