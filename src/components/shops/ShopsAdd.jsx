@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
@@ -121,9 +120,6 @@ const ShopsAdd = () => {
       .then((data) => setShop(data));
   };
 
-  console.log(themes);
-  console.log(shop.theme);
-
   return (
     <Container>
       <div className="insideNavBar">
@@ -131,6 +127,7 @@ const ShopsAdd = () => {
           <Button variant="insideNav">Retour aux enseignes</Button>
         </Link>
       </div>
+
       <Form
         onSubmit={(event) => {
           event.preventDefault();
@@ -472,51 +469,51 @@ const ShopsAdd = () => {
             </Form.Row>
           </Form.Group>
         </div>
+
+        {/* Bank infos */}
+        <div className="formContent">
+          <p>Informations bancaires</p>
+          <Form.Group>
+            <Form.Label>Nom du compte</Form.Label>
+            <Form.Control
+              type="text"
+              name="bank_account_name"
+              value={shop.bank_account_name}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Eban</Form.Label>
+            <Form.Control
+              type="text"
+              name="eban"
+              value={shop.eban}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+        </div>
+
+        {/* Notes */}
+        <div className="formContent">
+          <p>Notes</p>
+          <Form.Group>
+            <Form.Label>Notes</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows="5"
+              type="text"
+              name="notes"
+              value={shop.notes}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+        </div>
+
+        {/* Form validation button */}
+        <div className="AddButton">
+          <Button type="submit">Ajouter l&apos;enseigne</Button>
+        </div>
       </Form>
-
-      {/* Bank infos */}
-      <div className="formContent">
-        <p>Informations bancaires</p>
-        <Form.Group>
-          <Form.Label>Nom du compte</Form.Label>
-          <Form.Control
-            type="text"
-            name="bank_account_name"
-            value={shop.bank_account_name}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Eban</Form.Label>
-          <Form.Control
-            type="text"
-            name="eban"
-            value={shop.eban}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-      </div>
-
-      {/* Notes */}
-      <div className="formContent">
-        <p>Notes</p>
-        <Form.Group>
-          <Form.Label>Notes</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows="5"
-            type="text"
-            name="notes"
-            value={shop.notes}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-      </div>
-
-      {/* Form validation button */}
-      <div className="AddButton">
-        <Button type="submit">Ajouter l&apos;enseigne</Button>
-      </div>
     </Container>
   );
 };
