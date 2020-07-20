@@ -28,3 +28,4 @@ yarn-error.log*
 
 #somefiles
 petitsBouts.js
+/src/components/shops/ShopSearch.jsx

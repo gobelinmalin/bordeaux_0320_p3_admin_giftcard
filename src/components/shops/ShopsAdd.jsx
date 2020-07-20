@@ -221,7 +221,7 @@ const ShopsAdd = () => {
                   onChange={(event) => handleCheckOnline(event)}
                 />
                 <Form.Check
-                  label="boutique"
+                  label="boutique(s)"
                   name="offline"
                   check={shop.offline}
                   onChange={(event) => handleCheckOffline(event)}

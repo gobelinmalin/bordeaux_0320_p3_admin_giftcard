@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import Axios from 'axios';
@@ -196,7 +197,7 @@ const ShopsUpdate = () => {
                     onChange={(event) => handleCheckOnline(event)}
                   />
                   <Form.Check
-                    label="boutique"
+                    label="boutique(s)"
                     name="offline"
                     check={shop.offline}
                     onChange={(event) => handleCheckOffline(event)}
