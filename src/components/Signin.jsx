@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
-import './signin.css';
 
-function Signin() {
+import { Button, Form } from 'react-bootstrap';
+
+import './signin.css';
+import '../App.css';
+
+import Logo from './navbar/Logo';
+
+const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,11 +21,12 @@ function Signin() {
   }
 
   return (
-    <div className="formContainer">
+    <div className="central">
       <div className="login">
+        <Logo />
         <Form className="form" onSubmit={handleSubmit}>
           <Form.Group controlId="email" bsSize="large">
-            <Form.Label>Email</Form.Label>
+            <Form.Label>identifiant</Form.Label>
             <Form.Control
               autoFocus
               type="email"
@@ -29,20 +35,26 @@ function Signin() {
             />
           </Form.Group>
           <Form.Group controlId="password" bsSize="large">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>mot de passe</Form.Label>
             <Form.Control
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
             />
           </Form.Group>
-          <Button block bsSize="large" disabled={!validateForm()} type="submit">
-            <Link to="/admin">login</Link>
+          <Button
+            variant="signin"
+            block
+            bsSize="large"
+            disabled={!validateForm()}
+            type="submit"
+          >
+            <Link to="/admin">se connecter</Link>
           </Button>
         </Form>
       </div>
     </div>
   );
-}
+};
 
 export default Signin;
