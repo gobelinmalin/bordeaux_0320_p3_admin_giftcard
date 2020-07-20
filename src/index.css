@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.fa-store,
+.fa-tasks,
+.fa-user-plus,
+.fa-user-edit,
+.fa-trash,
+.fa-sort,
+.fa-edit,
+.fa-pen {
+  color: #20124d;
+  display: flex;
+  margin: 5px auto;
+}

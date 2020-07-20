@@ -1,0 +1,63 @@
+/* e-shop/ shop  */
+.e-shop {
+  background-color: #4593db;
+  border-radius: 50%;
+  margin-right: 6px;
+  width: 15px;
+  height: 15px;
+  color: transparent;
+  padding: 5px;
+}
+
+.shop {
+  background-color: #e7e7e7;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+  color: transparent;
+}
+
+.activated {
+  background-color: #16ca16;
+  border-radius: 50%;
+  margin-right: 6px;
+  width: 15px;
+  height: 15px;
+  color: transparent;
+  padding: 5px;
+}
+
+.standby {
+  background-color: #e7e7e7;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+  color: transparent;
+}
+
+/* Add e-shop */
+
+.AddButton {
+  width: 700px;
+  padding: 10px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Editing .e-shop format */
+
+.editFormat {
+  width: 596px;
+}
+
+.action {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.action-icon {
+  margin: 0 15px;
+}
