@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import Axios from 'axios';
@@ -96,8 +95,6 @@ const ShopsUpdate = () => {
       getShopData(id);
     }
   });
-
-  console.log(shop);
 
   // if because we don't have any shop before useEffect call
   if (shop) {
