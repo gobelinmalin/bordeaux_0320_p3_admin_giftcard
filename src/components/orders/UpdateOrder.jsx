@@ -18,7 +18,6 @@ function UpdateOrder() {
   const getOrder = () => {
     Axios({
       method: 'get',
-      // url: 'http://givyoo.fr/api/clients',
       url: `${process.env.REACT_APP_HOST}/orders/${id}`,
     })
       .then((response) => response.data)
