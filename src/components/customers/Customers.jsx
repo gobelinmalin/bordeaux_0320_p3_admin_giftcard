@@ -7,10 +7,6 @@ import { Table, Container, Col, Row } from 'react-bootstrap';
 // import components
 import CustomersList from './CustomersList';
 
-// import data
-
-// import style
-
 function Customers() {
   const { history } = useHistory();
   const initialState = [
@@ -24,15 +20,12 @@ function Customers() {
   ];
 
   // CRUD
-
-  // GET all customers
   const [customers, setCustomers] = useState([]);
 
   const getCustomersList = () => {
     Axios({
       method: 'get',
-      // url: 'http://givyoo.fr/api/clients',
-      url: 'http://localhost:5000/api/clients',
+      url: `${process.env.REACT_APP_HOST}/clients`,
     }).then((response) => setCustomers(response.data));
   };
 
@@ -41,17 +34,14 @@ function Customers() {
     getCustomersList();
   }, []);
 
-  // POST a customer
-
-  // PUT a customer
   const editCustomer = (id) => {
-    Axios.put(`http://localhost:5000/api/clients/${id}`, customers).then(
+    Axios.put(`${process.env.REACT_APP_HOST}/clients/${id}`, customers).then(
       (response) => response.status === 200 && history.push('/admin/customers')
     );
   };
-  // DELETE a customer
+
   const deleteCustomer = (id) => {
-    Axios.delete(`http://localhost:5000/api/clients/${id}`, customers)
+    Axios.delete(`${process.env.REACT_APP_HOST}/clients/${id}`, customers)
       .then((response) => response.status === 200 && customers)
       .finally(() => getCustomersList());
   };

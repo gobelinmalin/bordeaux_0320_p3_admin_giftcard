@@ -16,7 +16,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
 
   const getProductsData = () => {
-    const url = 'http://localhost:5000/api/products';
+    const url = `${process.env.REACT_APP_HOST}/products`;
     Axios.get(url)
       .then((response) => response.data)
       .then((data) => setProducts(data));
@@ -30,7 +30,7 @@ const Products = () => {
   const [shops, setShops] = useState([]);
 
   const getShopsData = () => {
-    const url = 'http://localhost:5000/api/shops';
+    const url = `${process.env.REACT_APP_HOST}/shops`;
     Axios.get(url)
       .then((response) => response.data)
       .then((data) => setShops(data));

@@ -21,7 +21,7 @@ function AddOrder() {
   }, [inputValue]);
 
   const addOrder = () => {
-    const url = 'http://localhost:5000/api/orders';
+    const url = `${process.env.REACT_APP_HOST}/orders`;
     Axios.post(url, order)
       .then((res) => res.config.data)
       .then((data) => setOrder(data));

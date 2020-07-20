@@ -4,12 +4,8 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-// import components
-
 // import data
 import fields from './customerFields';
-
-// import style
 
 function UpdateCustomer() {
   const { id } = useParams();
@@ -18,15 +14,14 @@ function UpdateCustomer() {
   const refreshCustomer = () => {
     Axios({
       method: 'get',
-      // url: 'http://givyoo.fr/api/clients',
-      url: `http://localhost:5000/api/clients/${id}`,
+      url: `${process.env.REACT_APP_HOST}/clients/${id}`,
     })
       .then((response) => response.data)
       .then((data) => setCustomer(data[0]));
   };
 
   const updateCustomer = () => {
-    const url = `http://localhost:5000/api/clients/${id}`;
+    const url = `${process.env.REACT_APP_HOST}/clients/${id}`;
     Axios.put(url, customer)
       .then((res) => res.config)
       .then((data) => setCustomer(data));

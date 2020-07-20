@@ -10,19 +10,17 @@ import '../styles.css';
 const ShopsAdd = () => {
   const initialFormState = {
     id: null,
-    add_time: '',
+    add_time: null,
     legal_status: '',
     siren: '',
-    theme: '',
     online: false,
     offline: false,
     name: '',
     logo: '',
     description: '',
-    sales_conditions: '',
+    sale_conditions: '',
     status: false,
     website: '',
-    store: '',
     headOffice: '',
     head_street: '',
     head_street2: '',
@@ -38,7 +36,7 @@ const ShopsAdd = () => {
     contact2_phone1: '',
     contact2_phone2: '',
     contact2_email: '',
-    bank_account_name: '',
+    account_name: '',
     eban: '',
     notes: '',
   };
@@ -48,7 +46,7 @@ const ShopsAdd = () => {
   // set day time
   const [date, setDate] = useState(new Date());
   useEffect(() => {
-    const timer = setInterval(() => setDate(new Date()), 3600000);
+    const timer = setInterval(() => setDate(new Date()), 900000);
     return function cleanup() {
       clearInterval(timer);
     };
@@ -87,25 +85,6 @@ const ShopsAdd = () => {
     setShop({ ...shop, [name]: !shop.offline });
   };
 
-  // handle theme selection
-  const [themes, setThemes] = useState([]);
-
-  const getThemesData = () => {
-    const url = 'http://localhost:5000/api/themes';
-    Axios.get(url)
-      .then((response) => response.data)
-      .then((data) => setThemes(data));
-  };
-
-  useEffect(() => {
-    getThemesData();
-  }, []);
-
-  const handleTheme = (event) => {
-    const { value } = event.target;
-    setShop({ theme: value });
-  };
-
   // handle checkbox status
   const handleCheckStatus = (event) => {
     const { name } = event.target;
@@ -114,7 +93,7 @@ const ShopsAdd = () => {
 
   // CRUD operation
   const addShop = () => {
-    const url = 'http://localhost:5000/api/shops';
+    const url = `${process.env.REACT_APP_HOST}/shops`;
     Axios.post(url, shop)
       .then((response) => response.data)
       .then((data) => setShop(data));
@@ -197,21 +176,6 @@ const ShopsAdd = () => {
           </div>
 
           <div className="flex spaceBetween">
-            <Form.Group>
-              <Form.Label>Theme (en cours)</Form.Label>
-              <Form.Control
-                as="select"
-                name="legal_status"
-                value={shop.theme}
-                onChange={handleTheme}
-              >
-                <option value="choose">Choisir...</option>
-                {themes.map((theme) => (
-                  <option value={theme.id}>{theme.name}</option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-
             <Form.Group className="shopType">
               <Form.Label>Type d&apos;enseigne*</Form.Label>
               <div>
@@ -266,8 +230,8 @@ const ShopsAdd = () => {
               as="textarea"
               rows="5"
               type="text"
-              name="sales_conditions"
-              value={shop.sales_conditions}
+              name="sale_conditions"
+              value={shop.sale_conditions}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -308,9 +272,10 @@ const ShopsAdd = () => {
             <Form.Label>Boutique(s) (en cours)</Form.Label>
             <Form.Control
               type="text"
-              name="store"
+              name=""
               value=""
               onChange={handleInputChange}
+              readOnly
             />
           </Form.Group>
         </div>
@@ -483,8 +448,8 @@ const ShopsAdd = () => {
             <Form.Label>Nom du compte</Form.Label>
             <Form.Control
               type="text"
-              name="bank_account_name"
-              value={shop.bank_account_name}
+              name="account_name"
+              value={shop.account_name}
               onChange={handleInputChange}
             />
           </Form.Group>

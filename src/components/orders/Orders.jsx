@@ -20,7 +20,7 @@ function Orders() {
   const getAllOrders = () => {
     Axios({
       method: 'get',
-      url: 'http://localhost:5000/api/orders',
+      url: `${process.env.REACT_APP_HOST}/orders`,
     }).then((response) => setOrders(response.data));
   };
 
@@ -30,13 +30,13 @@ function Orders() {
 
   // PUT an order
   const updateOrder = (id) => {
-    Axios.put(`http://localhost:5000/api/orders/${id}`, orders).then(
+    Axios.put(`${process.env.REACT_APP_HOST}/orders/${id}`, orders).then(
       (response) => response.status === 200 && history.push('/admin/orders')
     );
   };
   // DELETE an order
   const deleteOrder = (id) => {
-    Axios.delete(`http://localhost:5000/api/orders/${id}`, orders)
+    Axios.delete(`${process.env.REACT_APP_HOST}/orders/${id}`, orders)
       .then((response) => response.status === 200 && orders)
       .finally(() => {
         getAllOrders();
