@@ -17,7 +17,6 @@ function OrdersByCustomer() {
   const getCustomer = () => {
     Axios({
       method: 'get',
-      // url: 'http://givyoo.fr/api/clients',
       url: `${process.env.REACT_APP_HOST}/clients/${idClient}`,
     })
       .then((response) => response.data)
@@ -27,7 +26,6 @@ function OrdersByCustomer() {
   const getAllOrdersByCustomer = () => {
     Axios({
       method: 'get',
-      // url: 'http://givyoo.fr/api/clients',
       url: `${process.env.REACT_APP_HOST}/clients/${idClient}/orders`,
     })
       .then((response) => response.data)
