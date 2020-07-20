@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Table, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { CSVLink } from 'react-csv';
 
 // import style
 import './customers.css';
@@ -47,6 +48,9 @@ const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
           <FontAwesomeIcon icon="user-plus" size="3x" />
         </Link>
       </div>
+      <CSVLink data={customers} separator=",">
+        Télécharger le csv
+      </CSVLink>
       <Table responsive hover>
         <thead>
           <tr>
