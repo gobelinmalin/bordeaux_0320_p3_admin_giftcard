@@ -19,14 +19,14 @@ function UpdateOrder() {
     Axios({
       method: 'get',
       // url: 'http://givyoo.fr/api/clients',
-      url: `http://localhost:5000/api/orders/${id}`,
+      url: `${process.env.REACT_APP_HOST}/orders/${id}`,
     })
       .then((response) => response.data)
       .then((data) => setOrder(data));
   };
 
   const updateOrder = () => {
-    const url = `http://localhost:5000/api/orders/${id}`;
+    const url = `${process.env.REACT_APP_HOST}/orders/${id}`;
     Axios.put(url, order)
       .then((res) => res.config)
       .then((data) => setOrder(data));

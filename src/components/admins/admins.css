@@ -1,0 +1,7 @@
+button.admin-add.btn.btn-primary {
+  width: min-content;
+
+}
+.svg-inline--fa.fa-user-plus.fa-w-20.admin-add {
+    color: #fff2ce;
+}

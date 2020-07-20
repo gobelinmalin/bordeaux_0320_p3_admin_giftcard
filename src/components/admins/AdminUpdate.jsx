@@ -4,12 +4,6 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-// import components
-
-// import data
-
-// import style
-
 function AdminUpdate() {
   const { id } = useParams();
   const [admin, setAdmin] = useState(null);
@@ -17,7 +11,7 @@ function AdminUpdate() {
   const getAdminData = () => {
     Axios({
       method: 'get',
-      url: `http://localhost:5000/api/admins/${id}`,
+      url: `${process.env.REACT_APP_HOST}/admins/${id}`,
     })
       .then((response) => response.data)
       .then((data) => setAdmin(data));
@@ -30,7 +24,7 @@ function AdminUpdate() {
   });
 
   const updateAdmin = () => {
-    const url = `http://localhost:5000/api/admins/${id}`;
+    const url = `${process.env.REACT_APP_HOST}/admins/${id}`;
     Axios.put(url, admin)
       .then((res) => res.config)
       .then((data) => setAdmin(data));
@@ -56,14 +50,14 @@ function AdminUpdate() {
               <Form.Group>
                 <Form.Label>Nom</Form.Label>
                 <Form.Control
-                  name="fullname"
+                  name="name"
                   type="text"
-                  value={admin.fullname}
+                  value={admin.name}
                   onChange={(event) => handleChange(event)}
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label>Nom</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control
                   name="email"
                   type="email"

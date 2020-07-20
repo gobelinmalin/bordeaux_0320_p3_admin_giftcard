@@ -15,7 +15,7 @@ function AddCustomers() {
   }, [inputValue]);
 
   const addCustomer = () => {
-    const url = 'http://localhost:5000/api/clients';
+    const url = `${process.env.REACT_APP_HOST}/clients`;
     Axios.post(url, customer)
       .then((res) => res.config)
       .then((data) => setCustomer(data));

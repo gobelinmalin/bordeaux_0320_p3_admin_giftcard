@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import { Table, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// import components
-
 // import style
 import './customers.css';
 import '../../index.css';
