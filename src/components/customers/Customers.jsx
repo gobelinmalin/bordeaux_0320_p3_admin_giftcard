@@ -6,7 +6,6 @@ import { Table, Container, Col, Row } from 'react-bootstrap';
 
 // import components
 import CustomersList from './CustomersList';
-import AddCustomers from './AddCustomer';
 
 // import data
 
@@ -60,9 +59,6 @@ function Customers() {
   return (
     <Container>
       <Row>
-        <Col>
-          <AddCustomers />
-        </Col>
         <Col>
           <Table>
             <CustomersList

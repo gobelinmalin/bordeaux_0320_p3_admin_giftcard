@@ -9,6 +9,8 @@ import OrdersList from './OrdersList';
 // import data
 
 // import style
+import '../styles.css';
+import './orders.css';
 
 function Orders() {
   const { history } = useHistory();
@@ -16,6 +18,7 @@ function Orders() {
 
   // GET all customers
   const [orders, setOrders] = useState([]);
+  // const [allOrdersByCustomer, setAllOrdersByCustomer] = useState([]);
 
   const getAllOrders = () => {
     Axios({
