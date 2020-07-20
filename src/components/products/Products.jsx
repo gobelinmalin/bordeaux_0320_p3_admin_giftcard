@@ -49,6 +49,7 @@ const Products = () => {
   const [categories, setCategories] = useState([]);
 
   const getCategoriesData = () => {
+    /* const url = `${process.env.REACT_APP_LOCALHOST}/api/categories/` */
     const url = 'http://localhost:5000/api/categories';
     Axios.get(url)
       .then((response) => response.data)

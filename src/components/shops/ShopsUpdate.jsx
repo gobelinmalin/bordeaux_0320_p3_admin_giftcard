@@ -56,25 +56,6 @@ const ShopsUpdate = () => {
     setShop({ ...shop, [name]: !shop.offline });
   };
 
-  // handle theme selection
-  const [themes, setThemes] = useState([]);
-
-  const getThemesData = () => {
-    const url = 'http://localhost:5000/api/themes';
-    Axios.get(url)
-      .then((response) => response.data)
-      .then((data) => setThemes(data));
-  };
-
-  useEffect(() => {
-    getThemesData();
-  }, []);
-
-  const handleTheme = (event) => {
-    const { value } = event.target;
-    setShop({ theme: value });
-  };
-
   // handle checkbox status
   const handleCheckStatus = (event) => {
     const { name } = event.target;
@@ -171,21 +152,6 @@ const ShopsUpdate = () => {
             </div>
 
             <div className="flex spaceBetween">
-              <Form.Group>
-                <Form.Label>Theme (en cours)</Form.Label>
-                <Form.Control
-                  as="select"
-                  name="legal_status"
-                  value={shop.theme}
-                  onChange={handleTheme}
-                >
-                  <option value="choose">Choisir...</option>
-                  {themes.map((theme) => (
-                    <option value={theme.id}>{theme.name}</option>
-                  ))}
-                </Form.Control>
-              </Form.Group>
-
               <Form.Group className="shopType">
                 <Form.Label>Type d&apos;enseigne*</Form.Label>
                 <div>
