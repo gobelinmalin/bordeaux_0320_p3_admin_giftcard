@@ -14,7 +14,6 @@ function UpdateCustomer() {
   const refreshCustomer = () => {
     Axios({
       method: 'get',
-      // url: 'http://givyoo.fr/api/clients',
       url: `${process.env.REACT_APP_HOST}/clients/${id}`,
     })
       .then((response) => response.data)
