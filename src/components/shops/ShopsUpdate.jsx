@@ -495,7 +495,10 @@ const ShopsUpdate = () => {
             </Form.Group>
           </div>
 
-          <Button type="submit">Modifier l&apos;enseigne</Button>
+          {/* Form validation button */}
+          <div className="AddButton">
+            <Button type="submit">Modifier l&apos;enseigne</Button>
+          </div>
         </Form>
       </Container>
     );
