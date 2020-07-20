@@ -25,7 +25,6 @@ function Customers() {
   const getCustomersList = () => {
     Axios({
       method: 'get',
-      // url: 'http://givyoo.fr/api/clients',
       url: `${process.env.REACT_APP_HOST}/clients`,
     }).then((response) => setCustomers(response.data));
   };
