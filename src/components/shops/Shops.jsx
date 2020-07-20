@@ -17,7 +17,7 @@ const Shops = () => {
   // retrieve all shops from bdd
 
   const getShopsData = () => {
-    const url = `${process.env.REACT_APP_HOST}/api/shops`;
+    const url = `${process.env.REACT_APP_HOST}/shops`;
     axios
       .get(url)
       .then((response) => response.data)
@@ -35,7 +35,7 @@ const Shops = () => {
   const handleClose = () => setShowModal(false);
 
   const deleteShop = () => {
-    const url = `http://localhost:5000/api/shops/${shopId}`;
+    const url = `${process.env.REACT_APP_HOST}/shops/${shopId}`;
     axios
       .delete(url)
       .then((response) => response.data && setShowModal(false))

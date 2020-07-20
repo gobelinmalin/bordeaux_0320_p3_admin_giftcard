@@ -11,7 +11,7 @@ import AdminsAdd from './AdminAdd';
 const Admins = () => {
   const [admins, setAdmins] = useState([{}]);
   const getAdminsDatas = () => {
-    Axios.get('http://localhost:5000/api/admins')
+    Axios.get(`${process.env.REACT_APP_HOST}/admins`)
       .then((response) => response.data)
       .then((data) => setAdmins(data));
   };
@@ -21,14 +21,13 @@ const Admins = () => {
   }, []);
 
   const editAdmin = (id) => {
-    Axios.put(`http://localhost:5000/api/admin/${id}`, admins).then(
-      //   (response) => response.status === 200 && history.push('/admin/admins')
+    Axios.put(`${process.env.REACT_APP_HOST}admin/${id}`, admins).then(
       (response) => response.status === 200
     );
   };
 
   const deleteAdmin = (id) => {
-    Axios.delete(`http://localhost:5000/api/admins/${id}`, admins)
+    Axios.delete(`${process.env.REACT_APP_HOST}/admins/${id}`, admins)
       .then((response) => response.status === 200 && admins)
       .finally(() => getAdminsDatas());
   };

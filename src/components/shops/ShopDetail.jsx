@@ -13,7 +13,7 @@ const ShopDetail = () => {
   const [shop, setShop] = useState(null);
 
   const getShopData = () => {
-    const url = `http://localhost:5000/api/shops/${id}`;
+    const url = `${process.env.REACT_APP_HOST}/shops/${id}`;
     axios
       .get(url)
       .then((response) => response.data)

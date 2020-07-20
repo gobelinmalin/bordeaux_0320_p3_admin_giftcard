@@ -17,7 +17,7 @@ function AdminsAdd({ getAdminsDatas }) {
   }, [inputValue]);
 
   const addAdmin = () => {
-    const url = 'http://localhost:5000/api/admins';
+    const url = `${process.env.REACT_APP_HOST}/admins`;
     Axios.post(url, admin).finally(() => getAdminsDatas());
   };
 
@@ -28,7 +28,6 @@ function AdminsAdd({ getAdminsDatas }) {
     setInputValue(newValue);
   };
 
-  // return
   return (
     <Container>
       <Row>

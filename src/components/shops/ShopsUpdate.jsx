@@ -17,7 +17,7 @@ const ShopsUpdate = () => {
   const [shop, setShop] = useState(null);
 
   const getShopData = () => {
-    const url = `http://localhost:5000/api/shops/${id}`;
+    const url = `${process.env.REACT_APP_HOST}/shops/${id}`;
     Axios.get(url)
       .then((response) => response.data)
       .then((data) => setShop(data[0]));
@@ -56,25 +56,6 @@ const ShopsUpdate = () => {
     setShop({ ...shop, [name]: !shop.offline });
   };
 
-  // handle theme selection
-  const [themes, setThemes] = useState([]);
-
-  const getThemesData = () => {
-    const url = 'http://localhost:5000/api/themes';
-    Axios.get(url)
-      .then((response) => response.data)
-      .then((data) => setThemes(data));
-  };
-
-  useEffect(() => {
-    getThemesData();
-  }, []);
-
-  const handleTheme = (event) => {
-    const { value } = event.target;
-    setShop({ theme: value });
-  };
-
   // handle checkbox status
   const handleCheckStatus = (event) => {
     const { name } = event.target;
@@ -83,7 +64,7 @@ const ShopsUpdate = () => {
 
   // CRUD operation
   const updateShop = () => {
-    const url = `http://localhost:5000/api/shops/${id}`;
+    const url = `${process.env.REACT_APP_HOST}/shops/${id}`;
     Axios.put(url, shop).then(
       (response) => response.status === 200 && history.push('/admin/shops')
     );
@@ -171,21 +152,6 @@ const ShopsUpdate = () => {
             </div>
 
             <div className="flex spaceBetween">
-              <Form.Group>
-                <Form.Label>Theme (en cours)</Form.Label>
-                <Form.Control
-                  as="select"
-                  name="legal_status"
-                  value={shop.theme}
-                  onChange={handleTheme}
-                >
-                  <option value="choose">Choisir...</option>
-                  {themes.map((theme) => (
-                    <option value={theme.id}>{theme.name}</option>
-                  ))}
-                </Form.Control>
-              </Form.Group>
-
               <Form.Group className="shopType">
                 <Form.Label>Type d&apos;enseigne*</Form.Label>
                 <div>
@@ -242,8 +208,8 @@ const ShopsUpdate = () => {
                 as="textarea"
                 rows="5"
                 type="text"
-                name="sales_conditions"
-                value={shop.sales_conditions}
+                name="sale_conditions"
+                value={shop.sale_conditions}
                 onChange={handleInputChange}
               />
             </Form.Group>
@@ -285,9 +251,10 @@ const ShopsUpdate = () => {
               <Form.Label>Boutique(s) (en cours)</Form.Label>
               <Form.Control
                 type="text"
-                name="store"
+                name=""
                 value=""
                 onChange={handleInputChange}
+                readOnly
               />
             </Form.Group>
           </div>
@@ -461,7 +428,7 @@ const ShopsUpdate = () => {
               <Form.Control
                 type="text"
                 name="bank_account_name"
-                value={shop.bank_account_name}
+                value={shop.account_name}
                 onChange={handleInputChange}
               />
             </Form.Group>
