@@ -1,38 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import {
-  Form,
-  Button,
-  DropdownButton,
-  Dropdown,
-  Col,
-  Container,
-} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
-import axios from 'axios';
+import { Form, Button, Col, Container } from 'react-bootstrap';
 
 import './shops.css';
 import '../styles.css';
 
 const ShopsAdd = () => {
-  // useHistory to redirect after submission
-  const history = useHistory();
   const initialFormState = {
     id: null,
-    name: '',
+    add_time: '',
+    legal_status: '',
+    siren: '',
+    theme: '',
     online: false,
     offline: false,
+    name: '',
+    logo: '',
+    description: '',
+    sales_conditions: '',
+    status: false,
+    website: '',
+    store: '',
+    headOffice: '',
+    head_street: '',
+    head_street2: '',
+    head_city: '',
+    head_zipcode: '',
+    head_state: '',
+    head_country: '',
+    contact1_name: '',
+    contact1_phone1: '',
+    contact1_phone2: '',
+    contact1_email: '',
+    contact2_name: '',
+    contact2_phone1: '',
+    contact2_phone2: '',
+    contact2_email: '',
+    bank_account_name: '',
+    eban: '',
+    notes: '',
   };
 
   const [shop, setShop] = useState(initialFormState);
 
-  // eslint-disable-next-line no-unused-vars
-  const [newId, setNewId] = useState();
-
   // set day time
   const [date, setDate] = useState(new Date());
   useEffect(() => {
-    const timer = setInterval(() => setDate(new Date()), 1000);
+    const timer = setInterval(() => setDate(new Date()), 3600000);
     return function cleanup() {
       clearInterval(timer);
     };
@@ -42,6 +58,21 @@ const ShopsAdd = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setShop({ ...shop, [name]: value });
+  };
+
+  // handle legal form selection
+  const [showOther, setShowOther] = useState(false);
+
+  const handleLegalForm = (event) => {
+    const { name, value } = event.target;
+
+    if (value === 'other') {
+      setShowOther(true);
+      setShop({ ...shop, [name]: '' });
+    } else {
+      setShowOther(false);
+      setShop({ ...shop, [name]: value });
+    }
   };
 
   // handle checkbox e-shop
@@ -56,17 +87,38 @@ const ShopsAdd = () => {
     setShop({ ...shop, [name]: !shop.offline });
   };
 
+  // handle theme selection
+  const [themes, setThemes] = useState([]);
+
+  const getThemesData = () => {
+    const url = 'http://localhost:5000/api/themes';
+    Axios.get(url)
+      .then((response) => response.data)
+      .then((data) => setThemes(data));
+  };
+
+  useEffect(() => {
+    getThemesData();
+  }, []);
+
+  const handleTheme = (event) => {
+    const { value } = event.target;
+    setShop({ theme: value });
+  };
+
+  // handle checkbox status
+  const handleCheckStatus = (event) => {
+    const { name } = event.target;
+    setShop({ ...shop, [name]: !shop.status });
+  };
+
   // CRUD operation
   const addShop = () => {
     const url = 'http://localhost:5000/api/shops';
-    axios
-      .post(url, shop)
+    Axios.post(url, shop)
       .then((response) => response.data)
-      .then((data) => setShop(data))
-      .then(history.push(`/admin/shops/details/${newId}`));
+      .then((data) => setShop(data));
   };
-
-  // Get the last item of shop array
 
   return (
     <Container>
@@ -75,6 +127,7 @@ const ShopsAdd = () => {
           <Button variant="insideNav">Retour aux enseignes</Button>
         </Link>
       </div>
+
       <Form
         onSubmit={(event) => {
           event.preventDefault();
@@ -93,7 +146,8 @@ const ShopsAdd = () => {
               size="sm"
               type="text"
               name="add_time"
-              value={date.toLocaleDateString()}
+              defaultValue={date.toLocaleDateString()}
+              value={shop.add_time}
               placeholder={date.toLocaleDateString()}
               onChange={handleInputChange}
             />
@@ -102,50 +156,62 @@ const ShopsAdd = () => {
           <div className="flex spaceBetween">
             <Form.Group>
               <Form.Label>Forme Juridique*</Form.Label>
-              <DropdownButton
-                id="dropdown-basic-button"
-                title="statut" /* onSelect={handleSelect} */
+              <Form.Control
+                as="select"
+                name="legal_status"
+                value={shop.legal_status}
+                onChange={handleLegalForm}
               >
-                <Dropdown.Item href="#/action-1">SAS</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">SARL</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">SA</Dropdown.Item>
-                <Dropdown.Item href="#/action-4">EURL</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">
-                  Auto-Entrepreneur
-                </Dropdown.Item>
-              </DropdownButton>
+                <option value="">Choisir...</option>
+                <option value="EURL">EURL</option>
+                <option value="SA">SA</option>
+                <option value="SARL">SARL</option>
+                <option value="SAS">SAS</option>
+                <option value="Auto-Entrepreneur">Auto-Entrepreneur</option>
+                <option value="other">Autre</option>
+              </Form.Control>
+
+              {showOther ? (
+                <Form.Control
+                  type="text"
+                  name="legal_status"
+                  placeholder="préciser la forme légale"
+                  value={shop.legal_status}
+                  onChange={handleInputChange}
+                />
+              ) : (
+                ''
+              )}
             </Form.Group>
+
             <Form.Group>
               <Form.Label>n° SIREN*</Form.Label>
               <Form.Control
                 size="sm"
                 type="text"
-                name="registration_number"
-                value=""
+                name="siren"
+                value={shop.siren}
                 onChange={handleInputChange}
               />
             </Form.Group>
           </div>
+
           <div className="flex spaceBetween">
             <Form.Group>
-              <Form.Label>Theme*</Form.Label>
-              <DropdownButton
-                id="dropdown-basic-button"
-                name="theme"
-                role="menuitem"
-                title="choix du theme" /* onSelect={handleSelect} */
+              <Form.Label>Theme (en cours)</Form.Label>
+              <Form.Control
+                as="select"
+                name="legal_status"
+                value={shop.theme}
+                onChange={handleTheme}
               >
-                <Dropdown.Item href="#/action-1">Mode</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Bien-etre</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Maison</Dropdown.Item>
-                <Dropdown.Item href="#/action-4">Sport</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Gastronomie</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Evasion</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Culture</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Education</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Adulte</Dropdown.Item>
-              </DropdownButton>
+                <option value="choose">Choisir...</option>
+                {themes.map((theme) => (
+                  <option value={theme.id}>{theme.name}</option>
+                ))}
+              </Form.Control>
             </Form.Group>
+
             <Form.Group className="shopType">
               <Form.Label>Type d&apos;enseigne*</Form.Label>
               <div>
@@ -156,7 +222,7 @@ const ShopsAdd = () => {
                   onChange={(event) => handleCheckOnline(event)}
                 />
                 <Form.Check
-                  label="boutique"
+                  label="boutique(s)"
                   name="offline"
                   check={shop.offline}
                   onChange={(event) => handleCheckOffline(event)}
@@ -165,12 +231,63 @@ const ShopsAdd = () => {
             </Form.Group>
           </div>
           <Form.Group>
-            <Form.Label>Nom*</Form.Label>
+            <Form.Label>Nom de l&apos;enseigne*</Form.Label>
             <Form.Control
               type="text"
               name="name"
               value={shop.name}
               onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Logo de l&apos;enseigne (en cours)</Form.Label>
+            <Form.File
+              id="custom-file"
+              label="Uploader une image"
+              name={shop.logo}
+              onChange=""
+              custom
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Description*</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows="3"
+              type="text"
+              name="description"
+              value={shop.description}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Conditions de vente</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows="5"
+              type="text"
+              name="sales_conditions"
+              value={shop.sales_conditions}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+        </div>
+
+        {/* Shop status */}
+        <div className="formContent">
+          <Form.Group>
+            <p>
+              Statut de l&apos;enseigne partenaire:{' '}
+              {shop.status ? 'activée' : 'désactivée'}
+            </p>
+            <Form.Switch
+              label={
+                shop.status ? "désactiver l'enseigne" : "activer l'enseigne"
+              }
+              id="custom-switch"
+              name="status"
+              value={shop.status}
+              onChange={(event) => handleCheckStatus(event)}
             />
           </Form.Group>
         </div>
@@ -183,15 +300,15 @@ const ShopsAdd = () => {
             <Form.Control
               type="text"
               name="website"
-              value=""
+              value={shop.website}
               onChange={handleInputChange}
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Liste des boutiques</Form.Label>
+            <Form.Label>Boutique(s) (en cours)</Form.Label>
             <Form.Control
               type="text"
-              name="shopslist_link"
+              name="store"
               value=""
               onChange={handleInputChange}
             />
@@ -202,11 +319,20 @@ const ShopsAdd = () => {
         <div className="formContent">
           <p>Siège Social</p>
           <Form.Group>
+            <Form.Label>Nom du siège social</Form.Label>
+            <Form.Control
+              type="text"
+              name="headOffice"
+              value={shop.headOffice}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
             <Form.Label>N° et Voie</Form.Label>
             <Form.Control
               type="text"
-              name="street"
-              value=""
+              name="head_street"
+              value={shop.head_street}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -214,24 +340,52 @@ const ShopsAdd = () => {
             <Form.Label>Complement</Form.Label>
             <Form.Control
               type="text"
-              name="street2"
-              value=""
+              name="head_street2"
+              value={shop.head_street2}
               onChange={handleInputChange}
             />
           </Form.Group>
           <Form.Group>
             <Form.Row>
-              <Col xs={7}>
+              <Col xs={8}>
                 <Form.Label>Ville</Form.Label>
-                <Form.Control name="city" />
+                <Form.Control
+                  type="text"
+                  name="head_city"
+                  value={shop.head_city}
+                  onChange={handleInputChange}
+                />
               </Col>
               <Col>
                 <Form.Label>Code postal</Form.Label>
-                <Form.Control name="zip code" />
+                <Form.Control
+                  type="text"
+                  name="head_zipcode"
+                  value={shop.head_zipcode}
+                  onChange={handleInputChange}
+                />
+              </Col>
+            </Form.Row>
+          </Form.Group>
+          <Form.Group>
+            <Form.Row>
+              <Col>
+                <Form.Label>Région/Etat</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="head_state"
+                  value={shop.head_state}
+                  onChange={handleInputChange}
+                />
               </Col>
               <Col>
                 <Form.Label>Pays</Form.Label>
-                <Form.Control name="country" />
+                <Form.Control
+                  type="text"
+                  name="head_country"
+                  value={shop.head_country}
+                  onChange={handleInputChange}
+                />
               </Col>
             </Form.Row>
           </Form.Group>
@@ -244,24 +398,39 @@ const ShopsAdd = () => {
             <Form.Label>Nom du contact 1</Form.Label>
             <Form.Control
               type="text"
-              name="contact_name"
-              value=""
+              name="contact1_name"
+              value={shop.contact1_name}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>email</Form.Label>
+            <Form.Control
+              type="email"
+              name="contact1_email"
+              value={shop.contact1_email}
               onChange={handleInputChange}
             />
           </Form.Group>
           <Form.Group>
             <Form.Row>
-              <Col xs={5}>
-                <Form.Label>email</Form.Label>
-                <Form.Control name="mail_contact1" />
-              </Col>
               <Col>
                 <Form.Label>tel 1</Form.Label>
-                <Form.Control name="phone1_contact1" />
+                <Form.Control
+                  type="text"
+                  name="contact1_phone1"
+                  value={shop.contact1_phone1}
+                  onChange={handleInputChange}
+                />
               </Col>
               <Col>
                 <Form.Label>tel 2</Form.Label>
-                <Form.Control name="phone2_contact2" />
+                <Form.Control
+                  type="text"
+                  name="contact1_phone2"
+                  value={shop.contact1_phone2}
+                  onChange={handleInputChange}
+                />
               </Col>
             </Form.Row>
           </Form.Group>
@@ -269,39 +438,90 @@ const ShopsAdd = () => {
             <Form.Label>Nom du contact 2</Form.Label>
             <Form.Control
               type="text"
-              name="contact_name"
-              value=""
+              name="contact2_name"
+              value={shop.contact2_name}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>email</Form.Label>
+            <Form.Control
+              type="email"
+              name="contact2_email"
+              value={shop.contact2_email}
               onChange={handleInputChange}
             />
           </Form.Group>
           <Form.Group>
             <Form.Row>
-              <Col xs={5}>
-                <Form.Label>email</Form.Label>
-                <Form.Control name="mail_contact2" />
-              </Col>
               <Col>
                 <Form.Label>tel 1</Form.Label>
-                <Form.Control name="phone1_contact2" />
+                <Form.Control
+                  type="text"
+                  name="contact2_phone1"
+                  value={shop.contact2_phone1}
+                  onChange={handleInputChange}
+                />
               </Col>
               <Col>
                 <Form.Label>tel 2</Form.Label>
-                <Form.Control name="phone2_contact2" />
+                <Form.Control
+                  type="text"
+                  name="contact2_phone2"
+                  value={shop.contact2_phone2}
+                  onChange={handleInputChange}
+                />
               </Col>
             </Form.Row>
           </Form.Group>
         </div>
-        <div className="validationButton">
+
+        {/* Bank infos */}
+        <div className="formContent">
+          <p>Informations bancaires</p>
+          <Form.Group>
+            <Form.Label>Nom du compte</Form.Label>
+            <Form.Control
+              type="text"
+              name="bank_account_name"
+              value={shop.bank_account_name}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Eban</Form.Label>
+            <Form.Control
+              type="text"
+              name="eban"
+              value={shop.eban}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+        </div>
+
+        {/* Notes */}
+        <div className="formContent">
+          <p>Notes</p>
+          <Form.Group>
+            <Form.Label>Notes</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows="5"
+              type="text"
+              name="notes"
+              value={shop.notes}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+        </div>
+
+        {/* Form validation button */}
+        <div className="AddButton">
           <Button type="submit">Ajouter l&apos;enseigne</Button>
         </div>
       </Form>
-      {/* Shop admin infos Form */}
     </Container>
   );
 };
-
-/* ShopsAdd.propTypes = {
-  addShop: PropTypes.func.isRequired,
-}; */
 
 export default ShopsAdd;

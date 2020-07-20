@@ -10,7 +10,7 @@ import './NavBar.css';
 const Logo = () => {
   return (
     <div className="logo-givyoo">
-      <img src={logo} alt="logo Givyoo" height="85px" />
+      <img src={logo} alt="logo Givyoo" />
     </div>
   );
 };

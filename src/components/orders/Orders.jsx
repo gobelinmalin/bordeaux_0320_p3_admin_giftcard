@@ -5,8 +5,6 @@ import { Table, Container, Col, Row } from 'react-bootstrap';
 
 // import components
 import OrdersList from './OrdersList';
-// import AddOrder from './AddOrder';
-// import data
 
 // import style
 import '../styles.css';
@@ -18,12 +16,10 @@ function Orders() {
 
   // GET all customers
   const [orders, setOrders] = useState([]);
-  // const [allOrdersByCustomer, setAllOrdersByCustomer] = useState([]);
 
   const getAllOrders = () => {
     Axios({
       method: 'get',
-      // url: 'http://givyoo.fr/api/clients',
       url: 'http://localhost:5000/api/orders',
     }).then((response) => setOrders(response.data));
   };
@@ -31,8 +27,6 @@ function Orders() {
   useEffect(() => {
     getAllOrders();
   }, []);
-
-  // POST an order
 
   // PUT an order
   const updateOrder = (id) => {
@@ -51,7 +45,6 @@ function Orders() {
   return (
     <Container>
       <Row>
-        {/* <Col><AddOrder /></Col> */}
         <Col>
           <Table responsive="sm">
             <OrdersList
