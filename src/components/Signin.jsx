@@ -17,19 +17,24 @@ const Axios = require('axios');
 const SignIn = () => {
   const history = useHistory();
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  // handle form user inputs
+  const [inputs, setInputs] = useState({
+    email: '',
+    password: '',
+  });
 
-  const handleChangeEmail = (event) => setEmail(event.target.value);
-  const handleChangePassword = (event) => setPassword(event.target.value);
+  const handleInputs = (event) => {
+    const { name, value } = event.target;
+    setInputs({ ...inputs, [name]: value });
+  };
 
+  // handle authentification
   const { setAuthData } = useContext(authContext);
 
-  // handle signin submit + retrieve token
   const onAuthSubmit = (event) => {
-    const url = `${process.env.REACT_APP_HOST}/login/superadmin`;
+    const url = `${process.env.REACT_APP_HOST}/auth/login/superadmin`;
 
-    Axios.post(url, email, password)
+    Axios.post(url, inputs)
       .then((response) => {
         setAuthData(response.data.token);
       })
@@ -37,8 +42,6 @@ const SignIn = () => {
 
     event.preventDefault();
   };
-
-  console.log(email, password);
 
   return (
     <div className="central">
@@ -51,7 +54,8 @@ const SignIn = () => {
             <Form.Control
               type="email"
               name="email"
-              onChange={handleChangeEmail}
+              value={inputs.email}
+              onChange={handleInputs}
             />
           </Form.Group>
 
@@ -60,7 +64,8 @@ const SignIn = () => {
             <Form.Control
               type="password"
               name="password"
-              onChange={handleChangePassword}
+              value={inputs.password}
+              onChange={handleInputs}
             />
           </Form.Group>
           <Button variant="signin" block bsSize="large" type="submit">

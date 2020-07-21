@@ -4,7 +4,7 @@ import Proptypes from 'prop-types';
 export const authContext = createContext({});
 
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState({ loading: true, data: null });
+  const [auth, setAuth] = useState({ data: null });
 
   const setAuthData = (data) => {
     setAuth({ data });
@@ -12,7 +12,6 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     setAuth({
-      loading: false,
       data: JSON.parse(window.localStorage.getItem('authData')),
     });
   }, []);
@@ -22,7 +21,6 @@ const AuthProvider = ({ children }) => {
   }, [auth.data]);
 
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <authContext.Provider value={{ auth, setAuthData }}>
       {children}
     </authContext.Provider>

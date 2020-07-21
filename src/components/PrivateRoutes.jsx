@@ -7,6 +7,8 @@ import { authContext } from '../contexts/AuthContext';
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { auth } = useContext(authContext);
 
+  // creer autre appel /profile
+
   return (
     <Route
       {...rest}

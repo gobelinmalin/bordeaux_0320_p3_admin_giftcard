@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 // import library
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
@@ -60,47 +59,31 @@ function App() {
     <Container fluid className=" parent-container flex-column ">
       <Row>
         <Switch>
-          <Route path="/" component={Signin} />
-          <PrivateRoute exact path="/admin">
+          <Route exact path="/" component={Signin} />
+          <PrivateRoute path="/admin">
             <Col sm={2}>
               <NavBar />
             </Col>
             <Col sm={8}>
               <Header />
+              <PrivateRoute path="/admin/dashboard" component={Dashboard} />
+              <PrivateRoute path="/admin/products" component={Products} />
               <PrivateRoute
-                exact
-                path="/admin/dashboard"
-                component={Dashboard}
-              />
-              <PrivateRoute exact path="/admin/products" component={Products} />
-              <PrivateRoute
-                exact
                 path="/admin/products/add"
                 component={ProductsAdd}
               />
-              <PrivateRoute exact path="/admin/shops" component={Shops} />
+              <PrivateRoute path="/admin/shops" component={Shops} />
+              <PrivateRoute path="/admin/shops/add" component={ShopsAdd} />
               <PrivateRoute
-                exact
-                path="/admin/shops/add"
-                component={ShopsAdd}
-              />
-              <PrivateRoute
-                exact
                 path="/admin/shops/details/:id"
                 component={ShopDetails}
               />
               <PrivateRoute
-                exact
                 path="/admin/shops/update/:id"
                 component={ShopsUpdate}
               />
+              <PrivateRoute path="/admin/customers" component={Customers} />
               <PrivateRoute
-                exact
-                path="/admin/customers"
-                component={Customers}
-              />
-              <PrivateRoute
-                exact
                 path="/admin/customers/add"
                 component={AddCustomer}
               />
@@ -108,7 +91,7 @@ function App() {
                 path="/admin/customers/update/:id"
                 component={UpdateCustomer}
               />
-              <PrivateRoute exact path="/admin/orders" component={Orders} />
+              <PrivateRoute path="/admin/orders" component={Orders} />
               <PrivateRoute
                 path="/admin/orders/update/:id"
                 component={UpdateOrder}
@@ -118,9 +101,8 @@ function App() {
                 component={OrdersByCustomer}
               />
 
-              <PrivateRoute exact path="/admin/admins" component={Admins} />
+              <PrivateRoute path="/admin/admins" component={Admins} />
               <PrivateRoute
-                exact
                 path="/admin/admins/update/:id"
                 component={AdminUpdate}
               />
