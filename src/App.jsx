@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // import library
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
@@ -21,14 +22,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 // import components
+import PrivateRoute from './components/PrivateRoutes';
+
+import Signin from './components/Signin';
 import Admins from './components/admins/Admins';
 import AdminUpdate from './components/admins/AdminUpdate';
-import Signin from './components/Signin';
 import Header from './components/header/Header';
 import NavBar from './components/navbar/NavBar';
+
 import Customers from './components/customers/Customers';
 import AddCustomer from './components/customers/AddCustomer';
 import UpdateCustomer from './components/customers/UpdateCustomer';
+import Dashboard from './components/dashboard/Dashboard';
 import Orders from './components/orders/Orders';
 import OrdersByCustomer from './components/orders/OrdersByCustomer';
 import UpdateOrder from './components/orders/UpdateOrder';
@@ -55,52 +60,72 @@ function App() {
     <Container fluid className=" parent-container flex-column ">
       <Row>
         <Switch>
-          <Route exact path="/" component={Signin} />
-          <Route path="/admin">
+          <Route path="/" component={Signin} />
+          <PrivateRoute exact path="/admin">
             <Col sm={2}>
               <NavBar />
             </Col>
             <Col sm={8}>
               <Header />
-              <Route exact path="/admin/products" component={Products} />
-              <Route exact path="/admin/products/add" component={ProductsAdd} />
-              <Route exact path="/admin/shops" component={Shops} />
-              <Route exact path="/admin/shops/add" component={ShopsAdd} />
-              <Route
+              <PrivateRoute
+                exact
+                path="/admin/dashboard"
+                component={Dashboard}
+              />
+              <PrivateRoute exact path="/admin/products" component={Products} />
+              <PrivateRoute
+                exact
+                path="/admin/products/add"
+                component={ProductsAdd}
+              />
+              <PrivateRoute exact path="/admin/shops" component={Shops} />
+              <PrivateRoute
+                exact
+                path="/admin/shops/add"
+                component={ShopsAdd}
+              />
+              <PrivateRoute
                 exact
                 path="/admin/shops/details/:id"
                 component={ShopDetails}
               />
-              <Route
+              <PrivateRoute
                 exact
                 path="/admin/shops/update/:id"
                 component={ShopsUpdate}
               />
-              <Route exact path="/admin/customers" component={Customers} />
-              <Route
+              <PrivateRoute
+                exact
+                path="/admin/customers"
+                component={Customers}
+              />
+              <PrivateRoute
                 exact
                 path="/admin/customers/add"
                 component={AddCustomer}
               />
-              <Route
+              <PrivateRoute
                 path="/admin/customers/update/:id"
                 component={UpdateCustomer}
               />
-              <Route exact path="/admin/orders" component={Orders} />
-              <Route path="/admin/orders/update/:id" component={UpdateOrder} />
-              <Route
+              <PrivateRoute exact path="/admin/orders" component={Orders} />
+              <PrivateRoute
+                path="/admin/orders/update/:id"
+                component={UpdateOrder}
+              />
+              <PrivateRoute
                 path="/admin/orders/by-client/:idClient"
                 component={OrdersByCustomer}
               />
 
-              <Route exact path="/admin/admins" component={Admins} />
-              <Route
+              <PrivateRoute exact path="/admin/admins" component={Admins} />
+              <PrivateRoute
                 exact
                 path="/admin/admins/update/:id"
                 component={AdminUpdate}
               />
             </Col>
-          </Route>
+          </PrivateRoute>
         </Switch>
       </Row>
     </Container>

@@ -3,6 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import AuthProvider from './contexts/AuthContext';
+
 // import style
 import './index.css';
 
@@ -10,8 +12,10 @@ import './index.css';
 import App from './App';
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <AuthProvider>
+    <Router>
+      <App />
+    </Router>
+  </AuthProvider>,
   document.getElementById('root')
 );

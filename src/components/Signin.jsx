@@ -1,55 +1,70 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable no-console */
+
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Button, Form } from 'react-bootstrap';
+
+import { authContext } from '../contexts/AuthContext';
 
 import './signin.css';
 import '../App.css';
 
 import Logo from './navbar/Logo';
 
-const Signin = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Axios = require('axios');
 
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
+const SignIn = () => {
+  const history = useHistory();
 
-  function handleSubmit(event) {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const handleChangeEmail = (event) => setEmail(event.target.value);
+  const handleChangePassword = (event) => setPassword(event.target.value);
+
+  const { setAuthData } = useContext(authContext);
+
+  // handle signin submit + retrieve token
+  const onAuthSubmit = (event) => {
+    const url = `${process.env.REACT_APP_HOST}/login/superadmin`;
+
+    Axios.post(url, email, password)
+      .then((response) => {
+        setAuthData(response.data.token);
+      })
+      .then(() => history.push('/admin/dashboard'));
+
     event.preventDefault();
-  }
+  };
+
+  console.log(email, password);
 
   return (
     <div className="central">
       <div className="login">
         <Logo />
-        <Form className="form" onSubmit={handleSubmit}>
+
+        <Form className="form" onSubmit={onAuthSubmit}>
           <Form.Group controlId="email" bsSize="large">
             <Form.Label>identifiant</Form.Label>
             <Form.Control
-              autoFocus
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              onChange={handleChangeEmail}
             />
           </Form.Group>
+
           <Form.Group controlId="password" bsSize="large">
             <Form.Label>mot de passe</Form.Label>
             <Form.Control
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               type="password"
+              name="password"
+              onChange={handleChangePassword}
             />
           </Form.Group>
-          <Button
-            variant="signin"
-            block
-            bsSize="large"
-            disabled={!validateForm()}
-            type="submit"
-          >
-            <Link to="/admin">se connecter</Link>
+          <Button variant="signin" block bsSize="large" type="submit">
+            se connecter
           </Button>
         </Form>
       </div>
@@ -57,4 +72,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SignIn;
