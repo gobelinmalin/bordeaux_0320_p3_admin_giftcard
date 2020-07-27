@@ -29,12 +29,12 @@ const ShopsAdd = () => {
     head_state: '',
     head_country: '',
     contact1_name: '',
-    contact1_phone1: '',
-    contact1_phone2: '',
+    contact1_phone1: null,
+    contact1_phone2: null,
     contact1_email: '',
     contact2_name: '',
-    contact2_phone1: '',
-    contact2_phone2: '',
+    contact2_phone1: null,
+    contact2_phone2: null,
     contact2_email: '',
     account_name: '',
     eban: '',
@@ -123,12 +123,11 @@ const ShopsAdd = () => {
             <Form.Label>Date de création*</Form.Label>
             <Form.Control
               size="sm"
-              type="text"
               name="add_time"
               defaultValue={date.toLocaleDateString()}
               value={shop.add_time}
               placeholder={date.toLocaleDateString()}
-              onChange={handleInputChange}
+              readOnly
             />
           </Form.Group>
 

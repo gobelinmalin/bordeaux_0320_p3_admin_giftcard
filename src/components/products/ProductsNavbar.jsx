@@ -12,7 +12,7 @@ const ProductNavbar = () => {
         <Button variant="insideNav">PRODUITS</Button>
       </Link>
       <Button variant="insideNav">CATEGORIES</Button>
-      <Button variant="insideNav">THEME</Button>
+      <Button variant="insideNav">THEMES</Button>
       <Button variant="insideNav">TAGS</Button>
     </div>
   );

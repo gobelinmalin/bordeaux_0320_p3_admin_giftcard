@@ -29,19 +29,20 @@ import AdminUpdate from './components/admins/AdminUpdate';
 import Header from './components/header/Header';
 import NavBar from './components/navbar/NavBar';
 
+import Dashboard from './components/dashboard/Dashboard';
 import Customers from './components/customers/Customers';
 import AddCustomer from './components/customers/AddCustomer';
 import UpdateCustomer from './components/customers/UpdateCustomer';
-import Dashboard from './components/dashboard/Dashboard';
 import Orders from './components/orders/Orders';
 import OrdersByCustomer from './components/orders/OrdersByCustomer';
 import UpdateOrder from './components/orders/UpdateOrder';
-import Products from './components/products/Products';
-import ProductsAdd from './components/products/ProductsAdd';
 import Shops from './components/shops/Shops';
 import ShopsAdd from './components/shops/ShopsAdd';
 import ShopsUpdate from './components/shops/ShopsUpdate';
 import ShopDetails from './components/shops/ShopDetail';
+import Products from './components/products/Products';
+import ProductsAdd from './components/products/ProductsAdd';
+import CardAdd from './components/products/CardAdd';
 
 function App() {
   library.add(
@@ -66,16 +67,13 @@ function App() {
             </Col>
             <Col sm={8}>
               <Header />
+
               <PrivateRoute
                 exact
                 path="/admin/dashboard"
                 component={Dashboard}
               />
-              <PrivateRoute exact path="/admin/products" component={Products} />
-              <PrivateRoute
-                path="/admin/products/add"
-                component={ProductsAdd}
-              />
+
               <PrivateRoute exact path="/admin/shops" component={Shops} />
               <PrivateRoute path="/admin/shops/add" component={ShopsAdd} />
               <PrivateRoute
@@ -86,6 +84,18 @@ function App() {
                 path="/admin/shops/update/:id"
                 component={ShopsUpdate}
               />
+
+              <PrivateRoute exact path="/admin/products" component={Products} />
+              <PrivateRoute
+                path="/admin/products/add"
+                component={ProductsAdd}
+              />
+              <PrivateRoute
+                exact
+                path="/admin/products/add-card"
+                component={CardAdd}
+              />
+
               <PrivateRoute
                 exact
                 path="/admin/customers"
@@ -99,6 +109,7 @@ function App() {
                 path="/admin/customers/update/:id"
                 component={UpdateCustomer}
               />
+              {/* ADMIN routes */}
               <PrivateRoute exact path="/admin/orders" component={Orders} />
               <PrivateRoute
                 path="/admin/orders/update/:id"
