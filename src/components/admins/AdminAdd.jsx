@@ -17,7 +17,7 @@ function AdminsAdd({ getAdminsDatas }) {
   }, [inputValue]);
 
   const addAdmin = () => {
-    const url = `${process.env.REACT_APP_HOST}/admins`;
+    const url = `${process.env.REACT_APP_HOST}/auth/signup/superadmin`;
     Axios.post(url, admin).finally(() => getAdminsDatas());
   };
 
@@ -33,7 +33,7 @@ function AdminsAdd({ getAdminsDatas }) {
       <Row>
         <Col className="col-form-label-sm">
           <h3 id="">Identité de l&apos; administrateur</h3>
-          <Form action="" className="form-group" onSubmit={() => addAdmin()}>
+          <Form className="form-group">
             <Form.Group>
               <Form.Label>Nom complet / pseudo</Form.Label>
               <Form.Control
@@ -69,7 +69,7 @@ function AdminsAdd({ getAdminsDatas }) {
                 placeholder="work in progress"
               />
             </Form.Group>
-            <Button type="submit" className="admin-add">
+            <Button onClick={() => addAdmin()} className="admin-add">
               <FontAwesomeIcon className="admin-add" icon="user-plus" />
             </Button>
           </Form>
