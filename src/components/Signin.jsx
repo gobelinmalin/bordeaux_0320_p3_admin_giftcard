@@ -1,12 +1,10 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
 
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Button, Form } from 'react-bootstrap';
-
-import { authContext } from '../contexts/AuthContext';
 
 import './signin.css';
 import '../App.css';
@@ -29,9 +27,6 @@ const SignIn = () => {
     setInputs({ ...inputs, [name]: value });
   };
 
-  // handle authentification
-  const { setAuthData } = useContext(authContext);
-
   const onAuthSubmit = (event) => {
     event.preventDefault();
     if (inputs.email === '' || inputs.password === '') {
@@ -40,7 +35,7 @@ const SignIn = () => {
       const url = `${process.env.REACT_APP_HOST}/auth/login/superadmin`;
       Axios.post(url, inputs)
         .then((response) => {
-          setAuthData(response.data.token);
+          localStorage.setItem('token', response.data.token);
         })
         .then(() => history.push('/admin/dashboard'));
     }
