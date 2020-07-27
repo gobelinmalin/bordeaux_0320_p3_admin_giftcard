@@ -166,6 +166,7 @@ const ShopsAdd = () => {
             <Form.Group>
               <Form.Label>n° SIREN*</Form.Label>
               <Form.Control
+                size="sm"
                 type="text"
                 name="siren"
                 value={shop.siren}

@@ -1,5 +1,5 @@
 const section = [
-  { name: 'Tableau de bord', route: '/boardchart' },
+  { name: 'Tableau de bord', route: '/dashboard' },
   { name: 'Enseignes', route: '/shops' },
   { name: 'Produits', route: '/products' },
   { name: 'Customisation', route: '/customization' },

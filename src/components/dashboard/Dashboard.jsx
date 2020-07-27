@@ -6,8 +6,8 @@ import { Container } from 'react-bootstrap';
 
 // import style
 
-const BoardChart = () => {
-  return <Container className="col-lg">fake BoardChart</Container>;
+const Dashboard = () => {
+  return <Container className="col-lg"> </Container>;
 };
 
-export default BoardChart;
+export default Dashboard;

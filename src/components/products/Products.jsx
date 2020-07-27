@@ -1,7 +1,10 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
+
+import { Button, Container, Table } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import ProductsNavbar from './ProductsNavbar';
 
@@ -9,7 +12,7 @@ import './products.css';
 import '../styles.css';
 
 const Products = () => {
-  // retrieve products
+  // GET PRODUCTS
   const [products, setProducts] = useState([]);
 
   const getProductsData = () => {
@@ -23,7 +26,7 @@ const Products = () => {
     getProductsData();
   }, []);
 
-  // retrieve shops names
+  // GET SHOPS NAME
   const [shops, setShops] = useState([]);
 
   const getShopsData = () => {
@@ -41,6 +44,49 @@ const Products = () => {
     const foundShop = shops.find((shop) => shop.id === shopId);
     return foundShop ? foundShop.name : '';
   };
+
+  // GET CATEGORIES
+  const [categories, setCategories] = useState([]);
+
+  const getCategoriesData = () => {
+    /* const url = `${process.env.REACT_APP_LOCALHOST}/api/categories/` */
+    const url = 'http://localhost:5000/api/categories';
+    Axios.get(url)
+      .then((response) => response.data)
+      .then((data) => setCategories(data));
+  };
+
+  useEffect(() => {
+    getCategoriesData();
+  }, []);
+
+  const getCategory = (categoryId) => {
+    const foundCategory = categories.find(
+      (category) => category.id === categoryId
+    );
+    return foundCategory ? foundCategory.type : '';
+  };
+
+  // GET THEME
+  const [themes, setThemes] = useState([]);
+
+  const getThemesData = () => {
+    const url = 'http://localhost:5000/api/themes';
+    Axios.get(url)
+      .then((response) => response.data)
+      .then((data) => setThemes(data));
+  };
+
+  useEffect(() => {
+    getThemesData();
+  }, []);
+
+  const getTheme = (themeId) => {
+    const foundTheme = themes.find((theme) => theme.id === themeId);
+    return foundTheme ? foundTheme.name : '';
+  };
+
+  console.log(categories);
 
   return (
     <Container>
@@ -61,9 +107,9 @@ const Products = () => {
             <th>id</th>
             <th>Image</th>
             <th>Enseigne</th>
+            <th>Categorie</th>
             <th>Produit</th>
             <th>Theme</th>
-            <th>Categorie</th>
             <th>Prix</th>
             <th>Quantité</th>
             <th>Statut</th>
@@ -75,16 +121,16 @@ const Products = () => {
                 <td>{product.id}</td>
                 <td> </td>
                 <td>{getShopName(product.id_shop)}</td>
+                <td>{getCategory(product.id_category)}</td>
                 <td>{product.name}</td>
-                <td>{product.id_theme}</td>
-                <td>{product.id_category}</td>
+                <td>{getTheme(product.id_theme)}</td>
                 <td>{product.price}</td>
                 <td> </td>
                 <td>{product.sale_status}</td>
-                <td>
-                  <Button variant="editing">Fiche</Button>
-                  <Button variant="editing">Modifier</Button>
-                  <Button variant="deleting">Supprimer</Button>
+                <td className="action">
+                  <FontAwesomeIcon className="action-icon" icon="tasks" />
+                  <FontAwesomeIcon className="action-icon" icon="pen" />
+                  <FontAwesomeIcon className="action-icon" icon="trash" />
                 </td>
               </tr>
             ))}
