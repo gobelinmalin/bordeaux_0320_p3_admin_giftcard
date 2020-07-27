@@ -40,6 +40,8 @@ import Shops from './components/shops/Shops';
 import ShopsAdd from './components/shops/ShopsAdd';
 import ShopsUpdate from './components/shops/ShopsUpdate';
 import ShopDetails from './components/shops/ShopDetail';
+import Categories from './components/categories/Categories';
+import CategoryUpdate from './components/categories/CategoryUpdate';
 import Products from './components/products/Products';
 import ProductsAdd from './components/products/ProductsAdd';
 import CardAdd from './components/products/CardAdd';
@@ -73,7 +75,6 @@ function App() {
                 path="/admin/dashboard"
                 component={Dashboard}
               />
-
               <PrivateRoute exact path="/admin/shops" component={Shops} />
               <PrivateRoute path="/admin/shops/add" component={ShopsAdd} />
               <PrivateRoute
@@ -84,11 +85,19 @@ function App() {
                 path="/admin/shops/update/:id"
                 component={ShopsUpdate}
               />
-
               <PrivateRoute exact path="/admin/products" component={Products} />
               <PrivateRoute
                 path="/admin/products/add"
                 component={ProductsAdd}
+              />
+              <PrivateRoute
+                exact
+                path="/admin/categories"
+                component={Categories}
+              />
+              <PrivateRoute
+                path="/admin/categories/:id"
+                component={CategoryUpdate}
               />
               <PrivateRoute
                 exact

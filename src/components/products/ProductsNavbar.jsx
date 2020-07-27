@@ -11,8 +11,10 @@ const ProductNavbar = () => {
       <Link to="/admin/products">
         <Button variant="insideNav">PRODUITS</Button>
       </Link>
-      <Button variant="insideNav">CATEGORIES</Button>
-      <Button variant="insideNav">THEMES</Button>
+      <Link to="/admin/categories">
+        <Button variant="insideNav">CATEGORIES</Button>
+      </Link>
+      <Button variant="insideNav">THEME</Button>
       <Button variant="insideNav">TAGS</Button>
     </div>
   );
