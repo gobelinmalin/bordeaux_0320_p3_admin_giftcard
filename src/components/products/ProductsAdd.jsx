@@ -21,28 +21,34 @@ const ProductsAdd = () => {
   // set initial form
   const initialFormState = {
     id: null,
-    shop: '',
-    category: '',
-    theme: '',
+    id_shop: '',
+    id_category: '',
+    id_theme: '',
     name: '',
     image: '',
     description: '',
   };
 
+  // PRODUCT : handle product field
   const [product, setProduct] = useState(initialFormState);
 
-  // PRODUCT : handle input changes
-  // handle string changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setProduct({ ...product, [name]: value });
   };
 
-  // SHOPS : handle shop field
-  const [shops, setShops] = useState([]);
+  // POST operation
+  const addProduct = () => {
+    const url = `${process.env.REACT_APP_HOST}/products`;
+    Axios.post(url, product)
+      .then((response) => response.data)
+      .then((data) => setProduct(data));
+  };
 
+  // SHOPS : handle shops field
+  const [shops, setShops] = useState([]);
   const getShopsData = () => {
-    const url = 'http://localhost:5000/api/shops';
+    const url = `${process.env.REACT_APP_HOST}/shops`;
     Axios.get(url)
       .then((response) => response.data)
       .then((data) => setShops(data));
@@ -52,38 +58,15 @@ const ProductsAdd = () => {
     getShopsData();
   }, []);
 
-  // Shops searchBar
-  const [query, setQuery] = useState('');
-  const [filterShop, setFilterShop] = useState(shops);
-
-  const handleShopsSearch = (event) => {
-    setQuery(event);
-    const oldList = shops.map((shop) => {
-      return { id: shop.id, name: shop.name.toLowerCase() };
-    });
-
-    if (query !== '') {
-      let newList = [];
-
-      newList = oldList.filter((shop) =>
-        shop.name.startsWith(query.toLowerCase())
-      );
-      setFilterShop(newList);
-    } else {
-      setFilterShop(shops);
-    }
+  const handleChangeShop = (event) => {
+    const { name, value } = event.target;
+    setProduct({ ...product, [name]: value });
   };
 
-  /*   const getShopName = (shopId) => {
-    const foundShop = shops.find((shop) => shop.id === shopId);
-    return foundShop ? foundShop.name : '';
-  }; */
-
-  // CATEGORIES : handle categories field
-  const [categories, setCategories] = useState();
-
+  // CATEGORIES : handle theme field
+  const [categories, setCategories] = useState([]);
   const getCategoriesData = () => {
-    const url = 'http://localhost:5000/api/categories';
+    const url = `${process.env.REACT_APP_HOST}/categories`;
     Axios.get(url)
       .then((response) => response.data)
       .then((data) => setCategories(data));
@@ -93,11 +76,15 @@ const ProductsAdd = () => {
     getCategoriesData();
   }, []);
 
-  // THEME : handle theme field
-  const [themes, setThemes] = useState();
+  const handleChangeCategory = (event) => {
+    const { name, value } = event.target;
+    setProduct({ ...product, [name]: value });
+  };
 
+  // THEME : handle theme field
+  const [themes, setThemes] = useState([]);
   const getThemesData = () => {
-    const url = 'http://localhost:5000/api/themes';
+    const url = `${process.env.REACT_APP_HOST}/themes`;
     Axios.get(url)
       .then((response) => response.data)
       .then((data) => setThemes(data));
@@ -107,9 +94,10 @@ const ProductsAdd = () => {
     getThemesData();
   }, []);
 
-  /*   console.log(shops);
-  console.log(product);
-  console.log(query); */
+  const handleChangeTheme = (event) => {
+    const { name, value } = event.target;
+    setProduct({ ...product, [name]: value });
+  };
 
   return (
     <Container>
@@ -130,6 +118,7 @@ const ProductsAdd = () => {
       <Form
         onSubmit={(event) => {
           event.preventDefault();
+          addProduct(product);
           setProduct(initialFormState);
         }}
       >
@@ -137,31 +126,32 @@ const ProductsAdd = () => {
           <Form.Group>
             <Form.Label>Enseigne</Form.Label>
             <Form.Control
+              as="select"
               size="sm"
-              type="text"
-              name="shop"
-              value={product.shop}
-              onChange={(event) => handleShopsSearch(event.target.value)}
-            />
-            {filterShop.map((shop) => (
-              <div>{shop.name}</div>
-            ))}
+              name="id_shop"
+              value={product.id_shop}
+              onChange={handleChangeShop}
+            >
+              <option value="choose">Choisir...</option>
+              {shops.map((shop) => (
+                <option value={shop.id}>{shop.name}</option>
+              ))}
+            </Form.Control>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Catégorie de produit</Form.Label>
-
             <Form.Control
+              size="sm"
               as="select"
-              defaultValue="Choix..."
-              id="dropdown-basic-button"
-              title="Catégorie"
-              name="category"
-              value=""
+              name="id_category"
+              value={product.id_category}
+              onChange={handleChangeCategory}
             >
-              <option>Choix...</option>
-              {categories &&
-                categories.map((category) => <option>{category.type}</option>)}
+              <option value="choose">Choisir...</option>
+              {categories.map((category) => (
+                <option value={category.id}>{category.type}</option>
+              ))}
             </Form.Control>
           </Form.Group>
 
@@ -179,20 +169,23 @@ const ProductsAdd = () => {
           <Form.Group>
             <Form.File id="productImg" label="Image" />
           </Form.Group>
+
           <Form.Group>
             <Form.Label>Theme</Form.Label>
-
             <Form.Control
+              size="sm"
               as="select"
-              defaultValue="Choisir un thème"
-              title="Theme"
-              name="theme"
-              value=""
+              name="id_theme"
+              value={product.id_theme}
+              onChange={handleChangeTheme}
             >
-              <option>Choisir un thème</option>
-              {themes && themes.map((theme) => <option>{theme.name}</option>)}
+              <option value="choose">Choisir...</option>
+              {themes.map((theme) => (
+                <option value={theme.id}>{theme.name}</option>
+              ))}
             </Form.Control>
           </Form.Group>
+
           <Form.Group>
             <Form.Label>Description</Form.Label>
             <Form.Control
@@ -203,10 +196,6 @@ const ProductsAdd = () => {
               onChange={handleInputChange}
             />
           </Form.Group>
-        </div>
-
-        <div className="formContent">
-          <CardAdd />
         </div>
       </Form>
     </Container>
