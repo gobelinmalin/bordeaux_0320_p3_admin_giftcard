@@ -66,13 +66,17 @@ function App() {
             </Col>
             <Col sm={8}>
               <Header />
-              <PrivateRoute path="/admin/dashboard" component={Dashboard} />
-              <PrivateRoute path="/admin/products" component={Products} />
+              <PrivateRoute
+                exact
+                path="/admin/dashboard"
+                component={Dashboard}
+              />
+              <PrivateRoute exact path="/admin/products" component={Products} />
               <PrivateRoute
                 path="/admin/products/add"
                 component={ProductsAdd}
               />
-              <PrivateRoute path="/admin/shops" component={Shops} />
+              <PrivateRoute exact path="/admin/shops" component={Shops} />
               <PrivateRoute path="/admin/shops/add" component={ShopsAdd} />
               <PrivateRoute
                 path="/admin/shops/details/:id"
@@ -82,7 +86,11 @@ function App() {
                 path="/admin/shops/update/:id"
                 component={ShopsUpdate}
               />
-              <PrivateRoute path="/admin/customers" component={Customers} />
+              <PrivateRoute
+                exact
+                path="/admin/customers"
+                component={Customers}
+              />
               <PrivateRoute
                 path="/admin/customers/add"
                 component={AddCustomer}
@@ -91,7 +99,7 @@ function App() {
                 path="/admin/customers/update/:id"
                 component={UpdateCustomer}
               />
-              <PrivateRoute path="/admin/orders" component={Orders} />
+              <PrivateRoute exact path="/admin/orders" component={Orders} />
               <PrivateRoute
                 path="/admin/orders/update/:id"
                 component={UpdateOrder}
@@ -101,7 +109,7 @@ function App() {
                 component={OrdersByCustomer}
               />
 
-              <PrivateRoute path="/admin/admins" component={Admins} />
+              <PrivateRoute exact path="/admin/admins" component={Admins} />
               <PrivateRoute
                 path="/admin/admins/update/:id"
                 component={AdminUpdate}
