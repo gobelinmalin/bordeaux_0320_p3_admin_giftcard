@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 
+import { Link } from 'react-router-dom';
 import '../styles.css';
-import { Form } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
+
+import ProductNavbar from './ProductsNavbar';
 
 const CardAdd = () => {
   // set initial form
   const initialFormState = {
     id: null,
-    creation_date: '',
+    creationDate: '',
+    format: NaN,
     id_product: '',
     code_ean: '',
     code_card: '',
     credit: '',
     code_security: '',
-    validity: '',
+    validity: null,
     multi_use: '',
     sale_status: '',
     id_order: null,
@@ -27,24 +32,122 @@ const CardAdd = () => {
     setCard({ ...card, [name]: value });
   };
 
+  // set day time
+  const [date, setDate] = useState(new Date());
+  useEffect(() => {
+    const timer = setInterval(() => setDate(new Date()), 900000);
+    return function cleanup() {
+      clearInterval(timer);
+    };
+  });
+
+  // handle checkbox shop
+  const handleCheckUse = (event) => {
+    const { name } = event.target;
+    setCard({ ...card, [name]: !card.multi_use });
+  };
+
+  // handle change format
+  const handleChangeFormat = (event) => {
+    const { name, value } = event.target;
+    if (value === 'ecard') {
+      setCard({ ...card, [name]: true });
+    } else {
+      setCard({ ...card, [name]: false });
+    }
+  };
+
+  // PRODUCT : handle product field
+  const [products, setProducts] = useState([]);
+  const getProductsData = () => {
+    const url = `${process.env.REACT_APP_HOST}/products`;
+    Axios.get(url)
+      .then((response) => response.data)
+      .then((data) => setProducts(data));
+  };
+
+  useEffect(() => {
+    getProductsData();
+  }, []);
+
+  const handleChangeProduct = (event) => {
+    const { name, value } = event.target;
+    setCard({ ...card, [name]: value });
+  };
+
   return (
-    <div>
+    <Container>
+      <ProductNavbar />
+
       <div className="formContent">
-        <Form>
+        <div className="insideNavBar">
+          <Link to="/admin/products/add-card">
+            <Button variant="insideNav">Nouvelle carte cadeau</Button>
+          </Link>
+          <Link to=" ">
+            <Button variant="insideNav">Nouvel abonnement</Button>
+          </Link>
+        </div>
+      </div>
+
+      <div className="formContent">
+        <h2>Ajouter une carte cadeau</h2>
+      </div>
+
+      <Form>
+        <div className="formContent">
           <p>Ajout de carte cadeau</p>
           <Form.Group>
             <Form.Label>Date d&apos;ajout</Form.Label>
-            <Form.Control size="sm" type="text" name="add_time" />
+            <Form.Control
+              size="sm"
+              type="text"
+              name="creationDate"
+              defaultValue={date.toLocaleDateString()}
+              value={card.creationDate}
+              placeholder={date.toLocaleDateString()}
+              onChange={handleInputChange}
+              readOnly
+            />
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Nom du produit type</Form.Label>
+            <Form.Label>Sélectionner le Produit Type</Form.Label>
             <Form.Control
-              type="text"
+              size="sm"
+              as="select"
               name="id_product"
               value={card.type_product}
-              onChange=""
-            />
+              onChange={handleChangeProduct}
+            >
+              <option value="choose">Choisir...</option>
+              {products.map((product) => (
+                <option value={product.id}>
+                  {product.id}-{product.name}
+                </option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Format de la carte</Form.Label>
+            <div>
+              <Form.Check
+                inline
+                label="Carte Physique"
+                type="radio"
+                name="format"
+                value="card"
+                onChange={handleChangeFormat}
+              />
+              <Form.Check
+                inline
+                label="E-card"
+                type="radio"
+                name="format"
+                value="ecard"
+                onChange={handleChangeFormat}
+              />
+            </div>
           </Form.Group>
 
           <Form.Group>
@@ -83,7 +186,7 @@ const CardAdd = () => {
               type="date"
               name="validity"
               value={card.validity}
-              onChange=""
+              onChange={handleInputChange}
             />
           </Form.Group>
 
@@ -93,12 +196,16 @@ const CardAdd = () => {
               label="Utilisable en plusieurs fois"
               name="multi_use"
               check={card.multi_use}
-              onChange=""
+              onChange={handleCheckUse}
             />
           </Form.Group>
-        </Form>
-      </div>
-    </div>
+          {/* Form validation button */}
+        </div>
+        <div className="AddButton">
+          <Button type="submit">Ajouter cette carte</Button>
+        </div>
+      </Form>
+    </Container>
   );
 };
 
