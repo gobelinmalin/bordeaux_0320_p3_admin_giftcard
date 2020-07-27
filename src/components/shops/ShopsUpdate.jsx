@@ -98,18 +98,13 @@ const ShopsUpdate = () => {
         >
           {/* Shop identity Form */}
           <div className="formContent">
-            <p>Identité de l&apos;enseigne</p>
-            <Form.Group>
-              <Form.Label>Date de création*</Form.Label>
-              <Form.Control
-                size="sm"
-                type="text"
-                placeholder={shop.add_time}
-                readOnly
-              />
-            </Form.Group>
+            <p>Enseigne: {shop.name}</p>
+            <p>Date de creation de l&apos;enseigne: {shop.add_time}</p>
+          </div>
 
+          <div className="formContent">
             <div className="flex spaceBetween">
+              <p>Identité de l&apos;enseigne</p>
               <Form.Group>
                 <Form.Label>Forme Juridique*</Form.Label>
                 <Form.Control
