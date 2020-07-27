@@ -11,17 +11,16 @@ const CardAdd = () => {
   // set initial form
   const initialFormState = {
     id: null,
-    creationDate: '',
+    creationDate: null,
     format: NaN,
-    id_product: '',
-    code_ean: '',
-    code_card: '',
-    credit: '',
-    code_security: '',
-    validity: null,
-    multi_use: '',
-    sale_status: '',
-    id_order: null,
+    id_product: null,
+    code_ean: null,
+    code_card: null,
+    credit: null,
+    code_security: null,
+    validity: '',
+    multi_use: false,
+    sale_status: true,
   };
 
   // CARD: handle product field
@@ -75,6 +74,20 @@ const CardAdd = () => {
     setCard({ ...card, [name]: value });
   };
 
+  // handleDateChange
+  const handleDateChange = (event) => {
+    const { name, value } = event.target;
+    setCard({ ...card, [name]: value });
+  };
+
+  // ADD card to database
+  const addCard = () => {
+    const url = `${process.env.REACT_APP_HOST}/cards`;
+    Axios.post(url, card)
+      .then((response) => response.data)
+      .then((data) => setCard(data));
+  };
+
   return (
     <Container>
       <ProductNavbar />
@@ -94,7 +107,13 @@ const CardAdd = () => {
         <h2>Ajouter une carte cadeau</h2>
       </div>
 
-      <Form>
+      <Form
+        onSubmit={(event) => {
+          event.preventDefault();
+          addCard(card);
+          setCard(initialFormState);
+        }}
+      >
         <div className="formContent">
           <p>Ajout de carte cadeau</p>
           <Form.Group>
@@ -117,7 +136,7 @@ const CardAdd = () => {
               size="sm"
               as="select"
               name="id_product"
-              value={card.type_product}
+              value={card.id_product}
               onChange={handleChangeProduct}
             >
               <option value="choose">Choisir...</option>
@@ -171,6 +190,16 @@ const CardAdd = () => {
           </Form.Group>
 
           <Form.Group>
+            <Form.Label>Code de securité</Form.Label>
+            <Form.Control
+              type="text"
+              name="code_security"
+              value={card.code_security}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+
+          <Form.Group>
             <Form.Label>Credit de la carte</Form.Label>
             <Form.Control
               type="text"
@@ -186,7 +215,7 @@ const CardAdd = () => {
               type="date"
               name="validity"
               value={card.validity}
-              onChange={handleInputChange}
+              onChange={handleDateChange}
             />
           </Form.Group>
 
