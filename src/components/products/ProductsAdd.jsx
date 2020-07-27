@@ -12,7 +12,6 @@ import {
 } from 'react-bootstrap';
 
 import ProductNavbar from './ProductsNavbar';
-import CardAdd from './CardAdd';
 
 import './products.css';
 import '../styles.css';
@@ -199,6 +198,10 @@ const ProductsAdd = () => {
               onChange={handleInputChange}
             />
           </Form.Group>
+        </div>
+        {/* Form validation button */}
+        <div className="AddButton">
+          <Button type="submit">Ajouter ce produit type</Button>
         </div>
       </Form>
     </Container>
