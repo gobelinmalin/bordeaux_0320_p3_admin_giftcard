@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -85,8 +84,6 @@ const Products = () => {
     const foundTheme = themes.find((theme) => theme.id === themeId);
     return foundTheme ? foundTheme.name : '';
   };
-
-  console.log(categories);
 
   return (
     <Container>
