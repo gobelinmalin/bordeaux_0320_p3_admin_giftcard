@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 
 import React, { useState, useContext } from 'react';
@@ -32,15 +33,17 @@ const SignIn = () => {
   const { setAuthData } = useContext(authContext);
 
   const onAuthSubmit = (event) => {
-    const url = `${process.env.REACT_APP_HOST}/auth/login/superadmin`;
-
-    Axios.post(url, inputs)
-      .then((response) => {
-        setAuthData(response.data.token);
-      })
-      .then(() => history.push('/admin/dashboard'));
-
     event.preventDefault();
+    if (inputs.email === '' || inputs.password === '') {
+      history.push('/');
+    } else {
+      const url = `${process.env.REACT_APP_HOST}/auth/login/superadmin`;
+      Axios.post(url, inputs)
+        .then((response) => {
+          setAuthData(response.data.token);
+        })
+        .then(() => history.push('/admin/dashboard'));
+    }
   };
 
   return (
