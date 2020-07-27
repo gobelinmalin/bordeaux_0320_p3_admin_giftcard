@@ -42,6 +42,8 @@ import Shops from './components/shops/Shops';
 import ShopsAdd from './components/shops/ShopsAdd';
 import ShopsUpdate from './components/shops/ShopsUpdate';
 import ShopDetails from './components/shops/ShopDetail';
+import Categories from './components/categories/Categories';
+import CategoryUpdate from './components/categories/CategoryUpdate';
 
 function App() {
   library.add(
@@ -75,6 +77,15 @@ function App() {
               <PrivateRoute
                 path="/admin/products/add"
                 component={ProductsAdd}
+              />
+              <PrivateRoute
+                exact
+                path="/admin/categories"
+                component={Categories}
+              />
+              <PrivateRoute
+                path="/admin/categories/:id"
+                component={CategoryUpdate}
               />
               <PrivateRoute exact path="/admin/shops" component={Shops} />
               <PrivateRoute path="/admin/shops/add" component={ShopsAdd} />
