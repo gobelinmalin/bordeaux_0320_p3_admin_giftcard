@@ -23,6 +23,7 @@ import {
 // import components
 import Admins from './components/admins/Admins';
 import AdminUpdate from './components/admins/AdminUpdate';
+import CardAdd from './components/products/CardAdd';
 import Signin from './components/Signin';
 import Header from './components/header/Header';
 import NavBar from './components/navbar/NavBar';
@@ -64,6 +65,11 @@ function App() {
               <Header />
               <Route exact path="/admin/products" component={Products} />
               <Route exact path="/admin/products/add" component={ProductsAdd} />
+              <Route
+                exact
+                path="/admin/products/add-card"
+                component={CardAdd}
+              />
               <Route exact path="/admin/shops" component={Shops} />
               <Route exact path="/admin/shops/add" component={ShopsAdd} />
               <Route

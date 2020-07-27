@@ -9,10 +9,10 @@ const ProductNavbar = () => {
   return (
     <div className="insideNavBar">
       <Link to="/admin/products">
-        <Button variant="insideNav">PRODUITS</Button>
+        <Button variant="insideNav">retour PRODUITS</Button>
       </Link>
       <Button variant="insideNav">CATEGORIES</Button>
-      <Button variant="insideNav">THEME</Button>
+      <Button variant="insideNav">THEMES</Button>
       <Button variant="insideNav">TAGS</Button>
     </div>
   );

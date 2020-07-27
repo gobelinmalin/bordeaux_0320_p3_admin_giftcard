@@ -103,16 +103,19 @@ const ProductsAdd = () => {
     <Container>
       <ProductNavbar />
 
-      <div className="insideNavBar">
-        <Link to="/admin/products">
-          <Button variant="insideNav">Cartes Cadeaux</Button>
-        </Link>
-        <Link to=" ">
-          <Button variant="insideNav">Abonnements</Button>
-        </Link>
-        <Link to=" ">
-          <Button variant="insideNav">Coffrets</Button>
-        </Link>
+      <div className="formContent">
+        <div className="insideNavBar">
+          <Link to="/admin/products/add-card">
+            <Button variant="insideNav">Nouvelle carte cadeau</Button>
+          </Link>
+          <Link to=" ">
+            <Button variant="insideNav">Nouvel abonnement</Button>
+          </Link>
+        </div>
+      </div>
+
+      <div className="formContent">
+        <h2>Ajouter un produit type</h2>
       </div>
 
       <Form
