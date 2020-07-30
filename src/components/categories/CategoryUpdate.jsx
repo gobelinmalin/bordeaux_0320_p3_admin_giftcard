@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 function CategoryUpdate() {
   const { id } = useParams();
+  const history = useHistory();
   const [category, setCategory] = useState({});
 
   const getCategoryData = () => {
@@ -24,8 +25,9 @@ function CategoryUpdate() {
   const updateCategory = () => {
     const url = `${process.env.REACT_APP_HOST}/categories/${id}`;
     Axios.put(url, category)
-      .then((response) => response.status === 200)
-      .finally(() => getCategoryData());
+      .then((response) => response.data)
+      .then((data) => setCategory(data))
+      .then(history.push('/admin/categories'));
   };
 
   const handleChange = (event) => {
