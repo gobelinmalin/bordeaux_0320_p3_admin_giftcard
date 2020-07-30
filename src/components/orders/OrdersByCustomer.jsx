@@ -1,13 +1,9 @@
+// import library
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Container, Table } from 'react-bootstrap';
-
-// import components
-
-// import data
-
-// import style
+import { CSVLink } from 'react-csv';
 
 function OrdersByCustomer() {
   const [customer, setCustomer] = useState([{}]);
@@ -55,6 +51,9 @@ function OrdersByCustomer() {
   return (
     <Container>
       <h1>{`Commandes du client ${customerName}`}</h1>
+      <CSVLink data={allOrders} separator=",">
+        Télécharger le csv
+      </CSVLink>
       <Table>
         <thead>
           <tr>
