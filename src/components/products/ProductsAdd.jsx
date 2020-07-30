@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import {
@@ -34,14 +34,6 @@ const ProductsAdd = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setProduct({ ...product, [name]: value });
-  };
-
-  // POST operation
-  const addProduct = () => {
-    const url = `${process.env.REACT_APP_HOST}/products`;
-    Axios.post(url, product)
-      .then((response) => response.data)
-      .then((data) => setProduct(data));
   };
 
   // SHOPS : handle shops field
@@ -98,6 +90,47 @@ const ProductsAdd = () => {
     setProduct({ ...product, [name]: value });
   };
 
+  // upload file
+  const [uploadedFile, setUploadedFile] = useState();
+  // store file
+  const [, stockedFile] = useState({ name: '', path: '' });
+  // input element
+  const element = useRef();
+
+  const handleUpload = (e) => {
+    // accesing file
+    const file = e.target.files[0];
+    // storing file
+    setUploadedFile(file);
+    setProduct((prevState) => {
+      return {
+        ...prevState,
+        image: `${process.env.REACT_APP_HOST}/${file.name}`,
+      };
+    });
+  };
+
+  // POST operation
+  const addProduct = () => {
+    const url = `${process.env.REACT_APP_HOST}/products`;
+
+    // register product
+    Axios.post(url, product)
+      .then((response) => response.data)
+      .then((data) => setProduct(data));
+
+    const uploadImage = new FormData();
+    // appending file
+    uploadImage.append('file', uploadedFile);
+    Axios.post(`${process.env.REACT_APP_HOST}/upload`, uploadImage).then(
+      (res) =>
+        stockedFile({
+          name: res.data.name,
+          path: `${process.env.REACT_APP_HOST}/${res.data.path}`,
+        })
+    );
+  };
+
   return (
     <Container>
       <ProductNavbar />
@@ -136,7 +169,9 @@ const ProductsAdd = () => {
             >
               <option value="choose">Choisir...</option>
               {shops.map((shop) => (
-                <option value={shop.id}>{shop.name}</option>
+                <option key={shop.id} value={shop.id}>
+                  {shop.name}
+                </option>
               ))}
             </Form.Control>
           </Form.Group>
@@ -152,7 +187,9 @@ const ProductsAdd = () => {
             >
               <option value="choose">Choisir...</option>
               {categories.map((category) => (
-                <option value={category.id}>{category.type}</option>
+                <option key={category.id} value={category.id}>
+                  {category.type}
+                </option>
               ))}
             </Form.Control>
           </Form.Group>
@@ -169,7 +206,13 @@ const ProductsAdd = () => {
           </Form.Group>
 
           <Form.Group>
-            <Form.File id="productImg" label="Image" />
+            <Form.File
+              id="productImg"
+              label="Image"
+              type="file"
+              ref={element}
+              onChange={handleUpload}
+            />
           </Form.Group>
 
           <Form.Group>
@@ -183,7 +226,9 @@ const ProductsAdd = () => {
             >
               <option value="choose">Choisir...</option>
               {themes.map((theme) => (
-                <option value={theme.id}>{theme.name}</option>
+                <option key={theme.id} value={theme.id}>
+                  {theme.name}
+                </option>
               ))}
             </Form.Control>
           </Form.Group>
