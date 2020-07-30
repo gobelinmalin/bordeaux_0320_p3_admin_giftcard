@@ -6,7 +6,7 @@ import { Form, Button, Col, Container } from 'react-bootstrap';
 import './shops.css';
 import '../styles.css';
 
-const ShopsAdd = () = {
+const ShopsAdd = () => {
   const history = useHistory();
 
   const initialFormState = {
@@ -117,7 +117,7 @@ const ShopsAdd = () = {
     const url = `${process.env.REACT_APP_HOST}/shops`;
     Axios.post(url, shop)
       .then((response) => response.data)
-      .then((data) => setShop(data))
+      .then((data) => setShop(data));
 
     const uploadImage = new FormData();
     // appending file
