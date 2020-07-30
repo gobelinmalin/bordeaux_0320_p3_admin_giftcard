@@ -59,7 +59,7 @@ const Admins = () => {
   return (
     <>
       <Container>
-        <h3>Liste des administrateurs</h3>
+        <h3 className="titlelist">Liste des administrateurs</h3>
         <Table hover>
           <thead>
             <tr>
@@ -72,6 +72,7 @@ const Admins = () => {
           </thead>
           <tbody>{allAdmins}</tbody>
         </Table>
+        <hr />
         <AdminsAdd getAdminsDatas={getAdminsDatas} />
       </Container>
     </>

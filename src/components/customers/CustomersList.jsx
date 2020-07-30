@@ -20,7 +20,12 @@ const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
           <td>{customer.firstname}</td>
           <td>{customer.lastname}</td>
           <td>{customer.email}</td>
-          <td>{customer.address}</td>
+          <td>
+            {customer.address}, {customer.zipcode} {customer.city},{' '}
+            {customer.country}
+          </td>
+          <td>{customer.phone}</td>
+          <td>{new Date(customer.birthdate).toLocaleDateString()}</td>
           <td>
             <Link to={`/admin/customers/update/${customer.id}`}>
               <FontAwesomeIcon
@@ -42,7 +47,7 @@ const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
   return (
     <Container>
       <div className="table-title">
-        <h3>Liste des clients</h3>
+        <h3 className="titlelist">Liste des clients</h3>
         <Link to="/admin/customers/add">
           <FontAwesomeIcon icon="user-plus" size="3x" />
         </Link>
@@ -56,6 +61,8 @@ const CustomersList = ({ customers, deleteCustomer, editCustomer }) => {
             <th>Nom</th>
             <th>Email</th>
             <th>Adresse</th>
+            <th>Téléphone</th>
+            <th>Date de naissance</th>
             <th>Modifier</th>
             <th>Effacer</th>
           </tr>

@@ -14,10 +14,10 @@ const fields = [
     pattern: '',
   },
   {
-    label: 'Online / Offline',
+    label: 'Livré ?',
     name: 'status',
     type: 'text',
-    placeholder: " 'true' pour Online OU 'false' pour Offline",
+    placeholder: " 'true' pour oui OU 'false' pour non",
     pattern: '',
   },
   {
