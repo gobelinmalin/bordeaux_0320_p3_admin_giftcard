@@ -61,3 +61,8 @@
 .action-icon {
   margin: 0 15px;
 }
+
+.img_product img {
+  width: 3rem;
+  object-fit: contain;
+}

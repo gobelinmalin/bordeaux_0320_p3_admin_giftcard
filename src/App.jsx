@@ -45,6 +45,7 @@ import CategoryUpdate from './components/categories/CategoryUpdate';
 import Products from './components/products/Products';
 import ProductsAdd from './components/products/ProductsAdd';
 import CardAdd from './components/products/CardAdd';
+import CardsProducts from './components/products/CardsProducts';
 
 function App() {
   library.add(
@@ -89,6 +90,11 @@ function App() {
               <PrivateRoute
                 path="/admin/products/add"
                 component={ProductsAdd}
+              />
+              <PrivateRoute
+                exact
+                path="/admin/products/cards"
+                component={CardsProducts}
               />
               <PrivateRoute
                 exact

@@ -49,6 +49,7 @@ const Shops = () => {
 
   return (
     <Container>
+      <h3 className="titlelist">Liste des enseignes</h3>
       <div className="insideNavBar">
         <Link to="/admin/shops/add">
           <Button variant="insideNav"> Ajouter une enseigne </Button>
@@ -62,8 +63,7 @@ const Shops = () => {
               <th>id</th>
               <th>Logo</th>
               <th>Name</th>
-              <th>Ville</th>
-              <th>Pays</th>
+              <th>Siège social</th>
               <th>Theme</th>
               <th>E-Shop</th>
               <th>Boutique</th>
@@ -73,14 +73,18 @@ const Shops = () => {
           </thead>
           <tbody>
             {shops.map((shop) => (
-              <tr>
+              <tr key={shop.id}>
                 <td>{shop.id}</td>
-                <td>logo</td>
+                <td className="img_product">
+                  <img src={shop.logo} alt={shop.name} />
+                </td>
                 <td>
                   <Link to={`/admin/shops/update/${shop.id}`}>{shop.name}</Link>
                 </td>
-                <td> </td>
-                <td> </td>
+                <td>
+                  {shop.head_street}, {shop.head_zipcode} {shop.head_city},{' '}
+                  {shop.head_country}
+                </td>
                 <td> </td>
                 <td>
                   <div className={shop.online ? 'e-shop' : 'shop'}>

@@ -4,6 +4,7 @@ import { Button, Table, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
+import ProductsNavbar from '../products/ProductsNavbar';
 
 // import component
 import CategoryAdd from './CategoryAdd';
@@ -27,14 +28,16 @@ const Category = () => {
   };
 
   return (
-    <Container>
-      <div className="insideNavBar">
+    <>
+      <Container>
+        <ProductsNavbar />
+        <hr />
+        <h3 className="titlelist">Liste des catégories de produit</h3>
+              <div className="insideNavBar">
         <Link to="/admin/products">
           <Button variant="insideNav">Retour aux produits</Button>
         </Link>
       </div>
-
-      <h1>Liste des categories</h1>
       <Table>
         <thead>
           <tr>

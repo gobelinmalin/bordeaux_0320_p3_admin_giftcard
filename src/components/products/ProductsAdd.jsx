@@ -13,7 +13,6 @@ import {
 
 import ProductNavbar from './ProductsNavbar';
 
-import './products.css';
 import '../styles.css';
 
 const ProductsAdd = () => {

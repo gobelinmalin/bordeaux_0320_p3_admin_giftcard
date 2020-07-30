@@ -44,11 +44,15 @@ function OrdersList({ orders, deleteOrder, updateOrder }) {
         <Link to={`/admin/orders/by-client/${order.id_client}`}>
           <td>{order.id_client}</td>
         </Link>
-        <td>{order.id_delivery}</td>
-        <td>{order.status}</td>
-        <td>{order.delivery_date}</td>
+        <td>{order.id}</td>
+        <td>
+          <div className={order.status ? 'notsale' : 'sale'}>
+            {order.status}
+          </div>
+        </td>
+        <td>{new Date(order.delivery_date).toLocaleDateString()}</td>
         <td>{order.shipping_fees}</td>
-        <td>{order.createDate}</td>
+        <td>{new Date(order.createDate).toLocaleDateString()}</td>
         <td>
           <Link className="edit-link" to={`/admin/orders/update/${order.id}`}>
             <FontAwesomeIcon
@@ -66,7 +70,7 @@ function OrdersList({ orders, deleteOrder, updateOrder }) {
 
   return (
     <Container>
-      <h3>Liste des commandes</h3>
+      <h3 className="titlelist">Liste des commandes</h3>
       <Table responsive hover>
         <thead>
           <tr>
@@ -85,7 +89,7 @@ function OrdersList({ orders, deleteOrder, updateOrder }) {
               />
             </th>
             <th>
-              Online / Offline
+              Livré
               <FontAwesomeIcon
                 icon="sort"
                 onClick={() => requestSort('status')}

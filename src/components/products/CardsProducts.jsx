@@ -9,60 +9,20 @@ import ProductsNavbar from './ProductsNavbar';
 
 import '../styles.css';
 
-const Products = () => {
-  // GET PRODUCTS
-  const [products, setProducts] = useState([]);
+const CardsProducts = () => {
+  // GET cards
+  const [cards, setCards] = useState([]);
 
-  const getProductsData = () => {
-    const url = `${process.env.REACT_APP_HOST}/products`;
+  const getCardsData = () => {
+    const url = `${process.env.REACT_APP_HOST}/products/cards`;
     Axios.get(url)
       .then((response) => response.data)
-      .then((data) => setProducts(data));
+      .then((data) => setCards(data));
   };
 
   useEffect(() => {
-    getProductsData();
+    getCardsData();
   }, []);
-
-  // GET SHOPS NAME
-  const [shops, setShops] = useState([]);
-
-  const getShopsData = () => {
-    const url = `${process.env.REACT_APP_HOST}/shops`;
-    Axios.get(url)
-      .then((response) => response.data)
-      .then((data) => setShops(data));
-  };
-
-  useEffect(() => {
-    getShopsData();
-  }, []);
-
-  const getShopName = (shopId) => {
-    const foundShop = shops.find((shop) => shop.id === shopId);
-    return foundShop ? foundShop.name : '';
-  };
-
-  // GET CATEGORIES
-  const [categories, setCategories] = useState([]);
-
-  const getCategoriesData = () => {
-    const url = `${process.env.REACT_APP_HOST}/categories`;
-    Axios.get(url)
-      .then((response) => response.data)
-      .then((data) => setCategories(data));
-  };
-
-  useEffect(() => {
-    getCategoriesData();
-  }, []);
-
-  const getCategory = (categoryId) => {
-    const foundCategory = categories.find(
-      (category) => category.id === categoryId
-    );
-    return foundCategory ? foundCategory.type : '';
-  };
 
   // GET THEME
   const [themes, setThemes] = useState([]);
@@ -83,6 +43,25 @@ const Products = () => {
     return foundTheme ? foundTheme.name : '';
   };
 
+  // GET SHOP
+  const [shops, setShops] = useState([]);
+
+  const getShopsData = () => {
+    const url = `${process.env.REACT_APP_HOST}/shops`;
+    Axios.get(url)
+      .then((response) => response.data)
+      .then((data) => setShops(data));
+  };
+
+  useEffect(() => {
+    getShopsData();
+  }, []);
+
+  const getShops = (shopId) => {
+    const foundShop = shops.find((shop) => shop.id === shopId);
+    return foundShop ? foundShop.name : '';
+  };
+
   // Delete modal
   // handle delete modal
   const [productId, setProductId] = useState();
@@ -99,20 +78,17 @@ const Products = () => {
     const url = `${process.env.REACT_APP_HOST}/products/${productId}`;
     Axios.delete(url)
       .then((response) => response.data && setShowModal(false))
-      .finally(() => getProductsData());
+      .finally(() => getCardsData());
   };
 
   return (
     <Container>
       <ProductsNavbar />
       <hr />
-      <h3>Liste des produits types</h3>
+      <h3>Liste des cartes cadeaux</h3>
       <div className="insideNavBar">
-        <Link to="/admin/products/add">
-          <Button variant="insideNav">Ajouter un produit type</Button>
-        </Link>
-        <Link to="/admin/products/cards">
-          <Button variant="insideNav">Voir les cartes cadeaux</Button>
+        <Link to="/admin/products/add-card">
+          <Button variant="insideNav">Ajouter une carte cadeau</Button>
         </Link>
       </div>
       <div>
@@ -120,23 +96,31 @@ const Products = () => {
           <thead>
             <th>id</th>
             <th>Image</th>
+            <th>Nom</th>
             <th>Enseigne</th>
-            <th>Categorie</th>
-            <th>Produit</th>
             <th>Theme</th>
+            <th>Format</th>
+            <th>Prix</th>
+            <th>Statut</th>
             <th>Actions</th>
           </thead>
           <tbody>
-            {products.map((product) => (
-              <tr>
-                <td>{product.id}</td>
+            {cards.map((card) => (
+              <tr key={card.idcard}>
+                <td>{card.idcard}</td>
                 <td className="img_product">
-                  <img src={product.image} alt={product.name} />
+                  <img src={card.image} alt={card.name} />
                 </td>
-                <td>{getShopName(product.id_shop)}</td>
-                <td>{getCategory(product.id_category)}</td>
-                <td>{product.name}</td>
-                <td>{getTheme(product.id_theme)}</td>
+                <td>{card.name}</td>
+                <td>{getShops(card.id_shop)}</td>
+                <td>{getTheme(card.id_theme)}</td>
+                {card.format === 1 ? <td>e-card</td> : <td>carte physique</td>}
+                <td>{card.credit}€</td>
+                <td>
+                  <div className={card.sale_status ? 'notsale' : 'sale'}>
+                    {card.sale_status}
+                  </div>
+                </td>
                 <td className="action">
                   <FontAwesomeIcon className="action-icon" icon="tasks" />
                   <FontAwesomeIcon className="action-icon" icon="pen" />
@@ -144,7 +128,7 @@ const Products = () => {
                   <FontAwesomeIcon
                     className="action-icon"
                     icon="trash"
-                    onClick={() => handleShow(product.id)}
+                    onClick={() => handleShow(card.id)}
                   />
                   {/* Delete Modal */}
                   <Modal show={showModal} onHide={handleClose}>
@@ -155,7 +139,7 @@ const Products = () => {
                     <Modal.Footer>
                       <Button onClick={handleClose}>Annuler</Button>
                       <Button onClick={() => deleteProduct()}>
-                        Supprimer {product.id}-{product.name}
+                        Supprimer {card.id}-{card.name}
                       </Button>
                     </Modal.Footer>
                   </Modal>
@@ -169,4 +153,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default CardsProducts;
