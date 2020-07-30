@@ -1,20 +1,19 @@
-// import libs
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { Form, Container, Button } from 'react-bootstrap';
 
-function CategoryAdd({ getCategoriesDatas }) {
-  const [category, setCategory] = useState([{}]);
+function ThemeAdd({ getThemesDatas }) {
+  const [theme, setTheme] = useState([{}]);
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
-    setCategory(inputValue);
+    setTheme(inputValue);
   }, [inputValue]);
 
-  const addCategory = () => {
-    const url = `${process.env.REACT_APP_HOST}/categories`;
-    Axios.post(url, category).finally(() => getCategoriesDatas());
+  const addTheme = () => {
+    const url = `${process.env.REACT_APP_HOST}/themes`;
+    Axios.post(url, theme).finally(() => getThemesDatas());
   };
 
   const handleChange = (event) => {
@@ -26,15 +25,15 @@ function CategoryAdd({ getCategoriesDatas }) {
 
   return (
     <Container>
-      <h3 className="titlelist">Ajouter une catégorie</h3>
-      <Form action="" className="form-group" onSubmit={() => addCategory()}>
+      <h3 className="titlelist">Ajouter un theme</h3>
+      <Form className="form-group" onSubmit={() => addTheme()}>
         <Form.Group>
           <Form.Control
-            name="type"
+            name="name"
             type="text"
-            value={inputValue.type}
+            value={theme.name}
             onChange={(event) => handleChange(event)}
-            placeholder="nouvelle catégorie"
+            placeholder="nouveau theme"
           />
         </Form.Group>
         <Button type="submit" className="admin-add">
@@ -45,12 +44,12 @@ function CategoryAdd({ getCategoriesDatas }) {
   );
 }
 
-CategoryAdd.defaultProps = {
-  getCategoriesDatas: PropTypes.func,
+ThemeAdd.defaultProps = {
+  getThemesDatas: PropTypes.func,
 };
 
-CategoryAdd.propTypes = {
-  getCategoriesDatas: PropTypes.func,
+ThemeAdd.propTypes = {
+  getThemesDatas: PropTypes.func,
 };
 
-export default CategoryAdd;
+export default ThemeAdd;

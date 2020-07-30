@@ -1,10 +1,17 @@
-/* Cockpit component */
-.parent-container {
-  display: flex;
-  min-width: 80vw;
-  margin: 0;
+/* GENERIC STYLES */
+
+/* TITLES and TEXT STYLE */
+
+.sectionTitle {
+  color: #20124d;
+  width: 100%;
+  border: 1px solid #20124d;
+  border-radius: 5px;
+  padding: 5px 20px;
+  margin: 10px 0;
 }
-/* NavBar component */
+
+/* NAVBAR COMPONENT */
 .nav-bar {
   display: flex;
   flex-direction: column;
@@ -81,6 +88,7 @@
 }
 
 /* BUTTONS */
+
 .yellow1 {
   background-color: #f28d1bff;
   border: 0.1rem solid #f28d1bff;

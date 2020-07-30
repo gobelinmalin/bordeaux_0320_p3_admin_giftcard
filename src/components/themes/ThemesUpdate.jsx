@@ -8,39 +8,39 @@ import ProductsNavbar from '../products/ProductsNavbar';
 
 import '../styles.css';
 
-function CategoryUpdate() {
+const ThemesUpdate = () => {
   const { id } = useParams();
   const history = useHistory();
-  const [category, setCategory] = useState({});
+  const [theme, setTheme] = useState(null);
 
-  const getCategoryData = () => {
-    Axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_HOST}/categories/${id}`,
-    })
+  const getThemeData = () => {
+    const url = `${process.env.REACT_APP_HOST}/themes/${id}`;
+    Axios.get(url)
       .then((response) => response.data)
-      .then((data) => setCategory(data[0]));
+      .then((data) => setTheme(data[0]));
   };
 
-  useEffect(() => {
-    getCategoryData();
-  }, []);
-
-  const updateCategory = () => {
-    const url = `${process.env.REACT_APP_HOST}/categories/${id}`;
-    Axios.put(url, category)
+  const updateTheme = () => {
+    const url = `${process.env.REACT_APP_HOST}/themes/${id}`;
+    Axios.put(url, theme)
       .then((response) => response.data)
-      .then((data) => setCategory(data))
-      .then(history.push('/admin/categories'));
+      .then((data) => setTheme(data))
+      .then(history.push('/admin/themes'));
   };
 
   const handleChange = (event) => {
     event.preventDefault();
     const { value, name } = event.target;
-    setCategory({ ...category, [name]: value });
+    setTheme({ ...theme, [name]: value });
   };
 
-  if (category) {
+  useEffect(() => {
+    if (!theme) {
+      getThemeData(id);
+    }
+  });
+
+  if (theme) {
     return (
       <Container>
         <ProductsNavbar />
@@ -50,29 +50,25 @@ function CategoryUpdate() {
           </Link>
         </div>
         <div className="sectionTitle">
-          <h3>Modifier cette catégorie</h3>
+          <h3>Modifier ce theme</h3>
         </div>
-        <Form
-          action=""
-          className="form-group"
-          onSubmit={() => updateCategory()}
-        >
+        <Form className="form-group" onSubmit={(event) => updateTheme(event)}>
           <Form.Group>
             <Form.Control
-              name="type"
+              name="name"
               type="text"
-              value={category.type}
+              value={theme.name}
               onChange={(event) => handleChange(event)}
             />
           </Form.Group>
           <Button type="submit" variant="insideNav">
-            Modifier la catégorie
+            Modifier le thème
           </Button>
         </Form>
       </Container>
     );
   }
   return null;
-}
+};
 
-export default CategoryUpdate;
+export default ThemesUpdate;

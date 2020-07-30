@@ -133,19 +133,16 @@ const ProductsAdd = () => {
   return (
     <Container>
       <ProductNavbar />
-
-      <div className="formContent">
-        <div className="insideNavBar">
-          <Link to="/admin/products/add-card">
-            <Button variant="insideNav">Nouvelle carte cadeau</Button>
-          </Link>
-          <Link to=" ">
-            <Button variant="insideNav">Nouvel abonnement</Button>
-          </Link>
-        </div>
+      <div className="insideNavBar">
+        <Link to="/admin/products/add-card">
+          <Button variant="insideNav">Nouvelle carte cadeau</Button>
+        </Link>
+        <Link to=" ">
+          <Button variant="insideNav">Nouvel abonnement</Button>
+        </Link>
       </div>
 
-      <div className="formContent">
+      <div className="sectionTitle">
         <h2>Ajouter un produit type</h2>
       </div>
 
