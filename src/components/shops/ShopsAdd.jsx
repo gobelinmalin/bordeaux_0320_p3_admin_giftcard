@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
@@ -29,12 +29,12 @@ const ShopsAdd = () => {
     head_state: '',
     head_country: '',
     contact1_name: '',
-    contact1_phone1: '',
-    contact1_phone2: '',
+    contact1_phone1: null,
+    contact1_phone2: null,
     contact1_email: '',
     contact2_name: '',
-    contact2_phone1: '',
-    contact2_phone2: '',
+    contact2_phone1: null,
+    contact2_phone2: null,
     contact2_email: '',
     account_name: '',
     eban: '',
@@ -91,12 +91,43 @@ const ShopsAdd = () => {
     setShop({ ...shop, [name]: !shop.status });
   };
 
+  // upload file
+  const [uploadedFile, setUploadedFile] = useState();
+  // store file
+  const [, stockedFile] = useState({ name: '', path: '' });
+  // input element
+  const element = useRef();
+
+  const handleUpload = (e) => {
+    // accesing file
+    const file = e.target.files[0];
+    // storing file
+    setUploadedFile(file);
+    setShop((prevState) => {
+      return {
+        ...prevState,
+        logo: `${process.env.REACT_APP_HOST}/${file.name}`,
+      };
+    });
+  };
+
   // CRUD operation
   const addShop = () => {
     const url = `${process.env.REACT_APP_HOST}/shops`;
     Axios.post(url, shop)
       .then((response) => response.data)
       .then((data) => setShop(data));
+
+    const uploadImage = new FormData();
+    // appending file
+    uploadImage.append('file', uploadedFile);
+    Axios.post(`${process.env.REACT_APP_HOST}/upload`, uploadImage).then(
+      (res) =>
+        stockedFile({
+          name: res.data.name,
+          path: `${process.env.REACT_APP_HOST}/${res.data.path}`,
+        })
+    );
   };
 
   return (
@@ -123,12 +154,11 @@ const ShopsAdd = () => {
             <Form.Label>Date de création*</Form.Label>
             <Form.Control
               size="sm"
-              type="text"
               name="add_time"
               defaultValue={date.toLocaleDateString()}
               value={shop.add_time}
               placeholder={date.toLocaleDateString()}
-              onChange={handleInputChange}
+              readOnly
             />
           </Form.Group>
 
@@ -166,6 +196,7 @@ const ShopsAdd = () => {
             <Form.Group>
               <Form.Label>n° SIREN*</Form.Label>
               <Form.Control
+                size="sm"
                 type="text"
                 name="siren"
                 value={shop.siren}
@@ -208,7 +239,9 @@ const ShopsAdd = () => {
               id="custom-file"
               label="Uploader une image"
               name={shop.logo}
-              onChange=""
+              type="file"
+              ref={element}
+              onChange={handleUpload}
               custom
             />
           </Form.Group>

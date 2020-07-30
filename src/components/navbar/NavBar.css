@@ -12,8 +12,9 @@
   color: #fff2ceff;
   height: 85px;
   margin: 10px 5px 50px 5px;
-  /* flex */
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo-givyoo img {

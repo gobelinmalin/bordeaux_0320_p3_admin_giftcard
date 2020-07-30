@@ -1,8 +1,16 @@
-.formContainer {
+.central {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 200vw;
+}
+
+.login {
+  text-align: center;
+  border: 1px solid #20124d;
+  border-radius: 10px;
+  padding: 0 30px 40px 30px;
 }
 
 .form {
@@ -10,4 +18,13 @@
   flex-direction: column;
   text-align: left;
   align-items: center;
+}
+
+.btn-signin {
+  background-color: #20124d;
+  color: #fff2ce;
+}
+
+.btn-signin a {
+  color: #ffffff;
 }
