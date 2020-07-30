@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Axios from 'axios';
-
 import { Form, Button, Col, Container } from 'react-bootstrap';
 
 import './shops.css';
 import '../styles.css';
 
-const ShopsAdd = () => {
+const ShopsAdd = () = {
+  const history = useHistory();
+
   const initialFormState = {
     id: null,
     add_time: null,
@@ -116,7 +117,7 @@ const ShopsAdd = () => {
     const url = `${process.env.REACT_APP_HOST}/shops`;
     Axios.post(url, shop)
       .then((response) => response.data)
-      .then((data) => setShop(data));
+      .then((data) => setShop(data))
 
     const uploadImage = new FormData();
     // appending file
@@ -128,6 +129,8 @@ const ShopsAdd = () => {
           path: `${process.env.REACT_APP_HOST}/${res.data.path}`,
         })
     );
+
+    history.push('/admin/shops');
   };
 
   return (
