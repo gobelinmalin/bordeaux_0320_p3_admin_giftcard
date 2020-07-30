@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import { Button, Container, Table } from 'react-bootstrap';
+import { Button, Container, Modal, Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import ProductsNavbar from './ProductsNavbar';
@@ -85,6 +85,25 @@ const Products = () => {
     return foundTheme ? foundTheme.name : '';
   };
 
+  // Delete modal
+  // handle delete modal
+  const [productId, setProductId] = useState();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShow = (id) => {
+    setShowModal(true);
+    setProductId(id);
+  };
+
+  const handleClose = () => setShowModal(false);
+
+  const deleteProduct = () => {
+    const url = `${process.env.REACT_APP_HOST}/products/${productId}`;
+    Axios.delete(url)
+      .then((response) => response.data && setShowModal(false))
+      .finally(() => getProductsData());
+  };
+
   return (
     <Container>
       <ProductsNavbar />
@@ -127,7 +146,25 @@ const Products = () => {
                 <td className="action">
                   <FontAwesomeIcon className="action-icon" icon="tasks" />
                   <FontAwesomeIcon className="action-icon" icon="pen" />
-                  <FontAwesomeIcon className="action-icon" icon="trash" />
+
+                  <FontAwesomeIcon
+                    className="action-icon"
+                    icon="trash"
+                    onClick={() => handleShow(product.id)}
+                  />
+                  {/* Delete Modal */}
+                  <Modal show={showModal} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      Attention, vous ne pouvez pas supprimer ce produit-type si
+                      des produits lui sont associés.
+                    </Modal.Header>
+                    <Modal.Footer>
+                      <Button onClick={handleClose}>Annuler</Button>
+                      <Button onClick={() => deleteProduct()}>
+                        Supprimer {product.id}-{product.name}
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
                 </td>
               </tr>
             ))}
