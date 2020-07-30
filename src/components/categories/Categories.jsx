@@ -1,6 +1,6 @@
 // import modules
 import React, { useState, useEffect } from 'react';
-import { Button, Table, Container } from 'react-bootstrap';
+import { Button, Container, Modal, Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
@@ -21,9 +21,21 @@ const Category = () => {
     getCategoriesDatas();
   }, []);
 
-  const deleteCategory = (id) => {
-    Axios.delete(`${process.env.REACT_APP_HOST}/categories/${id}`, categories)
-      .then((response) => response.status === 200 && categories)
+  // Delete modal
+  const [categoryId, setCategoryId] = useState();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShow = (id) => {
+    setShowModal(true);
+    setCategoryId(id);
+  };
+
+  const handleClose = () => setShowModal(false);
+
+  const deleteCategory = () => {
+    const url = `${process.env.REACT_APP_HOST}/categories/${categoryId}`;
+    Axios.delete(url)
+      .then((response) => response.data && setShowModal(false))
       .finally(() => getCategoriesDatas());
   };
 
@@ -58,8 +70,19 @@ const Category = () => {
                 <FontAwesomeIcon
                   type="submit"
                   icon="trash"
-                  onClick={() => deleteCategory(category.id)}
+                  onClick={() => handleShow(category.id)}
                 />
+                {/* Delete Modal */}
+                <Modal show={showModal} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    Attention, vous ne devez pas supprimer cette catégorie si
+                    des produits lui sont associés.
+                  </Modal.Header>
+                  <Modal.Footer>
+                    <Button onClick={handleClose}>Annuler</Button>
+                    <Button onClick={() => deleteCategory()}>Supprimer</Button>
+                  </Modal.Footer>
+                </Modal>
               </td>
             </tr>
           ))}

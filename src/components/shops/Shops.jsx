@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,8 +18,7 @@ const Shops = () => {
 
   const getShopsData = () => {
     const url = `${process.env.REACT_APP_HOST}/shops`;
-    axios
-      .get(url)
+    Axios.get(url)
       .then((response) => response.data)
       .then((data) => setShops(data));
   };
@@ -36,8 +35,7 @@ const Shops = () => {
 
   const deleteShop = () => {
     const url = `${process.env.REACT_APP_HOST}/shops/${shopId}`;
-    axios
-      .delete(url)
+    Axios.delete(url)
       .then((response) => response.data && setShowModal(false))
       .finally(() => getShopsData());
   };
@@ -114,13 +112,17 @@ const Shops = () => {
                     onClick={() => handleShow(shop.id)}
                   />
                   {/* Delete Modal */}
-                  <Modal show={showModal} onHide={handleClose}>
+                  <Modal show={showModal} onHide={handleClose} shopId={shop.id}>
                     <Modal.Header closeButton>
-                      Supprimer l&apos;enseigne
+                      Attention, vous ne devez pas supprimer l&apos;enseigne
+                      partenaire si des produits lui sont ou lui ont été
+                      associés.
                     </Modal.Header>
                     <Modal.Footer>
                       <Button onClick={handleClose}>Annuler</Button>
-                      <Button onClick={() => deleteShop()}>Supprimer</Button>
+                      <Button onClick={() => deleteShop(shopId)}>
+                        Supprimer
+                      </Button>
                     </Modal.Footer>
                   </Modal>
                 </td>
