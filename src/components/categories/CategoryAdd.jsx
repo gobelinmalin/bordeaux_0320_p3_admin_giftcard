@@ -33,7 +33,7 @@ function CategoryAdd({ getCategoriesDatas }) {
           <h3 className="titlelist">Ajouter un type de produit</h3>
           <Form action="" className="form-group" onSubmit={() => addCategory()}>
             <Form.Group>
-              <Form.Label>Type</Form.Label>
+              <Form.Label>Nouvelle catégorie</Form.Label>
               <Form.Control
                 name="type"
                 type="text"
