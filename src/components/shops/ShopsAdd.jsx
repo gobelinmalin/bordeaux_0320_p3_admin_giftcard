@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Axios from 'axios';
-
 import { Form, Button, Col, Container } from 'react-bootstrap';
 
 import './shops.css';
 import '../styles.css';
 
 const ShopsAdd = () => {
+  const history = useHistory();
+
   const initialFormState = {
     id: null,
     add_time: null,
@@ -128,6 +129,8 @@ const ShopsAdd = () => {
           path: `${process.env.REACT_APP_HOST}/${res.data.path}`,
         })
     );
+
+    history.push('/admin/shops');
   };
 
   return (

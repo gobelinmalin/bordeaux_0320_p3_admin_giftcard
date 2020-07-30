@@ -43,27 +43,45 @@ function OrdersByCustomer() {
       (person) => `${person.civility} ${person.firstname} ${person.lastname}`
     );
 
+  // GET Product
+  const [shops, setShops] = useState([]);
+
+  const getShopsData = () => {
+    const url = `${process.env.REACT_APP_HOST}/products/cards`;
+    Axios.get(url)
+      .then((response) => response.data)
+      .then((data) => setShops(data));
+  };
+
+  useEffect(() => {
+    getShopsData();
+  }, []);
+
+  const getShops = (orderId) => {
+    const foundShop = shops.find((shop) => shop.id === orderId);
+    return foundShop ? foundShop.name : '';
+  };
+
   const ordersList = allOrders.map((order) => (
     <tr>
       <td>{order.id_client}</td>
-      <td>{order.createDate}</td>
-      <td>{order.id_delivery}</td>
-      <td>{order.delivery_date}</td>
-      <td>{order.satus}</td>
+      <td>{getShops(order.id)}</td>
+      <td>{new Date(order.createDate).toLocaleDateString()}</td>
+      <td>{new Date(order.delivery_date).toLocaleDateString()}</td>
+      {order.status === 1 ? <td>ecard</td> : <td>physique</td>}
     </tr>
   ));
   return (
     <Container>
-      <h1>{`Commandes du client ${customerName}`}</h1>
+      <h3 className="titlelist">{`Commandes du client ${customerName}`}</h3>
       <Table>
         <thead>
           <tr>
             <th>N° de client </th>
+            <th>Produit</th>
             <th>Date de création </th>
-            <th>N° de livraison </th>
             <th>Date de livraison</th>
-            <th>E-card</th>
-            <th>Carte physique</th>
+            <th>Format</th>
           </tr>
         </thead>
         <tbody>{ordersList}</tbody>

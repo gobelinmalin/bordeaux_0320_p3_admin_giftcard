@@ -1,7 +1,7 @@
 /* Cockpit component */
 .parent-container {
   display: flex;
-  min-width: 100vw;
+  min-width: 80vw;
   margin: 0;
 }
 /* NavBar component */
@@ -15,7 +15,7 @@
   border-radius: 10px;
   width: 100%;
   margin: 5px 5px 5px 0px;
-  background-color: #fff2ceff;
+  background-color: #fff;
   /* FLEX */
   display: flex;
   flex-direction: column;
@@ -32,12 +32,13 @@
 
 .btn-insideNav {
   background-color: #20124d;
-  color: #fff2ceff;
+  border: 0.1rem solid #20124d;
+  color: #fff;
   margin: 0 10px 0 0;
 }
 
 .btn-insideNav:hover {
-  background-color: #fff2ceff;
+  background-color: #fff;
 }
 
 /* FORM STYLES */
@@ -77,4 +78,71 @@
 .btn-deleting {
   border: 1px solid red;
   margin: 0 5px;
+}
+
+/* BUTTONS */
+.yellow1 {
+  background-color: #f28d1bff;
+  border: 0.1rem solid #f28d1bff;
+}
+
+.yellow2 {
+  background-color: #f59d19ff;
+  border: 0.1rem solid #f59d19ff;
+}
+
+.yellow3 {
+  background-color: #f9ad15ff;
+  border: 0.1rem solid #f9ad15ff;
+}
+
+.yellow4 {
+  background-color: #fcc010ff;
+  border: 0.1rem solid #fcc010ff;
+}
+
+.yellow1:hover {
+  color: #f28d1bff;
+  background-color: #fff;
+}
+
+.yellow2:hover {
+  color: #f59d19ff;
+  background-color: #fff;
+}
+
+.yellow3:hover {
+  color: #f9ad15ff;
+  background-color: #fff;
+}
+
+.yellow4:hover {
+  color: #fcc010ff;
+  background-color: #fff;
+}
+
+/* STATUS CARD */
+.notsale {
+  background-color: #db4545;
+  border-radius: 50%;
+  margin-right: 6px;
+  width: 15px;
+  height: 15px;
+  color: transparent;
+  padding: 5px;
+}
+
+.sale {
+  background-color: #16ca16;
+  border-radius: 50%;
+  margin-right: 6px;
+  width: 15px;
+  height: 15px;
+  color: transparent;
+  padding: 5px;
+}
+
+/*TITLE */
+.titlelist {
+  margin-top: 3rem;
 }
