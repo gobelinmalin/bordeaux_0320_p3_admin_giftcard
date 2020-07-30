@@ -62,7 +62,11 @@ const Category = () => {
           {categories.map((category) => (
             <tr>
               <td>{category.id}</td>
-              <td>{category.type}</td>
+              <td>
+                <Link to={`/admin/categories/${category.id}`}>
+                  {category.type}
+                </Link>
+              </td>
               <td className="action">
                 <Link to={`/admin/categories/${category.id}`}>
                   <FontAwesomeIcon type="submit" icon="pen" />

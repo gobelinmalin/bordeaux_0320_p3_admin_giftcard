@@ -31,7 +31,7 @@ function ThemeAdd({ getThemesDatas }) {
           <Form.Control
             name="name"
             type="text"
-            value={inputValue.name}
+            value={theme.name}
             onChange={(event) => handleChange(event)}
             placeholder="nouveau theme"
           />
