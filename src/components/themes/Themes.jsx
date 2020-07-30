@@ -9,16 +9,16 @@ import ProductsNavbar from '../products/ProductsNavbar';
 // import component
 import ThemesAdd from './ThemesAdd';
 
-const Theme = () => {
-  const [themes, setThemes] = useState([{}]);
-  const getThemeDatas = () => {
+const Themes = () => {
+  const [themes, setThemes] = useState([]);
+  const getThemesDatas = () => {
     Axios.get(`${process.env.REACT_APP_HOST}/themes`)
       .then((response) => response.data)
       .then((data) => setThemes(data));
   };
 
   useEffect(() => {
-    getThemeDatas();
+    getThemesDatas();
   }, []);
 
   // Delete modal
@@ -36,7 +36,7 @@ const Theme = () => {
     const url = `${process.env.REACT_APP_HOST}/themes/${themeId}`;
     Axios.delete(url)
       .then((response) => response.data && setShowModal(false))
-      .finally(() => getThemeDatas());
+      .finally(() => getThemesDatas());
   };
 
   return (
@@ -62,7 +62,9 @@ const Theme = () => {
           {themes.map((theme) => (
             <tr>
               <td>{theme.id}</td>
-              <td>{theme.name}</td>
+              <td>
+                <Link to={`/admin/themes/${theme.id}`}>{theme.name}</Link>
+              </td>
               <td className="action">
                 <Link to={`/admin/themes/${theme.id}`}>
                   <FontAwesomeIcon type="submit" icon="pen" />
@@ -72,7 +74,6 @@ const Theme = () => {
                   icon="trash"
                   onClick={() => handleShow(theme.id)}
                 />
-                {/* Delete Modal */}
                 <Modal show={showModal} onHide={handleClose}>
                   <Modal.Header closeButton>
                     Attention, vous ne devriez pas supprimer ce thème si des
@@ -89,10 +90,10 @@ const Theme = () => {
         </tbody>
       </Table>
       <div>
-        <ThemesAdd />
+        <ThemesAdd getThemesDatas={getThemesDatas} />
       </div>
     </Container>
   );
 };
 
-export default Theme;
+export default Themes;

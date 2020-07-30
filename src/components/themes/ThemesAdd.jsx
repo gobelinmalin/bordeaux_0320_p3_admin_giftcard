@@ -3,7 +3,7 @@ import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { Form, Container, Button } from 'react-bootstrap';
 
-function ThemeAdd({ getThemeDatas }) {
+function ThemeAdd({ getThemesDatas }) {
   const [theme, setTheme] = useState([{}]);
   const [inputValue, setInputValue] = useState('');
 
@@ -13,7 +13,7 @@ function ThemeAdd({ getThemeDatas }) {
 
   const addTheme = () => {
     const url = `${process.env.REACT_APP_HOST}/themes`;
-    Axios.post(url, theme).finally(() => getThemeDatas());
+    Axios.post(url, theme).finally(() => getThemesDatas());
   };
 
   const handleChange = (event) => {
@@ -26,7 +26,7 @@ function ThemeAdd({ getThemeDatas }) {
   return (
     <Container>
       <h3 className="titlelist">Ajouter un theme</h3>
-      <Form action="" className="form-group" onSubmit={() => addTheme()}>
+      <Form className="form-group" onSubmit={() => addTheme()}>
         <Form.Group>
           <Form.Control
             name="name"
@@ -45,11 +45,11 @@ function ThemeAdd({ getThemeDatas }) {
 }
 
 ThemeAdd.defaultProps = {
-  getThemeDatas: PropTypes.func,
+  getThemesDatas: PropTypes.func,
 };
 
 ThemeAdd.propTypes = {
-  getThemeDatas: PropTypes.func,
+  getThemesDatas: PropTypes.func,
 };
 
 export default ThemeAdd;
