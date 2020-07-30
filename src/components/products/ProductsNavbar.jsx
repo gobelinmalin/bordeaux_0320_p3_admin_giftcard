@@ -13,7 +13,9 @@ const ProductNavbar = () => {
       <Link to="/admin/categories">
         <Button variant="insideNav yellow2">CATEGORIES</Button>
       </Link>
-      <Button variant="insideNav yellow3">THEME</Button>
+      <Link to="/admin/themes">
+        <Button variant="insideNav yellow3">THEMES</Button>
+      </Link>
       <Button variant="insideNav yellow4">TAGS</Button>
     </div>
   );

@@ -7,36 +7,36 @@ import Axios from 'axios';
 import ProductsNavbar from '../products/ProductsNavbar';
 
 // import component
-import CategoryAdd from './CategoryAdd';
+import ThemesAdd from './ThemesAdd';
 
-const Category = () => {
-  const [categories, setCategories] = useState([{}]);
-  const getCategoriesDatas = () => {
-    Axios.get(`${process.env.REACT_APP_HOST}/categories`)
+const Theme = () => {
+  const [themes, setThemes] = useState([{}]);
+  const getThemeDatas = () => {
+    Axios.get(`${process.env.REACT_APP_HOST}/themes`)
       .then((response) => response.data)
-      .then((data) => setCategories(data));
+      .then((data) => setThemes(data));
   };
 
   useEffect(() => {
-    getCategoriesDatas();
+    getThemeDatas();
   }, []);
 
   // Delete modal
-  const [categoryId, setCategoryId] = useState();
+  const [themeId, setThemeId] = useState();
   const [showModal, setShowModal] = useState(false);
 
   const handleShow = (id) => {
     setShowModal(true);
-    setCategoryId(id);
+    setThemeId(id);
   };
 
   const handleClose = () => setShowModal(false);
 
-  const deleteCategory = () => {
-    const url = `${process.env.REACT_APP_HOST}/categories/${categoryId}`;
+  const deleteTheme = () => {
+    const url = `${process.env.REACT_APP_HOST}/themes/${themeId}`;
     Axios.delete(url)
       .then((response) => response.data && setShowModal(false))
-      .finally(() => getCategoriesDatas());
+      .finally(() => getThemeDatas());
   };
 
   return (
@@ -48,39 +48,39 @@ const Category = () => {
         </Link>
       </div>
       <div className="sectionTitle">
-        <h3>Liste des CATEGORIES de produits</h3>
+        <h3>Liste des THEMES de produits</h3>
       </div>
       <Table>
         <thead>
           <tr>
             <th>#id</th>
-            <th>Nom de la catégorie</th>
+            <th>Nom du thème</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {categories.map((category) => (
+          {themes.map((theme) => (
             <tr>
-              <td>{category.id}</td>
-              <td>{category.type}</td>
+              <td>{theme.id}</td>
+              <td>{theme.name}</td>
               <td className="action">
-                <Link to={`/admin/categories/${category.id}`}>
+                <Link to={`/admin/themes/${theme.id}`}>
                   <FontAwesomeIcon type="submit" icon="pen" />
                 </Link>
                 <FontAwesomeIcon
                   type="submit"
                   icon="trash"
-                  onClick={() => handleShow(category.id)}
+                  onClick={() => handleShow(theme.id)}
                 />
                 {/* Delete Modal */}
                 <Modal show={showModal} onHide={handleClose}>
                   <Modal.Header closeButton>
-                    Attention, vous ne devez pas supprimer cette catégorie si
-                    des produits lui sont associés.
+                    Attention, vous ne devriez pas supprimer ce thème si des
+                    produits lui sont associés.
                   </Modal.Header>
                   <Modal.Footer>
                     <Button onClick={handleClose}>Annuler</Button>
-                    <Button onClick={() => deleteCategory()}>Supprimer</Button>
+                    <Button onClick={() => deleteTheme()}>Supprimer</Button>
                   </Modal.Footer>
                 </Modal>
               </td>
@@ -89,10 +89,10 @@ const Category = () => {
         </tbody>
       </Table>
       <div>
-        <CategoryAdd />
+        <ThemesAdd />
       </div>
     </Container>
   );
 };
 
-export default Category;
+export default Theme;
