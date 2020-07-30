@@ -105,15 +105,16 @@ const Products = () => {
   return (
     <Container>
       <ProductsNavbar />
-      <hr />
-      <h3>Liste des produits types</h3>
       <div className="insideNavBar">
         <Link to="/admin/products/add">
-          <Button variant="insideNav">Ajouter un produit type</Button>
+          <Button variant="insideNav">Ajouter un produit</Button>
         </Link>
         <Link to="/admin/products/cards">
-          <Button variant="insideNav">Voir les cartes cadeaux</Button>
+          <Button variant="insideNav">Voir les produits</Button>
         </Link>
+      </div>
+      <div className="sectionTitle">
+        <h3>Liste des produits types</h3>
       </div>
       <div>
         <Table>

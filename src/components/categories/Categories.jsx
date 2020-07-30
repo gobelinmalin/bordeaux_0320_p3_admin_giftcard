@@ -30,12 +30,13 @@ const Category = () => {
   return (
     <Container>
       <ProductsNavbar />
-      <hr />
-      <h3 className="titlelist">Liste des catégories de produit</h3>
       <div className="insideNavBar">
         <Link to="/admin/products">
           <Button variant="insideNav">Retour aux produits</Button>
         </Link>
+      </div>
+      <div className="sectionTitle">
+        <h3>Liste des catégories de produits</h3>
       </div>
       <Table>
         <thead>

@@ -2,9 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
-import { Form, Container, Col, Row, Button } from 'react-bootstrap';
-
-// import style
+import { Form, Container, Button } from 'react-bootstrap';
 
 function CategoryAdd({ getCategoriesDatas }) {
   const [category, setCategory] = useState([{}]);
@@ -28,25 +26,21 @@ function CategoryAdd({ getCategoriesDatas }) {
 
   return (
     <Container>
-      <Row>
-        <Col className="col-form-label-sm">
-          <h3 className="titlelist">Ajouter un type de produit</h3>
-          <Form action="" className="form-group" onSubmit={() => addCategory()}>
-            <Form.Group>
-              <Form.Label>Nouvelle catégorie</Form.Label>
-              <Form.Control
-                name="type"
-                type="text"
-                value={inputValue.type}
-                onChange={(event) => handleChange(event)}
-              />
-            </Form.Group>
-            <Button type="submit" className="admin-add">
-              Ajouter
-            </Button>
-          </Form>
-        </Col>
-      </Row>
+      <h3 className="titlelist">Ajouter une catégorie</h3>
+      <Form action="" className="form-group" onSubmit={() => addCategory()}>
+        <Form.Group>
+          <Form.Control
+            name="type"
+            type="text"
+            value={inputValue.type}
+            onChange={(event) => handleChange(event)}
+            placeholder="nouvelle catégorie"
+          />
+        </Form.Group>
+        <Button type="submit" className="admin-add">
+          Ajouter
+        </Button>
+      </Form>
     </Container>
   );
 }

@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { useParams } from 'react-router';
 import { Link, useHistory } from 'react-router-dom';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button } from 'react-bootstrap';
+
+import ProductsNavbar from '../products/ProductsNavbar';
+
+import '../styles.css';
 
 function CategoryUpdate() {
   const { id } = useParams();
@@ -39,34 +43,32 @@ function CategoryUpdate() {
   if (category) {
     return (
       <Container>
-        <Row>
-          <Col className="col-form-label-sm">
-            <h3 id="">Editer la catégory</h3>
-            <Form
-              action=""
-              className="form-group"
-              onSubmit={() => updateCategory()}
-            >
-              <Form.Group>
-                <Form.Label>Type</Form.Label>
-                <Form.Control
-                  name="type"
-                  type="text"
-                  value={category.type}
-                  onChange={(event) => handleChange(event)}
-                />
-              </Form.Group>
-              <Button type="submit" variant="warning">
-                Modifier la catégorie
-              </Button>
-              <Link to="/admin/products">
-                <Button type="button" variant="success">
-                  Retourner à la liste des produits
-                </Button>
-              </Link>
-            </Form>
-          </Col>
-        </Row>
+        <ProductsNavbar />
+        <div className="insideNavBar">
+          <Link to="/admin/products">
+            <Button variant="insideNav">Retour aux produits</Button>
+          </Link>
+        </div>
+        <div className="sectionTitle">
+          <h3>Modifier cette catégorie</h3>
+        </div>
+        <Form
+          action=""
+          className="form-group"
+          onSubmit={() => updateCategory()}
+        >
+          <Form.Group>
+            <Form.Control
+              name="type"
+              type="text"
+              value={category.type}
+              onChange={(event) => handleChange(event)}
+            />
+          </Form.Group>
+          <Button type="submit" variant="insideNav">
+            Modifier la catégorie
+          </Button>
+        </Form>
       </Container>
     );
   }
