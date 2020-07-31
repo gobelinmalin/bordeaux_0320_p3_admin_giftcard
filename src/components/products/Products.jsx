@@ -154,9 +154,7 @@ const Products = () => {
                     </Modal.Header>
                     <Modal.Footer>
                       <Button onClick={handleClose}>Annuler</Button>
-                      <Button onClick={() => deleteProduct()}>
-                        Supprimer {product.id}-{product.name}
-                      </Button>
+                      <Button onClick={() => deleteProduct()}>Supprimer</Button>
                     </Modal.Footer>
                   </Modal>
                 </td>
