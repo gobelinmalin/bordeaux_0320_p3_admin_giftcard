@@ -64,18 +64,18 @@ const CardsProducts = () => {
 
   // Delete modal
   // handle delete modal
-  const [productId, setProductId] = useState();
+  const [cardId, setCardId] = useState();
   const [showModal, setShowModal] = useState(false);
 
-  const handleShow = (id) => {
+  const handleShow = (idcard) => {
     setShowModal(true);
-    setProductId(id);
+    setCardId(idcard);
   };
 
   const handleClose = () => setShowModal(false);
 
-  const deleteProduct = () => {
-    const url = `${process.env.REACT_APP_HOST}/products/${productId}`;
+  const deleteCard = () => {
+    const url = `${process.env.REACT_APP_HOST}/product/cards/${cardId}`;
     Axios.delete(url)
       .then((response) => response.data && setShowModal(false))
       .finally(() => getCardsData());
@@ -133,13 +133,12 @@ const CardsProducts = () => {
                   {/* Delete Modal */}
                   <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
-                      Attention, vous ne pouvez pas supprimer ce produit-type si
-                      des produits lui sont associés.
+                      Etes vous sûre de vouloir supprimer ce produit ?
                     </Modal.Header>
                     <Modal.Footer>
                       <Button onClick={handleClose}>Annuler</Button>
-                      <Button onClick={() => deleteProduct()}>
-                        Supprimer {card.id}-{card.name}
+                      <Button onClick={() => deleteCard()}>
+                        Supprimer ce produit
                       </Button>
                     </Modal.Footer>
                   </Modal>

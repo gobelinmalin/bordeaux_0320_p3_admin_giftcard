@@ -18,7 +18,7 @@ const CardAdd = () => {
     code_card: null,
     credit: null,
     code_security: null,
-    validity: '',
+    validity: null,
     multi_use: false,
     sale_status: true,
   };
@@ -46,7 +46,7 @@ const CardAdd = () => {
     setCard({ ...card, [name]: !card.multi_use });
   };
 
-  // handle change format
+  // handle change multiuse format
   const handleChangeFormat = (event) => {
     const { name, value } = event.target;
     if (value === 'ecard') {
@@ -74,7 +74,7 @@ const CardAdd = () => {
     setCard({ ...card, [name]: value });
   };
 
-  // handleDateChange
+  // handle Change validity date input
   const handleDateChange = (event) => {
     const { name, value } = event.target;
     setCard({ ...card, [name]: value });
@@ -94,11 +94,8 @@ const CardAdd = () => {
 
       <div className="formContent">
         <div className="insideNavBar">
-          <Link to="/admin/products/add-card">
-            <Button variant="insideNav">Nouvelle carte cadeau</Button>
-          </Link>
-          <Link to=" ">
-            <Button variant="insideNav">Nouvel abonnement</Button>
+          <Link to="/admin/products/cards">
+            <Button variant="insideNav">Retour à la liste</Button>
           </Link>
         </div>
       </div>
@@ -122,7 +119,7 @@ const CardAdd = () => {
               size="sm"
               type="text"
               name="creationDate"
-              defaultValue={date.toLocaleDateString()}
+              defaultValue={`${date.toISOString().split('T')[0]} `}
               value={card.creationDate}
               placeholder={date.toLocaleDateString()}
               onChange={handleInputChange}

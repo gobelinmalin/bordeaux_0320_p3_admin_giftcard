@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Form,
   Button,
@@ -16,7 +16,8 @@ import ProductNavbar from './ProductsNavbar';
 import '../styles.css';
 
 const ProductsAdd = () => {
-  // set initial form
+  const history = useHistory();
+
   const initialFormState = {
     id: null,
     id_shop: '',
@@ -128,6 +129,8 @@ const ProductsAdd = () => {
           path: `${process.env.REACT_APP_HOST}/${res.data.path}`,
         })
     );
+
+    history.push('/admin/products');
   };
 
   return (
